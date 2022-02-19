@@ -6,7 +6,7 @@ interface SectionProps {
 }
 
 export const Section = ({ children }: SectionProps) => {
-  return <section className='mt-24'>{children}</section>
+  return <section className='mt-64'>{children}</section>
 }
 
 interface SectionHeaderProps {

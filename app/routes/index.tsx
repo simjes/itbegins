@@ -3,6 +3,7 @@ import Main from '~/features/Layout/Main'
 import concept from '~/images/concept.png'
 import arrow from '~/images/arrow.svg'
 import cn from 'classnames'
+import heroImage from '~/images/hero.webp'
 
 import { Section, SectionHeader } from '~/features/Layout/Section'
 import Footer from '~/features/Layout/Footer'
@@ -14,18 +15,25 @@ export default function Index() {
       <Header />
 
       <Main>
-        <div className='h-96 flex items-center'>
-          <header className='w-2/3 flex flex-col justify-center'>
-            <h1 className='text-3xl md:text-5xl font-bold text-slate-900 dark:text-slate-200'>
+        {/* TODO: meda query på height? */}
+        <div className='flex items-center relative hero-container'>
+          <header className='w-full sm:w-2/3 flex flex-col justify-center z-10 backdrop-blur-xl p-4 rounded-xl'>
+            <h1 className='text-3xl md:text-5xl font-bold text-white'>
               Teknologiselskap som setter brukeren i fokus
             </h1>
-            <p className='text-xl md:text-2xl font-bold mt-2'>
+            <p className='text-xl md:text-2xl font-bold mt-2 text-slate-100'>
               Sammen skaper vi gode løsninger som gjør den digitale hverdagen
               enklere
             </p>
 
-            <DecorationLine className='w-64' />
+            <DecorationLine className='w-64' type='blue' />
           </header>
+          <img
+            className='absolute h-full full-width object-cover'
+            src={heroImage}
+            aria-hidden
+            alt='background image'
+          />
         </div>
 
         <Section>

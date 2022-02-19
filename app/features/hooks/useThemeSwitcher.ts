@@ -15,13 +15,13 @@ export const useThemeSwitcher = () => {
   }
 
   // TODO: bug - overwrites localstorage
-  useEffect(() => {
-    if (currentTheme) return
-    const preferesDarkTheme = window.matchMedia(
-      '(prefers-color-scheme: dark)',
-    ).matches
-    setCurrentTheme(preferesDarkTheme ? 'dark' : 'light')
-  }, [currentTheme, setCurrentTheme])
+  // useEffect(() => {
+  //   if (currentTheme) return
+  //   const preferesDarkTheme = window.matchMedia(
+  //     '(prefers-color-scheme: dark)',
+  //   ).matches
+  //   setCurrentTheme(preferesDarkTheme ? 'dark' : 'light')
+  // }, [currentTheme, setCurrentTheme])
 
   useEffect(() => {
     if (currentTheme === 'dark') {
