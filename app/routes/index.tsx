@@ -1,14 +1,13 @@
+import { ArrowDownIcon } from '@heroicons/react/solid'
+import cn from 'classnames'
+import DecorationLine from '~/features/Layout/DecorationLine'
+import Footer from '~/features/Layout/Footer'
 import Header from '~/features/Layout/Header'
 import Main from '~/features/Layout/Main'
-import concept from '~/images/concept.png'
-import arrow from '~/images/arrow.svg'
-import cn from 'classnames'
-import heroImage from '~/images/hero.webp'
-
 import { Section, SectionHeader } from '~/features/Layout/Section'
-import Footer from '~/features/Layout/Footer'
-import DecorationLine from '~/features/Layout/DecorationLine'
-import { ArrowDownIcon } from '@heroicons/react/solid'
+import conceptPage from '~/images/concept-page.svg'
+import finishedPage from '~/images/finished-page.svg'
+import heroImage from '~/images/hero.webp'
 
 export default function Index() {
   return (
@@ -59,14 +58,15 @@ export default function Index() {
             subtitle='Vi bistår i hele prosessen'
           />
 
-          {/* TODO: skikkelige bilder - med srcset */}
           <div className='flex flex-col items-center mt-8 space-y-12'>
-            <ProcessImage src={concept} alt='Konsept av en webside' />
+            <ProcessImage src={conceptPage} alt='Konsept av en webside' />
 
             <ArrowDownIcon className='h-16 w-16 text-pink-500' />
 
-            {/* TODO: nytt bilde på ferdig konsept */}
-            <ProcessImage src={concept} alt='Ferdig produkt av en webside' />
+            <ProcessImage
+              src={finishedPage}
+              alt='Ferdig produkt av en webside'
+            />
           </div>
         </section>
       </Main>
@@ -76,7 +76,6 @@ export default function Index() {
   )
 }
 
-// TODO: second image initial blur -> timeout -> remove blur
 const ProcessImage = ({
   src,
   alt,
@@ -86,5 +85,11 @@ const ProcessImage = ({
   alt: string
   className?: string
 }) => {
-  return <img className={cn('w-72', className)} src={src} alt={alt} />
+  return (
+    <img
+      className={cn('w-72 shadow-lg rounded-xl', className)}
+      src={src}
+      alt={alt}
+    />
+  )
 }
