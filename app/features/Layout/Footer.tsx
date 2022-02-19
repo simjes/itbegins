@@ -4,7 +4,7 @@ import React, { ReactNode } from 'react'
 // TODO: ikoner på actions
 const Footer = () => {
   return (
-    <footer className='py-4 text-slate-700 dark:text-slate-200'>
+    <footer className='py-4 text-slate-200 bg-slate-900 dark:bg-black mt-64'>
       <div className='h-64 py-12 flex flex-col md:flex-row justify-between max-w-4xl mx-auto'>
         <div>Lodde</div>
 

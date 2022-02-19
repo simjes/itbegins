@@ -8,6 +8,7 @@ import heroImage from '~/images/hero.webp'
 import { Section, SectionHeader } from '~/features/Layout/Section'
 import Footer from '~/features/Layout/Footer'
 import DecorationLine from '~/features/Layout/DecorationLine'
+import { ArrowDownIcon } from '@heroicons/react/solid'
 
 export default function Index() {
   return (
@@ -52,25 +53,22 @@ export default function Index() {
           </p>
         </Section>
 
-        <Section>
+        <section className='flex items-center justify-around mt-64'>
           <SectionHeader
             title='Fra konsept til produkt'
             subtitle='Vi bistår i hele prosessen'
           />
 
           {/* TODO: skikkelige bilder - med srcset */}
-          <div className='flex flex-col items-center lg:flex-row lg:justify-between mt-8 space-y-24 lg:space-y-0'>
+          <div className='flex flex-col items-center mt-8 space-y-12'>
             <ProcessImage src={concept} alt='Konsept av en webside' />
 
-            {/* TODO: rotate */}
-            <ProcessImage
-              src={arrow}
-              alt='Pil fra konsept til ferdig produkt'
-            />
+            <ArrowDownIcon className='h-16 w-16 text-pink-500' />
+
             {/* TODO: nytt bilde på ferdig konsept */}
             <ProcessImage src={concept} alt='Ferdig produkt av en webside' />
           </div>
-        </Section>
+        </section>
       </Main>
 
       <Footer />
