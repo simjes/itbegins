@@ -1,13 +1,5 @@
-import React, { ReactNode } from 'react'
+import React from 'react'
 import DecorationLine from './DecorationLine'
-
-interface SectionProps {
-  children: ReactNode
-}
-
-export const Section = ({ children }: SectionProps) => {
-  return <section className='mt-64'>{children}</section>
-}
 
 interface SectionHeaderProps {
   title: string

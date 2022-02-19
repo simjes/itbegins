@@ -1,10 +1,11 @@
 import { ArrowDownIcon } from '@heroicons/react/solid'
 import cn from 'classnames'
+import Employee from '~/features/Employee'
 import DecorationLine from '~/features/Layout/DecorationLine'
 import Footer from '~/features/Layout/Footer'
 import Header from '~/features/Layout/Header'
 import Main from '~/features/Layout/Main'
-import { Section, SectionHeader } from '~/features/Layout/Section'
+import { SectionHeader } from '~/features/Layout/Section'
 import conceptPage from '~/images/concept-page.svg'
 import finishedPage from '~/images/finished-page.svg'
 import heroImage from '~/images/hero.webp'
@@ -15,7 +16,6 @@ export default function Index() {
       <Header />
 
       <Main>
-        {/* TODO: meda query på height? */}
         <div className='flex items-center relative hero-container'>
           <header className='w-full sm:w-2/3 flex flex-col justify-center z-10 backdrop-blur-xl p-4 rounded-xl'>
             <h1 className='text-3xl md:text-5xl font-bold text-white'>
@@ -36,7 +36,7 @@ export default function Index() {
           />
         </div>
 
-        <Section>
+        <section className='mt-64'>
           <SectionHeader title='Vi bryr oss' />
           <p className='text-xl mt-2'>
             Når man skal skape digitale løsninger er brukeren det viktigste vi
@@ -50,7 +50,7 @@ export default function Index() {
             egenskaper for medarbeiderne våre. Engasjement, samarbeid og deling
             av kompetanse setter vi høgt.
           </p>
-        </Section>
+        </section>
 
         <section className='flex items-center justify-around mt-64'>
           <SectionHeader
@@ -66,6 +66,19 @@ export default function Index() {
             <ProcessImage
               src={finishedPage}
               alt='Ferdig produkt av en webside'
+            />
+          </div>
+        </section>
+
+        <section className='mt-64'>
+          <SectionHeader title='Bli kjent med oss' />
+
+          <div className='flex justify-center mt-10'>
+            <Employee
+              image='https://avatars.githubusercontent.com/u/6494049?v=4'
+              name='Simon Jespersen'
+              role='Senior Front-end Developer'
+              links={[{ url: 'https://github.com/simjes', type: 'github' }]}
             />
           </div>
         </section>

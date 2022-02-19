@@ -2,7 +2,6 @@ import { MoonIcon, SunIcon } from '@heroicons/react/solid'
 import React from 'react'
 import { NavLink } from 'remix'
 import { useThemeSwitcher } from '../hooks/useThemeSwitcher'
-import LoddeNavLink from '../LoddeNavLink'
 
 const Header = () => {
   const { currentTheme, toggleTheme } = useThemeSwitcher()
@@ -13,18 +12,14 @@ const Header = () => {
       <div className='flex justify-between max-w-4xl mx-auto'>
         <NavLink to='/'>Lodde Consulting</NavLink>
 
-        {/* TODO: fix small sreens */}
         <div className='flex items-center space-x-4'>
-          <nav>
+          {/* <nav>
             <ul className='flex space-x-4'>
               <li>
-                <LoddeNavLink to='people' text='Folkene' />
-              </li>
-              <li>
-                <LoddeNavLink to='about' text='Om oss' />
+                <LoddeNavLink to='/people' text='Folkene' />
               </li>
             </ul>
-          </nav>
+          </nav> */}
 
           <button className='p-2' onClick={toggleTheme}>
             {isLightMode ? (
