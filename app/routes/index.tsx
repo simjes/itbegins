@@ -16,10 +16,10 @@ export default function Index() {
       <Main>
         <div className='h-96 flex items-center'>
           <header className='w-2/3 flex flex-col justify-center'>
-            <h1 className='text-3xl md:text-5xl font-bold'>
+            <h1 className='text-3xl md:text-5xl font-bold text-slate-900 dark:text-slate-200'>
               Teknologiselskap som setter brukeren i fokus
             </h1>
-            <p className='text-xl md:text-2xl font-bold text-slate-500 mt-2'>
+            <p className='text-xl md:text-2xl font-bold mt-2'>
               Sammen skaper vi gode løsninger som gjør den digitale hverdagen
               enklere
             </p>
@@ -30,18 +30,17 @@ export default function Index() {
 
         <Section>
           <SectionHeader title='Vi bryr oss' />
-          {/* TODO: gradient line sky-500 til pink-500 */}
-          <p className='text-slate-500 text-xl mt-2'>
+          <p className='text-xl mt-2'>
             Når man skal skape digitale løsninger er brukeren det viktigste vi
             har, det er jo tross alt de som skal bruke produktet. I Lodde mener
-            vi at de beste løsningene kommer fra tverrfaglige samarbeid som
-            jobber mot samme mål.
+            vi at de beste løsningene kommer fra tverrfaglige samarbeid med
+            mennesker som jobber mot samme mål.
           </p>
-          <p className='text-slate-500 text-xl mt-2'>
+          <p className='text-xl mt-2'>
             I en bransje som endrer seg raskt er det viktig å følge med, derfor
             mener vi at det å være nyskjerrig og lærevillig er viktige
-            egenskaper for konsulenter. Engasjement, samarbeid og deling av
-            kompetanse setter vi høgt.
+            egenskaper for medarbeiderne våre. Engasjement, samarbeid og deling
+            av kompetanse setter vi høgt.
           </p>
         </Section>
 

@@ -16,9 +16,14 @@ interface SectionHeaderProps {
 
 export const SectionHeader = ({ title, subtitle }: SectionHeaderProps) => (
   <header className='flex flex-col items-center'>
-    <h2 className='text-3xl md:text-4xl font-bold'>{title}</h2>
+    <h2 className='text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-200'>
+      {title}
+    </h2>
+
     {subtitle && (
-      <p className='text-slate-500 text-xl md:text-2xl font-bold'>{subtitle}</p>
+      <p className='text-xl md:text-2xl font-bold dark:text-slate-400'>
+        {subtitle}
+      </p>
     )}
 
     <DecorationLine />
