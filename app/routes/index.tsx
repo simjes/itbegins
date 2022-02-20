@@ -1,6 +1,12 @@
 import { ArrowDownIcon } from '@heroicons/react/solid'
+import { Client } from '@notionhq/client'
 import cn from 'classnames'
-import Employee from '~/features/Employee'
+import { useLoaderData } from 'remix'
+import Employee from '~/features/employee/Employee'
+import {
+  EmployeeOverview,
+  mapToEmployeeOverview,
+} from '~/features/employee/model'
 import DecorationLine from '~/features/Layout/DecorationLine'
 import Footer from '~/features/Layout/Footer'
 import Header from '~/features/Layout/Header'
@@ -10,9 +16,35 @@ import conceptPage from '~/images/concept-page.svg'
 import finishedPage from '~/images/finished-page.svg'
 import heroImage from '~/images/hero.webp'
 
+export async function loader() {
+  const notion = new Client({ auth: process.env.NOTION_API_SECRET })
+  const response = await notion.databases.query({
+    database_id: process.env.NOTION_EMPLOYEE_DB!,
+    sorts: [
+      {
+        property: 'Date Created',
+        direction: 'ascending',
+      },
+    ],
+    filter: {
+      and: [
+        {
+          property: 'Status',
+          select: {
+            equals: 'Active',
+          },
+        },
+      ],
+    },
+  })
+  return response.results.map(mapToEmployeeOverview)
+}
+
 export default function Index() {
+  const employees: EmployeeOverview[] = useLoaderData()
+
   return (
-    <div className='h-full flex flex-col px-4 xl:px-0'>
+    <div className='h-full flex flex-col'>
       <Header />
 
       <Main>
@@ -73,13 +105,16 @@ export default function Index() {
         <section className='mt-64'>
           <SectionHeader title='Bli kjent med oss' />
 
-          <div className='flex justify-center mt-10'>
-            <Employee
-              image='https://avatars.githubusercontent.com/u/6494049?v=4'
-              name='Simon Jespersen'
-              role='Senior Front-end Developer'
-              links={[{ url: 'https://github.com/simjes', type: 'github' }]}
-            />
+          <div className='flex justify-center flex-wrap mt-10 gap-6'>
+            {employees.map((employee) => (
+              <Employee
+                key={employee.cvUrl}
+                image={employee.image}
+                name={employee.name}
+                role={employee.role}
+                cvUrl={employee.cvUrl}
+              />
+            ))}
           </div>
         </section>
       </Main>

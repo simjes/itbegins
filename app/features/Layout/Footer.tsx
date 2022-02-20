@@ -1,11 +1,10 @@
 import { LocationMarkerIcon, MailIcon, PhoneIcon } from '@heroicons/react/solid'
 import React, { ReactNode } from 'react'
 
-// TODO: ikoner på actions
 const Footer = () => {
   return (
     <footer className='py-4 text-slate-200 bg-slate-900 dark:bg-black mt-64'>
-      <div className='h-64 py-12 flex flex-col md:flex-row justify-between max-w-4xl mx-auto'>
+      <div className='h-64 py-12 flex flex-col md:flex-row justify-between max-w-4xl mx-auto px-4 xl:px-0'>
         <div>Lodde</div>
 
         <div className='flex flex-col'>

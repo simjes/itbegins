@@ -1,3 +1,4 @@
+import type { MetaFunction } from 'remix'
 import {
   Links,
   LiveReload,
@@ -6,7 +7,6 @@ import {
   Scripts,
   ScrollRestoration,
 } from 'remix'
-import type { MetaFunction } from 'remix'
 import styles from './styles/app.css'
 
 export const meta: MetaFunction = () => {

@@ -9,7 +9,7 @@ const Header = () => {
 
   return (
     <header className='py-4'>
-      <div className='flex justify-between max-w-4xl mx-auto'>
+      <div className='flex justify-between max-w-4xl mx-auto px-4 xl:px-0'>
         <NavLink to='/'>Lodde Consulting</NavLink>
 
         <div className='flex items-center space-x-4'>
