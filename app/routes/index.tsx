@@ -1,7 +1,7 @@
 import { ArrowDownIcon } from '@heroicons/react/solid'
 import { Client } from '@notionhq/client'
 import cn from 'classnames'
-import { useLoaderData } from 'remix'
+import { MetaFunction, useLoaderData } from 'remix'
 import Employee from '~/features/employee/Employee'
 import {
   EmployeeOverview,
@@ -15,6 +15,12 @@ import { SectionHeader } from '~/features/Layout/Section'
 import conceptPage from '~/images/concept-page.svg'
 import finishedPage from '~/images/finished-page.svg'
 import heroImage from '~/images/hero.webp'
+
+export const meta: MetaFunction = () => ({
+  title: 'Begins IT',
+  description:
+    'Teknologiselskap som setter brukeren i fokus. Sammen skaper vi gode løsninger som gjør den digitale hverdagen enklere.',
+})
 
 export async function loader() {
   const notion = new Client({ auth: process.env.NOTION_API_SECRET })
@@ -72,7 +78,7 @@ export default function Index() {
           <SectionHeader title='Vi bryr oss' />
           <p className='text-xl mt-2'>
             Når man skal skape digitale løsninger er brukeren det viktigste vi
-            har, det er jo tross alt de som skal bruke produktet. I Lodde mener
+            har, det er jo tross alt de som skal bruke produktet. I Begins mener
             vi at de beste løsningene kommer fra tverrfaglige samarbeid med
             mennesker som jobber mot samme mål.
           </p>

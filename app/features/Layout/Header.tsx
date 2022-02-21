@@ -1,6 +1,8 @@
 import { MoonIcon, SunIcon } from '@heroicons/react/solid'
 import React from 'react'
 import { NavLink } from 'remix'
+import logoBlack from '~/images/logo-black.svg'
+import logoWhite from '~/images/logo-white.svg'
 import { useThemeSwitcher } from '../hooks/useThemeSwitcher'
 
 const Header = () => {
@@ -10,7 +12,13 @@ const Header = () => {
   return (
     <header className='py-4'>
       <div className='flex justify-between max-w-4xl mx-auto px-4 xl:px-0'>
-        <NavLink to='/'>Lodde Consulting</NavLink>
+        <NavLink to='/' aria-label={`Naviger til Begins IT's hovedside`}>
+          <img
+            className='h-12'
+            src={isLightMode ? logoBlack : logoWhite}
+            alt='Begins IT logo'
+          />
+        </NavLink>
 
         <div className='flex items-center space-x-4'>
           {/* <nav>

@@ -9,9 +9,7 @@ import {
 } from 'remix'
 import styles from './styles/app.css'
 
-export const meta: MetaFunction = () => {
-  return { title: 'Lodde Consulting' }
-}
+export const meta: MetaFunction = () => ({ title: 'Begins IT' })
 
 export function links() {
   return [{ rel: 'stylesheet', href: styles }]

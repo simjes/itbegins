@@ -7,7 +7,7 @@ const Employee = ({ image, name, role, cvUrl }: EmployeeOverview) => {
       <a
         href={cvUrl}
         className='flex flex-col bg-white dark:bg-slate-900 p-6 rounded-lg'
-        aria-label={`Les mer om ${name}`}
+        aria-label={`Se ${name} sin CV`}
         target='_blank'
         rel='noopener noreferer'
       >
