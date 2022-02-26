@@ -7,7 +7,6 @@
     "@heroicons/react": "^1.0.5",
     "@notionhq/client": "^0.4.13",
     "@remix-run/react": "^1.2.1",
-    "@remix-run/vercel": "^1.2.1",
     "classnames": "^2.3.1",
     "dotenv": "^16.0.0",
     "react": "^17.0.2",
@@ -35,6 +34,7 @@
     "build": "npm run build:css && cross-env NODE_ENV=production remix build",
     "build:css": "tailwindcss -m -i ./styles/app.css -o app/styles/app.css",
     "dev": "concurrently \"npm run dev:css\" \"node -r dotenv/config node_modules/.bin/remix dev\"",
-    "dev:css": "tailwindcss -w -i ./styles/app.css -o app/styles/app.css"
+    "dev:css": "tailwindcss -w -i ./styles/app.css -o app/styles/app.css",
+    "start": "cross-env NODE_ENV=production remix-serve ./build"
   }
 }
