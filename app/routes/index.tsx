@@ -17,7 +17,6 @@ import finishedPage from '~/images/finished-page.svg'
 import heroImage from '~/images/hero.webp'
 
 export const meta: MetaFunction = () => ({
-  title: 'Begins IT',
   description:
     'Teknologiselskap som setter brukeren i fokus. Sammen skaper vi gode løsninger som gjør den digitale hverdagen enklere.',
 })
