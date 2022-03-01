@@ -8,3 +8,4 @@ node_modules
 /api/index.js
 
 .env
+wrangler.toml
