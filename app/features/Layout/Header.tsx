@@ -1,8 +1,8 @@
 import { MoonIcon, SunIcon } from '@heroicons/react/solid'
 import React from 'react'
 import { NavLink } from 'remix'
-import logoBlack from '~/images/logo-black.svg'
-import logoWhite from '~/images/logo-white.svg'
+import logoDark from '~/images/logo-dark.png'
+import logoLight from '~/images/logo-light.png'
 import { useThemeSwitcher } from '../hooks/useThemeSwitcher'
 
 const Header = () => {
@@ -14,8 +14,8 @@ const Header = () => {
       <div className='flex justify-between max-w-4xl mx-auto px-4 xl:px-0'>
         <NavLink to='/' aria-label={`Naviger til Begins IT's hovedside`}>
           <img
-            className='h-12'
-            src={isLightMode ? logoBlack : logoWhite}
+            className='h-20'
+            src={isLightMode ? logoDark : logoLight}
             alt='Begins IT logo'
           />
         </NavLink>

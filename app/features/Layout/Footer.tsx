@@ -1,7 +1,7 @@
 import { LocationMarkerIcon, MailIcon, PhoneIcon } from '@heroicons/react/solid'
 import React, { ReactNode } from 'react'
-import logoBlack from '~/images/logo-black.svg'
-import logoWhite from '~/images/logo-white.svg'
+import logoDark from '~/images/logo-dark.png'
+import logoLight from '~/images/logo-light.png'
 import { useThemeSwitcher } from '../hooks/useThemeSwitcher'
 
 const Footer = () => {
@@ -13,8 +13,8 @@ const Footer = () => {
       <div className='h-64 py-12 flex flex-col md:flex-row justify-between max-w-4xl mx-auto px-4 xl:px-0 space-y-4 md:space-y-0'>
         <div>
           <img
-            className='h-16'
-            src={isLightMode ? logoBlack : logoWhite}
+            className='h-20'
+            src={isLightMode ? logoDark : logoLight}
             alt='Begins IT logo'
           />
         </div>
