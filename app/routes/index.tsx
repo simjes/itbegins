@@ -74,25 +74,25 @@ export default function Index() {
         </div>
 
         <section className='mt-64'>
-          <SectionHeader title='Vi bryr oss' />
+          <SectionHeader title='Jeg bryr meg' />
           <p className='text-xl mt-2'>
             Når man skal skape digitale løsninger er brukeren det viktigste vi
-            har, det er jo tross alt de som skal bruke produktet. I Begins mener
-            vi at de beste løsningene kommer fra tverrfaglige samarbeid med
-            mennesker som jobber mot samme mål.
+            har, det er jo tross alt de som skal bruke produktet. Jeg mener at
+            de beste løsningene kommer fra tverrfaglige samarbeid med mennesker
+            som jobber mot samme mål.
           </p>
           <p className='text-xl mt-2'>
             I en bransje som endrer seg raskt er det viktig å følge med, derfor
-            mener vi at det å være nyskjerrig og lærevillig er viktige
-            egenskaper for medarbeiderne våre. Engasjement, samarbeid og deling
-            av kompetanse setter vi høgt.
+            mener jeg at det å være nysgjerrig og lærevillig er viktige
+            egenskaper. Engasjement, samarbeid og deling av kompetanse setter
+            jeg høgt.
           </p>
         </section>
 
         <section className='flex items-center justify-around mt-64'>
           <SectionHeader
             title='Fra konsept til produkt'
-            subtitle='Vi bistår i hele prosessen'
+            subtitle='Jeg bistår i hele prosessen'
           />
 
           <div className='flex flex-col items-center mt-8 space-y-12'>
@@ -108,7 +108,7 @@ export default function Index() {
         </section>
 
         <section className='mt-64'>
-          <SectionHeader title='Bli kjent med oss' />
+          <SectionHeader title='Bli kjent med meg' />
 
           <div className='flex justify-center flex-wrap mt-10 gap-6'>
             {employees.map((employee) => (
