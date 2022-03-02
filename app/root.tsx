@@ -7,9 +7,26 @@ import {
   Scripts,
   ScrollRestoration,
 } from 'remix'
+import ogLogo from '~/images/og-logo.jpg'
 import styles from './styles/app.css'
 
-export const meta: MetaFunction = () => ({ title: 'IT Begins Jespersen' })
+export const meta: MetaFunction = () => ({
+  title: 'IT Begins Jespersen',
+  description:
+    'Teknologiselskap som setter brukeren i fokus. Sammen skaper vi gode løsninger som gjør den digitale hverdagen enklere.',
+
+  'og:type': 'website',
+  'og:url': 'https://www.itbegins.no',
+  'og:title': 'IT Begins Jespersen',
+  'og:description':
+    'Teknologiselskap som setter brukeren i fokus. Sammen skaper vi gode løsninger som gjør den digitale hverdagen enklere.',
+  'og:image': ogLogo,
+  'og:image:alt': 'IT Begins Jespersen logo',
+
+  'twitter:card': 'summary',
+  'twitter:label1': 'Du kan nå meg på',
+  'twitter:data1': 'hei@itbegins.no',
+})
 
 export function links() {
   return [

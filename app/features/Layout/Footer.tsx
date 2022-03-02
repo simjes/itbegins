@@ -34,8 +34,8 @@ const Footer = () => {
 
           <ContactLink
             icon={<LocationMarkerIcon />}
-            text='Her finner du oss'
-            to='' // TODO
+            text='Du finner meg i Stavanger'
+            to='https://www.google.com/maps/place/Stavanger/@58.9486344,5.6102981,12z/data=!3m1!4b1!4m5!3m4!1s0x463a3549dd29f795:0xad7aeb21b80a9259!8m2!3d58.9699756!4d5.7331074'
           />
         </div>
       </div>
@@ -57,6 +57,8 @@ const ContactLink = ({
   <a
     className='flex items-center space-x-2 font-bold underline decoration-2 decoration-sky-500 hover:text-pink-500 transition ease-in-out duration-300 p-1'
     href={to}
+    target='_blank'
+    rel='noreferrer'
   >
     <div className='h-6 w-6'>{icon}</div>
     <span>{text}</span>
