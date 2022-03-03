@@ -8,12 +8,12 @@ interface SectionHeaderProps {
 
 export const SectionHeader = ({ title, subtitle }: SectionHeaderProps) => (
   <header className='flex flex-col items-center'>
-    <h2 className='text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-200'>
+    <h2 className='text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-200 text-center'>
       {title}
     </h2>
 
     {subtitle && (
-      <p className='text-xl md:text-2xl font-bold dark:text-slate-400'>
+      <p className='text-xl md:text-2xl font-bold dark:text-slate-400 text-center'>
         {subtitle}
       </p>
     )}
