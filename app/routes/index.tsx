@@ -1,7 +1,7 @@
 import { ArrowDownIcon } from '@heroicons/react/solid'
 import { Client } from '@notionhq/client'
 import cn from 'classnames'
-import { MetaFunction, useLoaderData } from 'remix'
+import { useLoaderData } from 'remix'
 import Employee from '~/features/employee/Employee'
 import {
   EmployeeOverview,
@@ -16,37 +16,34 @@ import conceptPage from '~/images/concept-page.svg'
 import finishedPage from '~/images/finished-page.svg'
 import heroImage from '~/images/hero.webp'
 
-export const meta: MetaFunction = () => ({
-  description:
-    'Teknologiselskap som setter brukeren i fokus. Sammen skaper vi gode løsninger som gjør den digitale hverdagen enklere.',
-})
-
-export async function loader() {
-  const notion = new Client({ auth: process.env.NOTION_API_SECRET })
-  const response = await notion.databases.query({
-    database_id: process.env.NOTION_EMPLOYEE_DB!,
-    sorts: [
-      {
-        property: 'Date Created',
-        direction: 'ascending',
-      },
-    ],
-    filter: {
-      and: [
-        {
-          property: 'Status',
-          select: {
-            equals: 'Active',
-          },
-        },
-      ],
-    },
-  })
-  return response.results.map(mapToEmployeeOverview)
-}
+// TODO: vscode as mergetool and difftool
+// TODO: https://github.com/remix-run/remix/pull/2076 bleh
+// export async function loader() {
+//   const notion = new Client({ auth: process.env.NOTION_API_SECRET })
+//   const response = await notion.databases.query({
+//     database_id: process.env.NOTION_EMPLOYEE_DB!,
+//     sorts: [
+//       {
+//         property: 'Date Created',
+//         direction: 'ascending',
+//       },
+//     ],
+//     filter: {
+//       and: [
+//         {
+//           property: 'Status',
+//           select: {
+//             equals: 'Active',
+//           },
+//         },
+//       ],
+//     },
+//   })
+//   return response.results.map(mapToEmployeeOverview)
+// }
 
 export default function Index() {
-  const employees: EmployeeOverview[] = useLoaderData()
+  // const employees: EmployeeOverview[] = useLoaderData()
 
   return (
     <div className='h-full flex flex-col'>
@@ -89,7 +86,7 @@ export default function Index() {
           </p>
         </section>
 
-        <section className='flex items-center justify-around mt-64'>
+        <section className='flex flex-col md:flex-row items-center justify-around mt-64'>
           <SectionHeader
             title='Fra konsept til produkt'
             subtitle='Jeg bistår i hele prosessen'
@@ -111,7 +108,7 @@ export default function Index() {
           <SectionHeader title='Bli kjent med meg' />
 
           <div className='flex justify-center flex-wrap mt-10 gap-6'>
-            {employees.map((employee) => (
+            {/* {employees.map((employee) => (
               <Employee
                 key={employee.cvUrl}
                 image={employee.image}
@@ -119,7 +116,7 @@ export default function Index() {
                 role={employee.role}
                 cvUrl={employee.cvUrl}
               />
-            ))}
+            ))} */}
           </div>
         </section>
       </Main>

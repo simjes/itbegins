@@ -23,9 +23,7 @@ export const meta: MetaFunction = () => ({
   'og:image': ogLogo,
   'og:image:alt': 'IT Begins Jespersen logo',
 
-  'twitter:card': 'summary',
-  'twitter:label1': 'Du kan nå meg på',
-  'twitter:data1': 'hei@itbegins.no',
+  'twitter:card': 'summary_large_image',
 })
 
 export function links() {

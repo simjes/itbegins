@@ -10,7 +10,7 @@ const Footer = () => {
 
   return (
     <footer className='py-4 text-slate-200 bg-slate-900 dark:bg-black mt-64'>
-      <div className='h-64 py-12 flex flex-col md:flex-row justify-between max-w-4xl mx-auto px-4 xl:px-0 space-y-4 md:space-y-0'>
+      <div className='h-64 py-12 flex flex-col sm:flex-row justify-between max-w-4xl mx-auto px-4 xl:px-0 space-y-10 sm:space-y-0'>
         <div>
           <img
             className='h-20'
