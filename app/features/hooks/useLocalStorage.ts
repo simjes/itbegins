@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 
-export const useLocalStorage = (key: string) => {
+export const useLocalStorage = (
+  key: string,
+): [string | null, (nextState: string) => void] => {
   const [state, setState] = useState<string | null>(null)
 
   useEffect(() => {
@@ -12,5 +14,5 @@ export const useLocalStorage = (key: string) => {
     localStorage.setItem(key, nextState)
   }
 
-  return { state, setWithLocalStorage }
+  return [state, setWithLocalStorage]
 }
