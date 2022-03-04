@@ -16,7 +16,6 @@ import conceptPage from '~/images/concept-page.svg'
 import finishedPage from '~/images/finished-page.svg'
 import heroImage from '~/images/hero.webp'
 
-// TODO: vscode as mergetool and difftool
 // TODO: https://github.com/remix-run/remix/pull/2076 bleh
 // export async function loader() {
 //   const notion = new Client({ auth: process.env.NOTION_API_SECRET })
