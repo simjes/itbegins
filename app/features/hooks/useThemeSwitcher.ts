@@ -13,6 +13,7 @@ export const useThemeSwitcher = () => {
   }
 
   useEffect(() => {
+    // Read directly from localstorage as currentTheme has not been set yet
     const theme = localStorage.getItem('theme')
     if (theme === null) {
       const preferesDarkTheme = window.matchMedia(

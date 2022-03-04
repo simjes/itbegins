@@ -30,7 +30,7 @@
 .hero-container {
   height: 400px;
 }
-/* TODO: use tailwind breakpoint */
+
 @media (min-width: 1024px) {
   .hero-container {
     height: 720px;
@@ -45,12 +45,3 @@
 	right: 50%;
 	width: 100vw;
 }
-
-/* color notes:
-    Primary:
-      sky-500
-      pink-500
-
-    gradients:
-    from-violet-500 to-fuchsia-500
-*/
