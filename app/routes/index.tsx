@@ -17,32 +17,33 @@ import finishedPage from '~/images/finished-page.svg'
 import heroImage from '~/images/hero.webp'
 
 // TODO: https://github.com/remix-run/remix/pull/2076 bleh
-// export async function loader() {
-//   const notion = new Client({ auth: process.env.NOTION_API_SECRET })
-//   const response = await notion.databases.query({
-//     database_id: process.env.NOTION_EMPLOYEE_DB!,
-//     sorts: [
-//       {
-//         property: 'Date Created',
-//         direction: 'ascending',
-//       },
-//     ],
-//     filter: {
-//       and: [
-//         {
-//           property: 'Status',
-//           select: {
-//             equals: 'Active',
-//           },
-//         },
-//       ],
-//     },
-//   })
-//   return response.results.map(mapToEmployeeOverview)
-// }
+export async function loader() {
+  return []
+  // const notion = new Client({ auth: env.NOTION_API_SECRET })
+  // const response = await notion.databases.query({
+  //   database_id: env.NOTION_EMPLOYEE_DB!,
+  //   sorts: [
+  //     {
+  //       property: 'Date Created',
+  //       direction: 'ascending',
+  //     },
+  //   ],
+  //   filter: {
+  //     and: [
+  //       {
+  //         property: 'Status',
+  //         select: {
+  //           equals: 'Active',
+  //         },
+  //       },
+  //     ],
+  //   },
+  // })
+  // return response.results.map(mapToEmployeeOverview)
+}
 
 export default function Index() {
-  // const employees: EmployeeOverview[] = useLoaderData()
+  const employees: EmployeeOverview[] = useLoaderData()
 
   return (
     <div className='h-full flex flex-col'>
@@ -107,7 +108,7 @@ export default function Index() {
           <SectionHeader title='Bli kjent med meg' />
 
           <div className='flex justify-center flex-wrap mt-10 gap-6'>
-            {/* {employees.map((employee) => (
+            {employees.map((employee) => (
               <Employee
                 key={employee.cvUrl}
                 image={employee.image}
@@ -115,7 +116,7 @@ export default function Index() {
                 role={employee.role}
                 cvUrl={employee.cvUrl}
               />
-            ))} */}
+            ))}
           </div>
         </section>
       </Main>
