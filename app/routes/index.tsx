@@ -17,7 +17,13 @@ import finishedPage from '~/images/finished-page.svg'
 import heroImage from '~/images/hero.webp'
 
 // TODO: https://github.com/remix-run/remix/pull/2076 bleh
-export async function loader() {
+export async function loader({ context }) {
+  const { env } = context
+  console.log(env)
+  const KV2: KVNamespace = env.ITBegins
+
+  console.log(await KV2.list())
+
   return []
   // const notion = new Client({ auth: env.NOTION_API_SECRET })
   // const response = await notion.databases.query({
