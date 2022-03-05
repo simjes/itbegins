@@ -7,7 +7,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from 'remix'
-import ogLogo from '~/images/og-logo.jpg'
+import ogLogo from '~/images/og-logo.webp'
 import styles from './styles/app.css'
 
 export const meta: MetaFunction = () => ({

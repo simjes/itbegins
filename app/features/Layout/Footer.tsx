@@ -1,7 +1,7 @@
 import { LocationMarkerIcon, MailIcon, PhoneIcon } from '@heroicons/react/solid'
 import React, { ReactNode } from 'react'
-import logoDark from '~/images/logo-dark.png'
-import logoLight from '~/images/logo-light.png'
+import logoDark from '~/images/logo-dark.webp'
+import logoLight from '~/images/logo-light.webp'
 import { useThemeSwitcher } from '../hooks/useThemeSwitcher'
 
 const Footer = () => {
@@ -19,7 +19,7 @@ const Footer = () => {
           />
         </div>
 
-        <div className='flex flex-col'>
+        <div className='flex flex-col space-y-2'>
           <ContactLink
             icon={<MailIcon />}
             text='hei@itbegins.no'

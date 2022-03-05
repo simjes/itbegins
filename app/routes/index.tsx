@@ -24,10 +24,8 @@ export async function loader({
     env: { NOTION_EMPLOYEE_DB: string; NOTION_API_SECRET: string }
   }
 }) {
-  const { env } = context
-  console.log(env)
-
-  return ''
+  return []
+  // const { env } = context
   // const notion = new Client({ auth: env.NOTION_API_SECRET })
   // const response = await notion.databases.query({
   //   database_id: env.NOTION_EMPLOYEE_DB!,
@@ -52,7 +50,7 @@ export async function loader({
 }
 
 export default function Index() {
-  // const employees: EmployeeOverview[] = useLoaderData()
+  const employees: EmployeeOverview[] = useLoaderData()
 
   return (
     <div className='h-full flex flex-col'>
@@ -117,7 +115,7 @@ export default function Index() {
           <SectionHeader title='Bli kjent med meg' />
 
           <div className='flex justify-center flex-wrap mt-10 gap-6'>
-            {/* {employees.map((employee) => (
+            {employees.map((employee) => (
               <Employee
                 key={employee.cvUrl}
                 image={employee.image}
@@ -125,7 +123,7 @@ export default function Index() {
                 role={employee.role}
                 cvUrl={employee.cvUrl}
               />
-            ))} */}
+            ))}
           </div>
         </section>
       </Main>
