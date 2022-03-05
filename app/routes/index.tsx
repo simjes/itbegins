@@ -20,7 +20,7 @@ import heroImage from '~/images/hero.webp'
 export async function loader({ context }) {
   const { env } = context
   console.log(env)
-  const KV2: KVNamespace = env.ITBegins
+  const KV2: KVNamespace = env.Notion
 
   console.log(await KV2.list())
 
