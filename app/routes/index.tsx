@@ -23,8 +23,9 @@ export async function loader({ context }) {
   const KV2: KVNamespace = env.Notion
 
   console.log(await KV2.list())
+  console.log(await KV2.get('EMPLOYEE_DB'))
 
-  return []
+  return await KV2.get('EMPLOYEE_DB')
   // const notion = new Client({ auth: env.NOTION_API_SECRET })
   // const response = await notion.databases.query({
   //   database_id: env.NOTION_EMPLOYEE_DB!,
@@ -49,12 +50,13 @@ export async function loader({ context }) {
 }
 
 export default function Index() {
-  const employees: EmployeeOverview[] = useLoaderData()
+  // const employees: EmployeeOverview[] = useLoaderData()
+  const thisIsTesting: string = useLoaderData()
 
   return (
     <div className='h-full flex flex-col'>
       <Header />
-
+      ----------------------- {thisIsTesting}
       <Main>
         <div className='flex items-center relative hero-container'>
           <header className='w-full sm:w-2/3 flex flex-col justify-center z-10 backdrop-blur-xl p-4 rounded-xl'>
@@ -114,7 +116,7 @@ export default function Index() {
           <SectionHeader title='Bli kjent med meg' />
 
           <div className='flex justify-center flex-wrap mt-10 gap-6'>
-            {employees.map((employee) => (
+            {/* {employees.map((employee) => (
               <Employee
                 key={employee.cvUrl}
                 image={employee.image}
@@ -122,11 +124,10 @@ export default function Index() {
                 role={employee.role}
                 cvUrl={employee.cvUrl}
               />
-            ))}
+            ))} */}
           </div>
         </section>
       </Main>
-
       <Footer />
     </div>
   )
