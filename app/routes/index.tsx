@@ -17,29 +17,39 @@ import finishedPage from '~/images/finished-page.svg'
 import heroImage from '~/images/hero.webp'
 
 // TODO: https://github.com/remix-run/remix/pull/2076 bleh
-// export async function loader() {
-//   const notion = new Client({ auth: process.env.NOTION_API_SECRET })
-//   const response = await notion.databases.query({
-//     database_id: process.env.NOTION_EMPLOYEE_DB!,
-//     sorts: [
-//       {
-//         property: 'Date Created',
-//         direction: 'ascending',
-//       },
-//     ],
-//     filter: {
-//       and: [
-//         {
-//           property: 'Status',
-//           select: {
-//             equals: 'Active',
-//           },
-//         },
-//       ],
-//     },
-//   })
-//   return response.results.map(mapToEmployeeOverview)
-// }
+export async function loader({
+  context,
+}: {
+  context: {
+    env: { NOTION_EMPLOYEE_DB: string; NOTION_API_SECRET: string }
+  }
+}) {
+  const { env } = context
+  console.log(env)
+
+  return ''
+  // const notion = new Client({ auth: env.NOTION_API_SECRET })
+  // const response = await notion.databases.query({
+  //   database_id: env.NOTION_EMPLOYEE_DB!,
+  //   sorts: [
+  //     {
+  //       property: 'Date Created',
+  //       direction: 'ascending',
+  //     },
+  //   ],
+  //   filter: {
+  //     and: [
+  //       {
+  //         property: 'Status',
+  //         select: {
+  //           equals: 'Active',
+  //         },
+  //       },
+  //     ],
+  //   },
+  // })
+  // return response.results.map(mapToEmployeeOverview)
+}
 
 export default function Index() {
   // const employees: EmployeeOverview[] = useLoaderData()
@@ -119,7 +129,6 @@ export default function Index() {
           </div>
         </section>
       </Main>
-
       <Footer />
     </div>
   )
