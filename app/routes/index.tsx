@@ -16,7 +16,7 @@ import conceptPage from '~/images/concept-page.svg'
 import finishedPage from '~/images/finished-page.svg'
 import heroImage from '~/images/hero.webp'
 
-// TODO: https://github.com/remix-run/remix/pull/2076 bleh
+// TODO: https://github.com/remix-run/remix/pull/2076 — Use patch-package until this is fixed
 export async function loader({
   context,
 }: {
@@ -24,29 +24,28 @@ export async function loader({
     env: { NOTION_EMPLOYEE_DB: string; NOTION_API_SECRET: string }
   }
 }) {
-  return []
-  // const { env } = context
-  // const notion = new Client({ auth: env.NOTION_API_SECRET })
-  // const response = await notion.databases.query({
-  //   database_id: env.NOTION_EMPLOYEE_DB!,
-  //   sorts: [
-  //     {
-  //       property: 'Date Created',
-  //       direction: 'ascending',
-  //     },
-  //   ],
-  //   filter: {
-  //     and: [
-  //       {
-  //         property: 'Status',
-  //         select: {
-  //           equals: 'Active',
-  //         },
-  //       },
-  //     ],
-  //   },
-  // })
-  // return response.results.map(mapToEmployeeOverview)
+  const { env } = context
+  const notion = new Client({ auth: env.NOTION_API_SECRET })
+  const response = await notion.databases.query({
+    database_id: env.NOTION_EMPLOYEE_DB!,
+    sorts: [
+      {
+        property: 'Date Created',
+        direction: 'ascending',
+      },
+    ],
+    filter: {
+      and: [
+        {
+          property: 'Status',
+          select: {
+            equals: 'Active',
+          },
+        },
+      ],
+    },
+  })
+  return response.results.map(mapToEmployeeOverview)
 }
 
 export default function Index() {

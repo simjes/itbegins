@@ -1,0 +1,13 @@
+diff --git a/node_modules/@remix-run/dev/compiler.js b/node_modules/@remix-run/dev/compiler.js
+index 9bbf9b1..97d2e3f 100644
+--- a/node_modules/@remix-run/dev/compiler.js
++++ b/node_modules/@remix-run/dev/compiler.js
+@@ -364,7 +364,7 @@ async function createServerBuild(config, options, assetsManifestPromiseRef) {
+     format: config.serverModuleFormat,
+     treeShaking: true,
+     minify: options.mode === build$1.BuildMode.Production && !!config.serverBuildTarget && ["cloudflare-workers", "cloudflare-pages"].includes(config.serverBuildTarget),
+-    mainFields: config.serverModuleFormat === "esm" ? ["module", "main"] : ["main", "module"],
++    mainFields: ["browser", "module", "main"],
+     target: options.target,
+     inject: [reactShim],
+     loader: loaders.loaders,
