@@ -3,24 +3,24 @@ import { EmployeeOverview } from './model'
 
 const Employee = ({ image, name, role, cvUrl }: EmployeeOverview) => {
   return (
-    <article className='rounded-xl p-1 relative'>
+    <article className='relative rounded-xl p-1'>
       <div
         aria-hidden
-        className='absolute -z-10 h-52 blur-xl w-48 left-0 right-0 mx-auto top-1/2 rounded-full hidden dark:block
-        bg-gradient-to-b from-violet-500 to-fuchsia-500'
+        className='absolute left-0 right-0 top-1/2 -z-10 mx-auto hidden h-52 w-48 rounded-full bg-gradient-to-b from-violet-500
+        to-fuchsia-500 blur-xl dark:block'
       />
 
       <a
         href={cvUrl}
-        className='flex flex-col p-6 rounded-lg bg-white shadow-md hover:scale-105 hover:shadow-lg transform ease-in-out duration-300 ring-1 ring-slate-800/5 
-        dark:ring-white/[.15] dark:shadow-[inset_0_2px_3px_rgba(255,255,255,0.06)] dark:bg-slate-800/70 dark:backdrop-blur-xl'
+        className='flex transform flex-col rounded-lg bg-white p-6 shadow-md ring-1 ring-slate-800/5 duration-300 ease-in-out hover:scale-105 hover:shadow-lg 
+        dark:bg-slate-800/70 dark:shadow-[inset_0_2px_3px_rgba(255,255,255,0.06)] dark:ring-white/[.15] dark:backdrop-blur-xl'
         aria-label={`Se ${name} sin CV`}
         target='_blank'
         rel='noreferrer'
       >
         <img
           src={image}
-          className='w-64 h-64 rounded-full'
+          className='h-64 w-64 rounded-full'
           alt={`Bilde av ansatt ${name}`}
         />
         <div className='mt-4 text-2xl text-slate-900 dark:text-white'>

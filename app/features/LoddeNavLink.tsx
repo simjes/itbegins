@@ -9,8 +9,8 @@ interface Props {
 const LoddeNavLink = ({ to, text }: Props) => {
   return (
     <NavLink
-      className='underlined font-semibold text-slate-700 
-      dark:text-slate-200 hover:text-pink-500 dark:hover:text-pink-500 transition ease-in-out duration-300 p-1'
+      className='underlined p-1 font-semibold 
+      text-slate-700 transition duration-300 ease-in-out hover:text-pink-500 dark:text-slate-200 dark:hover:text-pink-500'
       to={to}
     >
       {text}

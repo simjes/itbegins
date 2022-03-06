@@ -58,7 +58,7 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body className='h-full min-h-screen antialiased bg-slate-100 dark:bg-slate-900 dark:text-slate-400 text-slate-500 transition-color ease-in-out duration-300 overflow-x-hidden'>
+      <body className='transition-color h-full min-h-screen overflow-x-hidden bg-slate-100 text-slate-500 antialiased duration-300 ease-in-out dark:bg-slate-900 dark:text-slate-400'>
         <Outlet />
         <ScrollRestoration />
         <Scripts />

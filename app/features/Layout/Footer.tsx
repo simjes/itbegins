@@ -4,8 +4,8 @@ import logoLight from '~/images/logo-light.webp'
 
 const Footer = () => {
   return (
-    <footer className='py-4 text-slate-200 bg-slate-900 dark:bg-black mt-64'>
-      <div className='h-full md:h-64 py-12 flex flex-col sm:flex-row justify-between max-w-4xl mx-auto px-4 xl:px-0 space-y-10 sm:space-y-0'>
+    <footer className='mt-64 bg-slate-900 py-4 text-slate-200 dark:bg-black'>
+      <div className='mx-auto flex h-full max-w-4xl flex-col justify-between space-y-10 py-12 px-4 sm:flex-row sm:space-y-0 md:h-64 xl:px-0'>
         <div>
           <img className='h-20' src={logoLight} alt='Begins IT logo' />
         </div>
@@ -46,7 +46,7 @@ const ContactLink = ({
   text: string
 }) => (
   <a
-    className='flex items-center space-x-2 font-bold underline decoration-2 decoration-sky-500 hover:text-pink-500 transition ease-in-out duration-300 p-1'
+    className='flex items-center space-x-2 p-1 font-bold underline decoration-sky-500 decoration-2 transition duration-300 ease-in-out hover:text-pink-500'
     href={to}
     target='_blank'
     rel='noreferrer'

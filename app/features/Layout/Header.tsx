@@ -11,7 +11,7 @@ const Header = () => {
 
   return (
     <header className='py-4'>
-      <div className='flex justify-between max-w-4xl mx-auto px-4 xl:px-0'>
+      <div className='mx-auto flex max-w-4xl justify-between px-4 xl:px-0'>
         <NavLink to='/' aria-label={`Naviger til Begins IT's hovedside`}>
           <img
             className='h-20'

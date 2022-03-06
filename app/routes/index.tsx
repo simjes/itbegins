@@ -52,16 +52,16 @@ export default function Index() {
   const employees: EmployeeOverview[] = useLoaderData()
 
   return (
-    <div className='h-full flex flex-col'>
+    <div className='flex h-full flex-col'>
       <Header />
 
       <Main>
-        <div className='flex items-center relative hero-container'>
-          <header className='w-full sm:w-2/3 flex flex-col justify-center z-10 backdrop-blur-xl p-4 rounded-xl'>
-            <h1 className='text-3xl md:text-5xl font-bold text-white'>
+        <div className='hero-container relative flex items-center'>
+          <header className='z-10 flex w-full flex-col justify-center rounded-xl p-4 backdrop-blur-xl sm:w-2/3'>
+            <h1 className='text-3xl font-bold text-white md:text-5xl'>
               Teknologiselskap som setter brukeren i fokus
             </h1>
-            <p className='text-xl md:text-2xl font-bold mt-2 text-slate-100'>
+            <p className='mt-2 text-xl font-bold text-slate-100 md:text-2xl'>
               Sammen skaper vi gode løsninger som gjør den digitale hverdagen
               enklere
             </p>
@@ -69,7 +69,7 @@ export default function Index() {
             <DecorationLine className='w-64' type='blue' />
           </header>
           <img
-            className='absolute h-full full-width object-cover'
+            className='full-width absolute h-full object-cover'
             src={heroImage}
             aria-hidden
             alt='background image'
@@ -78,13 +78,13 @@ export default function Index() {
 
         <section className='mt-64'>
           <SectionHeader title='Jeg bryr meg' />
-          <p className='text-xl mt-2'>
+          <p className='mt-2 text-xl'>
             Når man skal skape digitale løsninger er brukeren det viktigste vi
             har, det er jo tross alt de som skal bruke produktet. Jeg mener at
             de beste løsningene kommer fra tverrfaglige samarbeid med mennesker
             som jobber mot samme mål.
           </p>
-          <p className='text-xl mt-2'>
+          <p className='mt-2 text-xl'>
             I en bransje som endrer seg raskt er det viktig å følge med, derfor
             mener jeg at det å være nysgjerrig og lærevillig er viktige
             egenskaper. Engasjement, samarbeid og deling av kompetanse setter
@@ -92,13 +92,13 @@ export default function Index() {
           </p>
         </section>
 
-        <section className='flex flex-col md:flex-row items-center justify-around mt-64'>
+        <section className='mt-64 flex flex-col items-center justify-around md:flex-row'>
           <SectionHeader
             title='Fra konsept til produkt'
             subtitle='Jeg bistår i hele prosessen'
           />
 
-          <div className='flex flex-col items-center mt-8 space-y-12'>
+          <div className='mt-8 flex flex-col items-center space-y-12'>
             <ProcessImage src={conceptPage} alt='Konsept av en webside' />
 
             <ArrowDownIcon className='h-16 w-16 text-fuchsia-500' />
@@ -113,7 +113,7 @@ export default function Index() {
         <section className='mt-64'>
           <SectionHeader title='Bli kjent med meg' />
 
-          <div className='flex justify-center flex-wrap mt-10 gap-6'>
+          <div className='mt-10 flex flex-wrap justify-center gap-6'>
             {employees.map((employee) => (
               <Employee
                 key={employee.cvUrl}
@@ -142,7 +142,7 @@ const ProcessImage = ({
 }) => {
   return (
     <img
-      className={cn('w-72 shadow-lg rounded-xl', className)}
+      className={cn('w-72 rounded-xl shadow-lg', className)}
       src={src}
       alt={alt}
     />
