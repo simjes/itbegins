@@ -12,7 +12,7 @@ const Employee = ({ image, name, role, cvUrl }: EmployeeOverview) => {
 
       <a
         href={cvUrl}
-        className='flex flex-col p-6 rounded-lg shadow-md hover:scale-105 hover:shadow-lg transform ease-in-out duration-300 ring-1 ring-slate-800/5 
+        className='flex flex-col p-6 rounded-lg bg-white shadow-md hover:scale-105 hover:shadow-lg transform ease-in-out duration-300 ring-1 ring-slate-800/5 
         dark:ring-white/[.15] dark:shadow-[inset_0_2px_3px_rgba(255,255,255,0.06)] dark:bg-slate-800/70 dark:backdrop-blur-xl'
         aria-label={`Se ${name} sin CV`}
         target='_blank'

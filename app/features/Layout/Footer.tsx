@@ -1,22 +1,13 @@
 import { LocationMarkerIcon, MailIcon, PhoneIcon } from '@heroicons/react/solid'
 import React, { ReactNode } from 'react'
-import logoDark from '~/images/logo-dark.webp'
 import logoLight from '~/images/logo-light.webp'
-import { useThemeSwitcher } from '../hooks/useThemeSwitcher'
 
 const Footer = () => {
-  const { currentTheme } = useThemeSwitcher()
-  const isLightMode = currentTheme === 'light'
-
   return (
     <footer className='py-4 text-slate-200 bg-slate-900 dark:bg-black mt-64'>
       <div className='h-full md:h-64 py-12 flex flex-col sm:flex-row justify-between max-w-4xl mx-auto px-4 xl:px-0 space-y-10 sm:space-y-0'>
         <div>
-          <img
-            className='h-20'
-            src={isLightMode ? logoDark : logoLight}
-            alt='Begins IT logo'
-          />
+          <img className='h-20' src={logoLight} alt='Begins IT logo' />
         </div>
 
         <div className='flex flex-col space-y-2'>
