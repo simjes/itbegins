@@ -102,7 +102,7 @@ export default function Index() {
           <div className='flex flex-col items-center mt-8 space-y-12'>
             <ProcessImage src={conceptPage} alt='Konsept av en webside' />
 
-            <ArrowDownIcon className='h-16 w-16 text-pink-500' />
+            <ArrowDownIcon className='h-16 w-16 text-fuchsia-500' />
 
             <ProcessImage
               src={finishedPage}
