@@ -77,25 +77,23 @@ export default function Index() {
         </div>
 
         <section className='mt-20 md:mt-40'>
-          <SectionHeader title='Jeg bryr meg' />
+          <SectionHeader title='Brukerfokusert' />
           <p className='mt-2 text-xl'>
             Når man skal skape digitale løsninger er brukeren det viktigste vi
-            har, det er jo tross alt de som skal bruke produktet. Jeg mener at
-            de beste løsningene kommer fra tverrfaglige samarbeid med mennesker
-            som jobber mot samme mål.
+            har, det er jo tross alt de vi ønsker å hjelpe. De beste løsningene
+            kommer fra tverrfaglige samarbeid med mennesker som jobber mot samme
+            mål.
           </p>
           <p className='mt-2 text-xl'>
             I en bransje som endrer seg raskt er det viktig å følge med, derfor
-            mener jeg at det å være nysgjerrig og lærevillig er viktige
-            egenskaper. Engasjement, samarbeid og deling av kompetanse setter
-            jeg høgt.
+            er det å være nysgjerrig og lærevillig viktige egenskaper.
           </p>
         </section>
 
         <section className='mt-20 flex flex-col items-center justify-around md:mt-40 md:flex-row'>
           <SectionHeader
             title='Fra konsept til produkt'
-            subtitle='Jeg bistår i hele prosessen'
+            subtitle='Vi bistår i hele prosessen'
           />
 
           <div className='mt-8 flex flex-col items-center space-y-12'>
@@ -111,7 +109,7 @@ export default function Index() {
         </section>
 
         <section className='mt-20 md:mt-40'>
-          <SectionHeader title='Bli kjent med meg' />
+          <SectionHeader title='Hvem er IT Begins' />
 
           <div className='mt-10 flex flex-wrap justify-center gap-6'>
             {employees.map((employee) => (
@@ -131,18 +129,10 @@ export default function Index() {
   )
 }
 
-const ProcessImage = ({
-  src,
-  alt,
-  className,
-}: {
-  src: string
-  alt: string
-  className?: string
-}) => {
+const ProcessImage = ({ src, alt }: { src: string; alt: string }) => {
   return (
     <img
-      className={cn('w-72 rounded-xl shadow-lg', className)}
+      className='w-72 rounded-xl border-4 border-cyan-500'
       src={src}
       alt={alt}
     />
