@@ -31,9 +31,9 @@ const Header = () => {
 
           <button className='p-2' onClick={toggleTheme}>
             {isLightMode ? (
-              <SunIcon className='h-5 w-5 text-fuchsia-500' />
-            ) : (
               <MoonIcon className='h-5 w-5 text-cyan-500' />
+            ) : (
+              <SunIcon className='h-5 w-5 text-fuchsia-500' />
             )}
             <span className='sr-only'>
               Bytt til {isLightMode ? 'mørkt' : 'lyst'} tema

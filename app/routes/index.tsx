@@ -76,7 +76,7 @@ export default function Index() {
           />
         </div>
 
-        <section className='mt-64'>
+        <section className='mt-20 md:mt-40'>
           <SectionHeader title='Jeg bryr meg' />
           <p className='mt-2 text-xl'>
             Når man skal skape digitale løsninger er brukeren det viktigste vi
@@ -92,7 +92,7 @@ export default function Index() {
           </p>
         </section>
 
-        <section className='mt-64 flex flex-col items-center justify-around md:flex-row'>
+        <section className='mt-20 flex flex-col items-center justify-around md:mt-40 md:flex-row'>
           <SectionHeader
             title='Fra konsept til produkt'
             subtitle='Jeg bistår i hele prosessen'
@@ -110,7 +110,7 @@ export default function Index() {
           </div>
         </section>
 
-        <section className='mt-64'>
+        <section className='mt-20 md:mt-40'>
           <SectionHeader title='Bli kjent med meg' />
 
           <div className='mt-10 flex flex-wrap justify-center gap-6'>

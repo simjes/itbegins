@@ -4,7 +4,7 @@ import logoLight from '~/images/logo-light.webp'
 
 const Footer = () => {
   return (
-    <footer className='mt-64 bg-slate-900 py-4 text-slate-200 dark:bg-black'>
+    <footer className='mt-40 bg-slate-900 py-4 text-slate-200 dark:bg-black'>
       <div className='mx-auto flex h-full max-w-4xl flex-col justify-between space-y-10 py-12 px-4 sm:flex-row sm:space-y-0 md:h-64 xl:px-0'>
         <div>
           <img className='h-20' src={logoLight} alt='Begins IT logo' />
