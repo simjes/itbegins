@@ -46,7 +46,7 @@ const ContactLink = ({
   text: string
 }) => (
   <a
-    className='flex items-center space-x-2 p-1 font-bold underline decoration-sky-500 decoration-2 transition duration-300 ease-in-out hover:text-pink-500'
+    className='flex items-center space-x-2 p-1 font-bold underline decoration-sky-500 decoration-2 transition duration-300 ease-in-out hover:text-fuchsia-500'
     href={to}
     target='_blank'
     rel='noreferrer'
