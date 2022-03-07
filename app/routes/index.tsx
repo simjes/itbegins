@@ -90,13 +90,19 @@ export default function Index() {
           </p>
         </section>
 
-        <section className='mt-20 flex flex-col items-center justify-around md:mt-40 md:flex-row'>
-          <SectionHeader
-            title='Fra konsept til produkt'
-            subtitle='Vi bistår i hele prosessen'
-          />
+        <section className='mt-20 flex flex-col items-center justify-around md:mt-40 md:flex-row md:space-x-8'>
+          <div>
+            <SectionHeader
+              title='Fra konsept til produkt'
+              subtitle='Vi bistår i hele prosessen'
+            />
+            <p className='mt-2 text-xl'>
+              IT Begins har lang erfaring, og har jobbet innen lotteri,
+              forsikring, fintech, helse, maritim, olje og gass.
+            </p>
+          </div>
 
-          <div className='mt-8 flex flex-col items-center space-y-12'>
+          <div className='mt-8 flex flex-col items-center space-y-12 md:mt-0'>
             <ProcessImage src={conceptPage} alt='Konsept av en webside' />
 
             <ArrowDownIcon className='h-16 w-16 text-fuchsia-500' />
@@ -109,7 +115,7 @@ export default function Index() {
         </section>
 
         <section className='mt-20 md:mt-40'>
-          <SectionHeader title='Hvem er IT Begins' />
+          <SectionHeader title='Hvem er IT Begins' subtitle='CV' />
 
           <div className='mt-10 flex flex-wrap justify-center gap-6'>
             {employees.map((employee) => (
