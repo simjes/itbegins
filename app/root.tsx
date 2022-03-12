@@ -11,17 +11,17 @@ import ogLogo from '~/images/og-logo.jpg'
 import styles from './styles/app.css'
 
 export const meta: MetaFunction = () => ({
-  title: 'IT Begins Jespersen',
+  title: 'IT Begins',
   description:
     'Teknologiselskap som setter brukeren i fokus. Sammen skaper vi gode løsninger som gjør den digitale hverdagen enklere.',
 
   'og:type': 'website',
   'og:url': 'https://www.itbegins.no',
-  'og:title': 'IT Begins Jespersen',
+  'og:title': 'IT Begins',
   'og:description':
     'Teknologiselskap som setter brukeren i fokus. Sammen skaper vi gode løsninger som gjør den digitale hverdagen enklere.',
   'og:image': ogLogo,
-  'og:image:alt': 'IT Begins Jespersen logo',
+  'og:image:alt': 'IT Begins logo',
 
   'twitter:card': 'summary_large_image',
 })
