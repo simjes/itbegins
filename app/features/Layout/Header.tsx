@@ -1,6 +1,6 @@
 import { MoonIcon, SunIcon } from '@heroicons/react/solid'
 import React from 'react'
-import { NavLink } from 'remix'
+import { NavLink } from "@remix-run/react";
 import logoDark from '~/images/logo-dark.webp'
 import logoLight from '~/images/logo-light.webp'
 import { useThemeSwitcher } from '../hooks/useThemeSwitcher'

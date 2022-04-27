@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'remix'
+import { NavLink } from "@remix-run/react";
 
 interface Props {
   to: string

@@ -1,12 +1,9 @@
 import { ArrowDownIcon } from '@heroicons/react/solid'
 import { Client } from '@notionhq/client'
-import cn from 'classnames'
-import { useLoaderData } from 'remix'
+import { useLoaderData } from '@remix-run/react'
 import Employee from '~/features/employee/Employee'
-import {
-  EmployeeOverview,
-  mapToEmployeeOverview,
-} from '~/features/employee/model'
+import type { EmployeeOverview } from '~/features/employee/model'
+import { mapToEmployeeOverview } from '~/features/employee/model'
 import DecorationLine from '~/features/Layout/DecorationLine'
 import Footer from '~/features/Layout/Footer'
 import Header from '~/features/Layout/Header'
@@ -16,7 +13,6 @@ import conceptPage from '~/images/concept-page.svg'
 import finishedPage from '~/images/finished-page.svg'
 import heroImage from '~/images/hero.webp'
 
-// TODO: https://github.com/remix-run/remix/pull/2076 — Use patch-package until this is fixed
 export async function loader({
   context,
 }: {

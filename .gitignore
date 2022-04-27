@@ -11,5 +11,5 @@ node_modules
 wrangler.toml
 .mf/
 
-/functions/\[\[path\]\].js
+/functions/\[\[path\]\].js*
 /app/styles/app.css

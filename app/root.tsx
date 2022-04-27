@@ -1,12 +1,5 @@
-import type { MetaFunction } from 'remix'
-import {
-  Links,
-  LiveReload,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-} from 'remix'
+import type { MetaFunction } from "@remix-run/cloudflare";
+import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from "@remix-run/react";
 import ogLogo from '~/images/og-logo.jpg'
 import styles from './styles/app.css'
 
