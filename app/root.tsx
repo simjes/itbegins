@@ -1,5 +1,12 @@
-import type { MetaFunction } from "@remix-run/cloudflare";
-import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from "@remix-run/react";
+import type { MetaFunction } from '@remix-run/cloudflare'
+import {
+  Links,
+  LiveReload,
+  Meta,
+  Outlet,
+  Scripts,
+  ScrollRestoration,
+} from '@remix-run/react'
 import ogLogo from '~/images/og-logo.jpg'
 import styles from './styles/app.css'
 
@@ -7,7 +14,6 @@ export const meta: MetaFunction = () => ({
   title: 'IT Begins',
   description:
     'Teknologiselskap som setter brukeren i fokus. Sammen skaper vi gode løsninger som gjør den digitale hverdagen enklere.',
-
   'og:type': 'website',
   'og:url': 'https://www.itbegins.no',
   'og:title': 'IT Begins',
