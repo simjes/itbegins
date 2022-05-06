@@ -1,3 +1,9 @@
+import React from 'react'
+
+const highlightRender = (props) => (
+  <span style={{ backgroundColor: 'yellow' }}>{props.children}</span>
+)
+
 /**
  * This is the schema definition for the rich text fields used for
  * for this blog studio. When you import it in schemas.js it can be
@@ -36,6 +42,14 @@ export default {
         decorators: [
           { title: 'Strong', value: 'strong' },
           { title: 'Emphasis', value: 'em' },
+          {
+            title: 'Highlight',
+            value: 'highlight',
+            blockEditor: {
+              icon: () => 'H',
+              render: highlightRender,
+            },
+          },
         ],
         // Annotations can be any object structure – e.g. a link or a footnote.
         annotations: [

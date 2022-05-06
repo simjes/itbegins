@@ -1,8 +1,11 @@
+import { PortableText } from '@portabletext/react'
 import type { MetaFunction } from '@remix-run/cloudflare'
 import { Link, useLoaderData } from '@remix-run/react'
+import groq from 'groq'
 import React from 'react'
 import Header from '~/features/Layout/Header'
 import Main from '~/features/Layout/Main'
+import ITBPortableText from '~/features/sanity/ITBPortableText'
 import { getClient } from '~/lib/sanity/client'
 import { imageUrlBuilder } from '~/lib/sanity/image'
 
@@ -16,10 +19,10 @@ export const meta: MetaFunction = () => ({
 export async function loader() {
   const client = getClient()
   const authorFetch = client.fetch(
-    '*[_type == "author" && slug.current == "simjes"][0]{ name, bio[0], image }',
+    groq`*[_type == "author" && slug.current == "simjes"][0]{ name, bio[0], image }`,
   )
   const postsFetch = await client.fetch(
-    `*[_type == "post" && publishedAt <= $now] | order(publishedAt desc) { _id, title, slug, publishedAt }`,
+    groq`*[_type == "post" && publishedAt <= $now] | order(publishedAt desc) { _id, title, slug, publishedAt }`,
     { now: new Date().toISOString() },
   )
 
@@ -32,7 +35,6 @@ export async function loader() {
 // TODO: meta i header i slugs
 export default function Blog() {
   const { author, posts } = useLoaderData()
-  const { text: bio } = author.bio.children[0]
   const authorImage = imageUrlBuilder.image(author.image).size(208, 208).url()
 
   return (
@@ -45,8 +47,9 @@ export default function Blog() {
             <h1 className='text-3xl font-bold text-slate-900 dark:text-slate-200 md:text-4xl'>
               {author.name}
             </h1>
-            {/* TODO: customize sanity to highlight #LearnInPublic */}
-            <p className='mt-2 text-xl'>{bio}</p>
+            <p className='mt-2 text-xl'>
+              <ITBPortableText blocks={author.bio} />
+            </p>
             <div className='mt-2'>
               <a
                 className='p-1 font-bold underline decoration-cyan-500 decoration-2 transition duration-300 ease-in-out hover:text-fuchsia-500 dark:text-white dark:hover:text-fuchsia-500'
