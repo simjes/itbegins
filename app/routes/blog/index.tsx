@@ -1,8 +1,8 @@
-import { PortableText } from '@portabletext/react'
 import type { MetaFunction } from '@remix-run/cloudflare'
 import { Link, useLoaderData } from '@remix-run/react'
 import groq from 'groq'
 import React from 'react'
+import { H1, H2 } from '~/features/Heading'
 import Header from '~/features/Layout/Header'
 import Main from '~/features/Layout/Main'
 import ITBPortableText from '~/features/sanity/ITBPortableText'
@@ -32,7 +32,6 @@ export async function loader() {
   return { author, posts }
 }
 
-// TODO: meta i header i slugs
 export default function Blog() {
   const { author, posts } = useLoaderData()
   const authorImage = imageUrlBuilder.image(author.image).size(208, 208).url()
@@ -44,9 +43,7 @@ export default function Blog() {
       <Main>
         <section className='mt-16 flex items-center space-x-4'>
           <header>
-            <h1 className='text-3xl font-bold text-slate-900 dark:text-slate-200 md:text-4xl'>
-              {author.name}
-            </h1>
+            <H1>{author.name}</H1>
             <p className='mt-2 text-xl'>
               <ITBPortableText blocks={author.bio} />
             </p>
@@ -71,9 +68,7 @@ export default function Blog() {
         </section>
 
         <section className='mt-6'>
-          <h2 className='text-xl font-bold text-slate-900 dark:text-slate-200 md:text-2xl'>
-            Posts
-          </h2>
+          <H2>Posts</H2>
           <ol className='mt-2 space-y-2'>
             {posts.map((post) => {
               const date = new Date(post.publishedAt).toLocaleDateString()

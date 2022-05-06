@@ -1,3 +1,4 @@
+// TODO: support blog slugs
 export const loader = () => {
   const content = `
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -5,6 +6,11 @@ export const loader = () => {
         <loc>https://itbegins.no/</loc>
         <lastmod>2022-03-20</lastmod>
         <priority>1.0</priority>
+    </url>
+    <url>
+      <loc>https://itbegins.no/blog</loc>
+      <lastmod>2022-03-20</lastmod>
+      <priority>1.0</priority>
     </url>
 </urlset>`
 
