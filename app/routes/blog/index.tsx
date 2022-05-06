@@ -3,6 +3,7 @@ import { Link, useLoaderData } from '@remix-run/react'
 import groq from 'groq'
 import React from 'react'
 import { H1, H2 } from '~/features/Heading'
+import Footer from '~/features/Layout/Footer'
 import Header from '~/features/Layout/Header'
 import Main from '~/features/Layout/Main'
 import ITBPortableText from '~/features/sanity/ITBPortableText'
@@ -37,7 +38,7 @@ export default function Blog() {
   const authorImage = imageUrlBuilder.image(author.image).size(208, 208).url()
 
   return (
-    <div className='flex h-full flex-col'>
+    <div className='flex min-h-screen flex-col'>
       <Header />
 
       <Main>
@@ -52,7 +53,7 @@ export default function Blog() {
                 className='p-1 font-bold underline decoration-cyan-500 decoration-2 transition duration-300 ease-in-out hover:text-fuchsia-500 dark:text-white dark:hover:text-fuchsia-500'
                 href='https://twitter.com/itsalwayskos'
                 target='_blank'
-                aria-label={`Go to my twitter`}
+                aria-label='Go to my twitter'
                 rel='noreferrer'
               >
                 @itsalwayskos
@@ -87,6 +88,8 @@ export default function Blog() {
           </ol>
         </section>
       </Main>
+
+      <Footer english />
     </div>
   )
 }

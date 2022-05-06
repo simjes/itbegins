@@ -48,7 +48,7 @@ export default function Index() {
   const employees: EmployeeOverview[] = useLoaderData()
 
   return (
-    <div className='flex h-full flex-col'>
+    <div className='flex min-h-screen flex-col'>
       <Header />
 
       <Main>

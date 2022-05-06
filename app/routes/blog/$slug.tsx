@@ -2,18 +2,28 @@ import type { MetaFunction } from '@remix-run/cloudflare'
 import { useLoaderData } from '@remix-run/react'
 import groq from 'groq'
 import { H1 } from '~/features/Heading'
+import Footer from '~/features/Layout/Footer'
 import Header from '~/features/Layout/Header'
 import Main from '~/features/Layout/Main'
 import ITBPortableText from '~/features/sanity/ITBPortableText'
 import { getClient } from '~/lib/sanity/client'
 
-// TODO: meta
-// export const meta: MetaFunction = ({data}) => ({
-//   title: 'Blog | IT Begins',
-//   description: 'Blogging about learning stuff while i #LearnInPublic',
-//   'og:title': 'Blog | IT Begins',
-//   'og:description': 'Blogging about learning stuff while i #LearnInPublic',
-// })
+export const meta: MetaFunction = ({ data }) => {
+  if (!data) {
+    return {}
+  }
+  const { post } = data
+  const title = `${post.title} | IT Begins`
+  const excerpt = post.excerpt
+  return {
+    title,
+    description: excerpt,
+    'og:title': title,
+    'og:description': excerpt,
+    'og:type': 'article',
+    'og:author': 'Simon Jespersen',
+  }
+}
 
 export async function loader({ params }) {
   const client = getClient()
@@ -27,6 +37,7 @@ export async function loader({ params }) {
       slug,
       title,
       publishedAt,
+      excerpt,
       body
     }`,
     { slug: params.slug },
@@ -39,7 +50,7 @@ export default function BlogPost() {
   const { post } = useLoaderData()
 
   return (
-    <div className='flex h-full flex-col'>
+    <div className='flex min-h-screen flex-col'>
       <Header />
 
       <Main>
@@ -53,6 +64,8 @@ export default function BlogPost() {
           <ITBPortableText blocks={post.body} />
         </section>
       </Main>
+
+      <Footer />
     </div>
   )
 }
