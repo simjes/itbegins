@@ -1,5 +1,6 @@
 import { LocationMarkerIcon, MailIcon, PhoneIcon } from '@heroicons/react/solid'
-import React, { ReactNode } from 'react'
+import type { ReactNode } from 'react'
+import React from 'react'
 import logoLight from '~/images/logo-light.webp'
 
 const Footer = () => {

@@ -1,9 +1,10 @@
 import { MoonIcon, SunIcon } from '@heroicons/react/solid'
 import React from 'react'
-import { NavLink } from "@remix-run/react";
+import { NavLink } from '@remix-run/react'
 import logoDark from '~/images/logo-dark.webp'
 import logoLight from '~/images/logo-light.webp'
 import { useThemeSwitcher } from '../hooks/useThemeSwitcher'
+import LoddeNavLink from '../LoddeNavLink'
 
 const Header = () => {
   const { currentTheme, toggleTheme } = useThemeSwitcher()
@@ -21,13 +22,13 @@ const Header = () => {
         </NavLink>
 
         <div className='flex items-center space-x-4'>
-          {/* <nav>
+          <nav>
             <ul className='flex space-x-4'>
               <li>
-                <LoddeNavLink to='/people' text='Folkene' />
+                <LoddeNavLink to='/blog' text='Blog' />
               </li>
             </ul>
-          </nav> */}
+          </nav>
 
           <button className='p-2' onClick={toggleTheme}>
             {isLightMode ? (

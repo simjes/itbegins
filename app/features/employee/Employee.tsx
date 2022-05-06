@@ -1,6 +1,7 @@
 import React from 'react'
-import { EmployeeOverview } from './model'
+import type { EmployeeOverview } from './model'
 
+// TODO: Migrate to sanity
 const Employee = ({ image, name, role, cvUrl }: EmployeeOverview) => {
   return (
     <article className='relative rounded-xl p-1'>
