@@ -2,11 +2,13 @@ import type { MetaFunction } from '@remix-run/cloudflare'
 import { useLoaderData } from '@remix-run/react'
 import groq from 'groq'
 import { H1 } from '~/features/Heading'
+import DecorationLine from '~/features/Layout/DecorationLine'
 import Footer from '~/features/Layout/Footer'
 import Header from '~/features/Layout/Header'
 import Main from '~/features/Layout/Main'
 import ITBPortableText from '~/features/sanity/ITBPortableText'
 import { getClient } from '~/lib/sanity/client'
+import { imageUrlBuilder } from '~/lib/sanity/image'
 
 export const meta: MetaFunction = ({ data }) => {
   if (!data) {
@@ -48,6 +50,8 @@ export async function loader({ params }) {
 
 export default function BlogPost() {
   const { post } = useLoaderData()
+  const date = new Date(post.publishedAt).toLocaleDateString()
+  const mainImage = imageUrlBuilder.image(post.mainImage).width(900).url()
 
   return (
     <div className='flex min-h-screen flex-col'>
@@ -57,11 +61,18 @@ export default function BlogPost() {
         <section className='mt-16 flex items-center space-x-4'>
           <header>
             <H1>{post.title}</H1>
+            <p className='mt-2'>{date} — Simon Jespersen</p>
           </header>
         </section>
 
+        <DecorationLine className='w-1/2 md:w-1/3' />
+
         <section className='mt-6'>
-          <ITBPortableText blocks={post.body} />
+          <img src={mainImage} alt='Blog post decoration' aria-hidden />
+
+          <div className='mt-6'>
+            <ITBPortableText blocks={post.body} />
+          </div>
         </section>
       </Main>
 
