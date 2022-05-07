@@ -2,6 +2,7 @@ import React from 'react'
 import { PortableText } from '@portabletext/react'
 import { H1, H2, H3, H4, H5, H6 } from '../Heading'
 import { Highlight } from './Highlight'
+import Paragraph from './Paragraph'
 
 const components = {
   block: {
@@ -11,9 +12,20 @@ const components = {
     h4: H4,
     h5: H5,
     h6: H6,
+    normal: Paragraph,
   },
   marks: {
     highlight: Highlight,
+    link: ({ children, value }) => {
+      const { href, blank } = value
+      return blank ? (
+        <a href={href} target='_blank' rel='noreferrer'>
+          {children}
+        </a>
+      ) : (
+        <a href={href}>{children}</a>
+      )
+    },
   },
 }
 

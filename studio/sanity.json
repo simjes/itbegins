@@ -12,7 +12,8 @@
     "@sanity/default-layout",
     "@sanity/default-login",
     "@sanity/desk-tool",
-    "dark-mode"
+    "dark-mode",
+    "asset-source-unsplash"
   ],
   "env": {
     "development": {

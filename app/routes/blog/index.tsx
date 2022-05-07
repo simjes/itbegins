@@ -45,9 +45,9 @@ export default function Blog() {
         <section className='mt-16 flex items-center space-x-4'>
           <header>
             <H1>{author.name}</H1>
-            <p className='mt-2 text-xl'>
+            <div className='mt-2 text-xl'>
               <ITBPortableText blocks={author.bio} />
-            </p>
+            </div>
             <div className='mt-2'>
               <a
                 className='p-1 font-bold underline decoration-cyan-500 decoration-2 transition duration-300 ease-in-out hover:text-fuchsia-500 dark:text-white dark:hover:text-fuchsia-500'
