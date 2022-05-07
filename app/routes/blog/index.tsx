@@ -42,13 +42,13 @@ export default function Blog() {
       <Header />
 
       <Main>
-        <section className='mt-16 flex items-center space-x-4'>
+        <section className='mt-16 mb-6 flex items-center space-x-4'>
           <header>
             <H1>{author.name}</H1>
-            <div className='mt-2 text-xl'>
+            <div className='text-xl'>
               <ITBPortableText blocks={author.bio} />
             </div>
-            <div className='mt-2'>
+            <div>
               <a
                 className='p-1 font-bold underline decoration-cyan-500 decoration-2 transition duration-300 ease-in-out hover:text-fuchsia-500 dark:text-white dark:hover:text-fuchsia-500'
                 href='https://twitter.com/itsalwayskos'
@@ -68,7 +68,7 @@ export default function Blog() {
           />
         </section>
 
-        <section className='mt-6'>
+        <section>
           <H2>Posts</H2>
           <ol className='mt-2 space-y-2'>
             {posts.map((post) => {

@@ -61,16 +61,16 @@ export default function BlogPost() {
         <section className='mt-16 flex items-center space-x-4'>
           <header>
             <H1>{post.title}</H1>
-            <p className='mt-2'>{date} — Simon Jespersen</p>
+            <p>{date} — Simon Jespersen</p>
           </header>
         </section>
 
-        <DecorationLine className='w-1/2 md:w-1/3' />
+        <DecorationLine className='mb-6 w-1/2 md:w-1/3' />
 
-        <section className='mt-6'>
+        <section className='space-y-6'>
           <img src={mainImage} alt='Blog post decoration' aria-hidden />
 
-          <div className='mt-6'>
+          <div>
             <ITBPortableText blocks={post.body} />
           </div>
         </section>
