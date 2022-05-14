@@ -1,10 +1,7 @@
 import { ArrowDownIcon, ArrowRightIcon } from '@heroicons/react/solid'
-import { Client } from '@notionhq/client'
 import { useLoaderData } from '@remix-run/react'
 import groq from 'groq'
 import Employee from '~/features/employee/Employee'
-import type { EmployeeOverview } from '~/features/employee/model'
-import { mapToEmployeeOverview } from '~/features/employee/model'
 import DecorationLine from '~/features/Layout/DecorationLine'
 import Footer from '~/features/Layout/Footer'
 import Header from '~/features/Layout/Header'
@@ -15,59 +12,37 @@ import finishedPage from '~/images/finished-page.svg'
 import { getClient } from '~/lib/sanity/client'
 import { imageUrlBuilder } from '~/lib/sanity/image'
 
-export async function loader({
-  context,
-}: {
-  context: {
-    env: { NOTION_EMPLOYEE_DB: string; NOTION_API_SECRET: string }
-  }
-}) {
-  const { env } = context
-  const notion = new Client({ auth: env.NOTION_API_SECRET })
+export async function loader() {
   const sanityClient = getClient()
-  const notionRequest = notion.databases.query({
-    database_id: env.NOTION_EMPLOYEE_DB!,
-    sorts: [
-      {
-        property: 'Date Created',
-        direction: 'ascending',
-      },
-    ],
-    filter: {
-      and: [
-        {
-          property: 'Status',
-          select: {
-            equals: 'Active',
-          },
-        },
-      ],
-    },
-  })
 
-  const sanityRequest = sanityClient.fetch(
+  const heroImageRequest = sanityClient.fetch(
     groq`*[_type == "imageAsset" && slug.current == "hero-image"][0]{
       img,
       alt
     }`,
   )
 
-  const [notionResult, sanityResult] = await Promise.all([
-    notionRequest,
-    sanityRequest,
+  const employeeRequest = sanityClient.fetch(
+    groq`*[_type == "author" && slug.current == "simjes"][0]{ name, image, role, tempUrl }`,
+  )
+
+  const [employeeResult, heroImageResult] = await Promise.all([
+    employeeRequest,
+    heroImageRequest,
   ])
 
   return {
-    employees: notionResult.results.map(mapToEmployeeOverview),
-    imageAsset: sanityResult,
+    employee: employeeResult,
+    imageAsset: heroImageResult,
   }
 }
 
 export default function Index() {
-  const {
-    employees,
-    imageAsset,
-  }: { employees: EmployeeOverview[]; imageAsset: any } = useLoaderData()
+  const { employee, imageAsset } = useLoaderData()
+  const employeeImage = imageUrlBuilder
+    .image(employee.image)
+    .size(256, 256)
+    .url()
   const heroImage = imageUrlBuilder.image(imageAsset.img).url()
 
   return (
@@ -77,12 +52,12 @@ export default function Index() {
       <Main>
         <div className='hero-container relative flex items-center'>
           <header className='z-10 flex w-full flex-col justify-center rounded-xl p-4 backdrop-blur-xl sm:w-2/3'>
-            <h1 className='text-3xl font-bold text-white md:text-5xl'>
-              Teknologiselskap som setter brukeren i fokus
+            <h1 className='text-3xl font-bold text-white md:text-4xl'>
+              Technology company that puts the user in focus
             </h1>
-            <p className='mt-2 text-xl font-bold text-slate-100 md:text-2xl'>
-              Sammen skaper vi gode løsninger som gjør den digitale hverdagen
-              enklere
+            <p className='mt-2 text-xl font-bold text-slate-100'>
+              Together we create great solutions that make digital everyday life
+              easier
             </p>
 
             <DecorationLine className='w-64' type='purple' />
@@ -96,57 +71,52 @@ export default function Index() {
         </div>
 
         <section className='mt-20 md:mt-40'>
-          <SectionHeader title='Brukerfokusert' />
+          <SectionHeader title='Putting Users at the Center' />
           <p className='mt-2 text-xl'>
-            Når man skal skape digitale løsninger er brukeren det viktigste vi
-            har, det er jo tross alt de vi ønsker å hjelpe. De beste løsningene
-            kommer fra tverrfaglige samarbeid med mennesker som jobber mot samme
-            mål.
+            When creating digital solutions, the user is the most important
+            thing we have, after all, they are the ones we want to help. The
+            best solutions come from interdisciplinary collaborations with
+            people who work towards the same goal.
           </p>
           <p className='mt-2 text-xl'>
-            I en bransje som endrer seg raskt er det viktig å følge med, derfor
-            er det å være nysgjerrig og lærevillig viktige egenskaper.
+            In an industry that is changing rapidly, it is important to keep up,
+            therefore being curious and willing to learn are important
+            qualities.
           </p>
         </section>
 
         <section className='mt-20 flex flex-col items-center justify-around md:mt-40'>
           <div>
             <SectionHeader
-              title='Fra konsept til produkt'
-              subtitle='Vi bistår i hele prosessen'
+              title='From Concept to Product'
+              subtitle='We Assist in the Entire Process'
             />
             <p className='mt-2 text-xl'>
-              IT Begins har lang erfaring, og har jobbet innen lotteri,
-              forsikring, fintech, helse, maritim, olje og gass.
+              IT Begins has extensive experience, and has worked in lottery,
+              insurance, fintech, health, maritime, oil and gas.
             </p>
           </div>
 
           <div className='mt-8 flex w-full flex-col items-center space-y-12 md:flex-row md:justify-evenly md:space-y-0'>
-            <ProcessImage src={conceptPage} alt='Konsept av en webside' />
+            <ProcessImage src={conceptPage} alt='Web page concept' />
 
             <ArrowRightIcon className='hidden h-16 w-16 text-fuchsia-500 md:block' />
             <ArrowDownIcon className='block h-16 w-16 text-fuchsia-500 md:hidden' />
 
-            <ProcessImage
-              src={finishedPage}
-              alt='Ferdig produkt av en webside'
-            />
+            <ProcessImage src={finishedPage} alt='Finished web page' />
           </div>
         </section>
 
         <section className='mt-20 md:mt-40'>
-          <SectionHeader title='Hvem er IT Begins' subtitle='CV' />
+          <SectionHeader title='Who is IT Begins' subtitle='CV' />
 
           <div className='mt-10 flex flex-wrap justify-center gap-6'>
-            {employees.map((employee) => (
-              <Employee
-                key={employee.cvUrl}
-                image={employee.image}
-                name={employee.name}
-                role={employee.role}
-                cvUrl={employee.cvUrl}
-              />
-            ))}
+            <Employee
+              image={employeeImage}
+              name={employee.name}
+              role={employee.role}
+              cvUrl={employee.tempUrl}
+            />
           </div>
         </section>
       </Main>

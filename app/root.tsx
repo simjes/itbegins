@@ -13,12 +13,12 @@ import styles from './styles/app.css'
 export const meta: MetaFunction = () => ({
   title: 'IT Begins',
   description:
-    'Teknologiselskap som setter brukeren i fokus. Sammen skaper vi gode løsninger som gjør den digitale hverdagen enklere.',
+    'Technology company that puts the user in focus. Together we create great solutions that make digital everyday life easier.',
   'og:type': 'website',
   'og:url': 'https://www.itbegins.no',
   'og:title': 'IT Begins',
   'og:description':
-    'Teknologiselskap som setter brukeren i fokus. Sammen skaper vi gode løsninger som gjør den digitale hverdagen enklere.',
+    'Technology company that puts the user in focus. Together we create great solutions that make digital everyday life easier.',
   'og:image': ogLogo,
   'og:image:alt': 'IT Begins logo',
 
@@ -48,7 +48,7 @@ export function links() {
 
 export default function App() {
   return (
-    <html lang='nb'>
+    <html lang='en'>
       <head>
         <meta charSet='utf-8' />
         <meta name='viewport' content='width=device-width,initial-scale=1' />

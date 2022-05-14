@@ -1,8 +1,13 @@
 import React from 'react'
-import type { EmployeeOverview } from './model'
 
-// TODO: Migrate to sanity
-const Employee = ({ image, name, role, cvUrl }: EmployeeOverview) => {
+export interface Props {
+  image: string
+  name: string
+  role: string
+  cvUrl: string
+}
+
+const Employee = ({ image, name, role, cvUrl }: Props) => {
   return (
     <article className='relative rounded-xl p-1'>
       <div
@@ -15,14 +20,14 @@ const Employee = ({ image, name, role, cvUrl }: EmployeeOverview) => {
         href={cvUrl}
         className='flex transform flex-col rounded-lg bg-white p-6 shadow-md ring-1 ring-slate-800/5 duration-300 ease-in-out hover:scale-105 hover:shadow-lg 
         dark:bg-slate-800/70 dark:shadow-[inset_0_2px_3px_rgba(255,255,255,0.06)] dark:ring-white/[.15] dark:backdrop-blur-xl'
-        aria-label={`Se ${name} sin CV`}
+        aria-label={`View ${name}'s CV`}
         target='_blank'
         rel='noreferrer'
       >
         <img
           src={image}
           className='h-64 w-64 rounded-full'
-          alt={`Bilde av ansatt ${name}`}
+          alt={`Owner at IT Begins, ${name}`}
         />
         <div className='mt-4 text-2xl text-slate-900 dark:text-white'>
           {name}

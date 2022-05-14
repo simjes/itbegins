@@ -89,7 +89,7 @@ export default function Blog() {
         </section>
       </Main>
 
-      <Footer english />
+      <Footer />
     </div>
   )
 }

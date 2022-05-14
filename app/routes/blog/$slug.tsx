@@ -78,7 +78,7 @@ export default function BlogPost() {
         </article>
       </Main>
 
-      <Footer english />
+      <Footer />
     </div>
   )
 }
