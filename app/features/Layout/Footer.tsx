@@ -9,7 +9,7 @@ const Footer = () => {
         <div>
           <img className='h-20' src={logoLight} alt='Begins IT logo' />
 
-          <div className='mt-2'>
+          <div className='mt-2 flex space-x-4'>
             <ContactLink text='hei@itbegins.no' to='mailto:hei@itbegins.no' />
             <ContactLink
               ariaLabel={`Go to my twitter`}
@@ -37,7 +37,7 @@ const ContactLink = ({
   ariaLabel?: string
 }) => (
   <a
-    className='flex items-center space-x-2 p-1 font-bold underline decoration-cyan-500 decoration-2 transition duration-300 ease-in-out hover:text-fuchsia-500'
+    className='flex items-center space-x-2 py-2 font-bold underline decoration-cyan-500 decoration-2 transition duration-300 ease-in-out hover:text-fuchsia-500'
     href={to}
     target='_blank'
     rel='noreferrer'
