@@ -1,6 +1,7 @@
 import { ArrowDownIcon, ArrowRightIcon } from '@heroicons/react/solid'
 import { Client } from '@notionhq/client'
 import { useLoaderData } from '@remix-run/react'
+import groq from 'groq'
 import Employee from '~/features/employee/Employee'
 import type { EmployeeOverview } from '~/features/employee/model'
 import { mapToEmployeeOverview } from '~/features/employee/model'
@@ -11,7 +12,8 @@ import Main from '~/features/Layout/Main'
 import { SectionHeader } from '~/features/Layout/Section'
 import conceptPage from '~/images/concept-page.svg'
 import finishedPage from '~/images/finished-page.svg'
-import heroImage from '~/images/hero.webp'
+import { getClient } from '~/lib/sanity/client'
+import { imageUrlBuilder } from '~/lib/sanity/image'
 
 export async function loader({
   context,
@@ -22,7 +24,8 @@ export async function loader({
 }) {
   const { env } = context
   const notion = new Client({ auth: env.NOTION_API_SECRET })
-  const response = await notion.databases.query({
+  const sanityClient = getClient()
+  const notionRequest = notion.databases.query({
     database_id: env.NOTION_EMPLOYEE_DB!,
     sorts: [
       {
@@ -41,11 +44,31 @@ export async function loader({
       ],
     },
   })
-  return response.results.map(mapToEmployeeOverview)
+
+  const sanityRequest = sanityClient.fetch(
+    groq`*[_type == "imageAsset" && slug.current == "hero-image"][0]{
+      img,
+      alt
+    }`,
+  )
+
+  const [notionResult, sanityResult] = await Promise.all([
+    notionRequest,
+    sanityRequest,
+  ])
+
+  return {
+    employees: notionResult.results.map(mapToEmployeeOverview),
+    imageAsset: sanityResult,
+  }
 }
 
 export default function Index() {
-  const employees: EmployeeOverview[] = useLoaderData()
+  const {
+    employees,
+    imageAsset,
+  }: { employees: EmployeeOverview[]; imageAsset: any } = useLoaderData()
+  const heroImage = imageUrlBuilder.image(imageAsset.img).url()
 
   return (
     <div className='flex min-h-screen flex-col'>
@@ -62,13 +85,13 @@ export default function Index() {
               enklere
             </p>
 
-            <DecorationLine className='w-64' type='blue' />
+            <DecorationLine className='w-64' type='purple' />
           </header>
           <img
             className='full-width absolute h-full object-cover'
             src={heroImage}
             aria-hidden
-            alt='background image'
+            alt={imageAsset.alt}
           />
         </div>
 
