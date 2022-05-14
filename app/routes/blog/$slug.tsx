@@ -58,22 +58,24 @@ export default function BlogPost() {
       <Header />
 
       <Main>
-        <section className='mt-16 flex items-center space-x-4'>
-          <header>
-            <H1>{post.title}</H1>
-            <p>{date} — Simon Jespersen</p>
-          </header>
-        </section>
-
-        <DecorationLine className='mb-6 w-1/2 md:w-1/3' />
-
-        <section className='space-y-6'>
-          <img src={mainImage} alt='Blog post decoration' aria-hidden />
-
-          <div>
-            <ITBPortableText blocks={post.body} />
+        <article>
+          <div className='mt-16 flex items-center space-x-4'>
+            <header>
+              <H1>{post.title}</H1>
+              <p>{date} — Simon Jespersen</p>
+            </header>
           </div>
-        </section>
+
+          <DecorationLine className='mb-6 w-1/2 md:w-1/3' />
+
+          <section className='space-y-6'>
+            <img src={mainImage} alt='Blog post decoration' aria-hidden />
+
+            <div>
+              <ITBPortableText blocks={post.body} />
+            </div>
+          </section>
+        </article>
       </Main>
 
       <Footer english />

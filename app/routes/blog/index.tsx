@@ -42,7 +42,7 @@ export default function Blog() {
       <Header />
 
       <Main>
-        <section className='mt-16 mb-6 flex items-center space-x-4'>
+        <section className='mt-16 mb-6 flex flex-col items-center space-y-4 md:flex-row md:space-y-0 md:space-x-4'>
           <header>
             <H1>{author.name}</H1>
             <div className='text-xl'>
