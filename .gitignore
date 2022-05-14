@@ -13,3 +13,5 @@ wrangler.toml
 
 /functions/\[\[path\]\].js*
 /app/styles/app.css
+
+**/dist/*
