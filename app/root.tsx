@@ -9,6 +9,7 @@ import {
 } from '@remix-run/react'
 import ogLogo from '~/images/og-logo.jpg'
 import styles from './styles/app.css'
+import { MetronomeLinks } from '@metronome-sh/react'
 
 export const meta: MetaFunction = () => ({
   title: 'IT Begins',
@@ -56,6 +57,7 @@ export default function App() {
         <meta name='theme-color' content='#ffffff' />
         <Meta />
         <Links />
+        <MetronomeLinks />
       </head>
       <body className='transition-color h-full min-h-screen overflow-x-hidden bg-slate-100 text-slate-500 antialiased duration-300 ease-in-out dark:bg-slate-900 dark:text-slate-400'>
         <Outlet />
