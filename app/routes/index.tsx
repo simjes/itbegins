@@ -1,4 +1,4 @@
-import { ArrowDownIcon } from '@heroicons/react/solid'
+import { ArrowDownIcon, ArrowRightIcon } from '@heroicons/react/solid'
 import { Client } from '@notionhq/client'
 import { useLoaderData } from '@remix-run/react'
 import Employee from '~/features/employee/Employee'
@@ -86,7 +86,7 @@ export default function Index() {
           </p>
         </section>
 
-        <section className='mt-20 flex flex-col items-center justify-around md:mt-40 md:flex-row md:space-x-8'>
+        <section className='mt-20 flex flex-col items-center justify-around md:mt-40'>
           <div>
             <SectionHeader
               title='Fra konsept til produkt'
@@ -98,10 +98,11 @@ export default function Index() {
             </p>
           </div>
 
-          <div className='mt-8 flex flex-col items-center space-y-12 md:mt-0'>
+          <div className='mt-8 flex w-full flex-col items-center space-y-12 md:flex-row md:justify-evenly md:space-y-0'>
             <ProcessImage src={conceptPage} alt='Konsept av en webside' />
 
-            <ArrowDownIcon className='h-16 w-16 text-fuchsia-500' />
+            <ArrowRightIcon className='hidden h-16 w-16 text-fuchsia-500 md:block' />
+            <ArrowDownIcon className='block h-16 w-16 text-fuchsia-500 md:hidden' />
 
             <ProcessImage
               src={finishedPage}
