@@ -1,6 +1,8 @@
 import { ArrowDownIcon, ArrowRightIcon } from '@heroicons/react/solid'
 import { useLoaderData } from '@remix-run/react'
 import groq from 'groq'
+import { useEffect, useRef, useState } from 'react'
+import cn from 'classnames'
 import Employee from '~/features/employee/Employee'
 import DecorationLine from '~/features/Layout/DecorationLine'
 import Footer from '~/features/Layout/Footer'
@@ -18,7 +20,8 @@ export async function loader() {
   const heroImageRequest = sanityClient.fetch(
     groq`*[_type == "imageAsset" && slug.current == "hero-image"][0]{
       img,
-      alt
+      alt,
+      "lqip": img.asset->metadata.lqip
     }`,
   )
 
@@ -37,16 +40,14 @@ export async function loader() {
   }
 }
 
+const getImageUrlForSize = (size: number, image: any) =>
+  imageUrlBuilder.image(image).width(size).fit('crop').format('webp').url()
+
 export default function Index() {
   const { employee, imageAsset } = useLoaderData()
   const employeeImage = imageUrlBuilder
     .image(employee.image)
     .size(256, 256)
-    .url()
-  const heroImage = imageUrlBuilder
-    .image(imageAsset.img)
-    .width(2160)
-    .height(1440)
     .url()
 
   return (
@@ -66,14 +67,28 @@ export default function Index() {
 
             <DecorationLine className='w-64' type='purple' />
           </header>
-          <img
-            className='full-width absolute h-full object-cover'
-            src={heroImage}
-            width={2160}
-            height={1440}
-            aria-hidden
-            alt={imageAsset.alt}
-          />
+
+          <div className='full-width absolute h-full object-cover'>
+            <BlurredHero
+              src={getImageUrlForSize(2160, imageAsset.img)}
+              srcSet={`
+                ${getImageUrlForSize(320, imageAsset.img)} 320w,
+                ${getImageUrlForSize(640, imageAsset.img)} 640w,
+                ${getImageUrlForSize(1200, imageAsset.img)} 1200w,
+                ${getImageUrlForSize(1800, imageAsset.img)} 1800w,
+                ${getImageUrlForSize(2160, imageAsset.img)},
+              `}
+              sizes={`
+                (max-width: 320px) 320px,
+                (max-width: 640px) 640px,
+                (max-width: 1200px) 1200px,
+                (max-width: 1800px) 1800px,
+                2160
+              `}
+              alt={imageAsset.alt}
+              lqip={imageAsset.lqip}
+            />
+          </div>
         </div>
 
         <section className='mt-20 md:mt-40'>
@@ -161,5 +176,45 @@ const ProcessImage = ({
       height={height}
       loading='lazy'
     />
+  )
+}
+
+interface BlurredHeroProps {
+  src: string
+  alt: string
+  srcSet: string
+  sizes: string
+  lqip: string
+}
+
+const imageClassName =
+  'absolute w-full h-full top-0 bottom-0 right-0 left-0 object-cover object-center'
+
+const BlurredHero = ({ src, srcSet, sizes, alt, lqip }: BlurredHeroProps) => {
+  const [loaded, setLoaded] = useState(false)
+  const imgRef = useRef()
+  useEffect(() => {
+    if (imgRef.current && imgRef.current.complete) {
+      setLoaded(true)
+    }
+  }, [])
+  return (
+    <>
+      <img className={cn(imageClassName)} src={lqip} aria-hidden alt={alt} />
+      <img
+        src={src}
+        srcSet={srcSet}
+        sizes={sizes}
+        alt={alt}
+        aria-hidden
+        ref={imgRef}
+        onLoad={() => setLoaded(true)}
+        className={cn(
+          imageClassName,
+          'transition-opacity',
+          loaded ? 'opacity-1' : 'opacity-0',
+        )}
+      />
+    </>
   )
 }
