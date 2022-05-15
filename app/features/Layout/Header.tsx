@@ -13,12 +13,20 @@ const Header = () => {
   return (
     <header className='py-4'>
       <div className='mx-auto flex max-w-4xl justify-between px-4 xl:px-0'>
-        <NavLink to='/' aria-label={`Naviger til Begins IT's hovedside`}>
-          <img
-            className='h-20'
-            src={isLightMode ? logoDark : logoLight}
-            alt='Begins IT logo'
-          />
+        <NavLink
+          to='/'
+          aria-label={`Naviger til Begins IT's hovedside`}
+          style={{ width: '256px' }}
+        >
+          <div className='aspect-w-3 aspect-h-1'>
+            <img
+              className='h-full w-full'
+              src={isLightMode ? logoDark : logoLight}
+              alt='IT Begins logo'
+              width={342}
+              height={114}
+            />
+          </div>
         </NavLink>
 
         <div className='flex items-center space-x-4'>

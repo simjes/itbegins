@@ -35,7 +35,7 @@ export async function loader() {
 
 export default function Blog() {
   const { author, posts } = useLoaderData()
-  const authorImage = imageUrlBuilder.image(author.image).size(208, 208).url()
+  const authorImage = imageUrlBuilder.image(author.image).size(416, 416).url()
 
   return (
     <div className='flex min-h-screen flex-col'>
@@ -65,6 +65,8 @@ export default function Blog() {
             src={authorImage}
             className='h-52 w-52 rounded-full'
             alt={`Author ${author.name}`}
+            height={208}
+            width={208}
           />
         </section>
 
@@ -78,6 +80,7 @@ export default function Blog() {
                   <Link
                     className='underline decoration-cyan-500 decoration-2 transition duration-300 ease-in-out hover:text-fuchsia-500 dark:text-white dark:hover:text-fuchsia-500'
                     to={post.slug.current}
+                    prefetch='intent'
                   >
                     {post.title}
                   </Link>{' '}

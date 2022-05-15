@@ -28,6 +28,7 @@ const Employee = ({ image, name, role, cvUrl }: Props) => {
           src={image}
           className='h-64 w-64 rounded-full'
           alt={`Owner at IT Begins, ${name}`}
+          loading='lazy'
         />
         <div className='mt-4 text-2xl text-slate-900 dark:text-white'>
           {name}

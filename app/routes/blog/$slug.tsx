@@ -69,7 +69,14 @@ export default function BlogPost() {
           <DecorationLine className='mb-6 w-1/2 md:w-1/3' />
 
           <section className='space-y-6'>
-            <img src={mainImage} alt='Blog post decoration' aria-hidden />
+            <div className='aspect-w-16 aspect-h-9'>
+              <img
+                className='h-full w-full object-cover object-center'
+                src={mainImage}
+                alt='Blog post decoration'
+                aria-hidden
+              />
+            </div>
 
             <div>
               <ITBPortableText blocks={post.body} />

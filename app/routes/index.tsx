@@ -43,7 +43,11 @@ export default function Index() {
     .image(employee.image)
     .size(256, 256)
     .url()
-  const heroImage = imageUrlBuilder.image(imageAsset.img).url()
+  const heroImage = imageUrlBuilder
+    .image(imageAsset.img)
+    .width(2160)
+    .height(1440)
+    .url()
 
   return (
     <div className='flex min-h-screen flex-col'>
@@ -65,6 +69,8 @@ export default function Index() {
           <img
             className='full-width absolute h-full object-cover'
             src={heroImage}
+            width={2160}
+            height={1440}
             aria-hidden
             alt={imageAsset.alt}
           />
@@ -98,12 +104,22 @@ export default function Index() {
           </div>
 
           <div className='mt-8 flex w-full flex-col items-center space-y-12 md:flex-row md:justify-evenly md:space-y-0'>
-            <ProcessImage src={conceptPage} alt='Web page concept' />
+            <ProcessImage
+              src={conceptPage}
+              alt='Web page concept'
+              width={288}
+              height={228}
+            />
 
             <ArrowRightIcon className='hidden h-16 w-16 text-fuchsia-500 md:block' />
             <ArrowDownIcon className='block h-16 w-16 text-fuchsia-500 md:hidden' />
 
-            <ProcessImage src={finishedPage} alt='Finished web page' />
+            <ProcessImage
+              src={finishedPage}
+              alt='Finished web page'
+              width={288}
+              height={328}
+            />
           </div>
         </section>
 
@@ -125,12 +141,25 @@ export default function Index() {
   )
 }
 
-const ProcessImage = ({ src, alt }: { src: string; alt: string }) => {
+const ProcessImage = ({
+  src,
+  alt,
+  width,
+  height,
+}: {
+  src: string
+  alt: string
+  width: number
+  height: number
+}) => {
   return (
     <img
       className='w-72 rounded-xl border-4 border-cyan-500'
       src={src}
       alt={alt}
+      width={width}
+      height={height}
+      loading='lazy'
     />
   )
 }

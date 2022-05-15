@@ -7,7 +7,15 @@ const Footer = () => {
     <footer className='mt-40 bg-slate-900 py-4 text-slate-200 dark:bg-black'>
       <div className='mx-auto flex h-full max-w-4xl flex-col justify-between space-y-10 py-12 px-4 sm:flex-row sm:space-y-0 md:h-64 xl:px-0'>
         <div>
-          <img className='h-20' src={logoLight} alt='Begins IT logo' />
+          <div className='aspect-w-3 aspect-h-1'>
+            <img
+              className='h-full w-full'
+              src={logoLight}
+              alt='IT Begins logo'
+              width={342}
+              height={114}
+            />
+          </div>
 
           <div className='mt-2 flex space-x-4'>
             <ContactLink text='hei@itbegins.no' to='mailto:hei@itbegins.no' />
