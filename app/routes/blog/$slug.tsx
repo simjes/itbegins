@@ -50,7 +50,9 @@ export async function loader({ params }) {
 
 export default function BlogPost() {
   const { post } = useLoaderData()
-  const date = new Date(post.publishedAt).toLocaleDateString()
+  const date = new Date(post.publishedAt).toLocaleDateString('en-US', {
+    dateStyle: 'long',
+  })
   const mainImage = imageUrlBuilder.image(post.mainImage).width(900).url()
 
   return (

@@ -74,7 +74,12 @@ export default function Blog() {
           <H2>Posts</H2>
           <ol className='mt-2 space-y-2'>
             {posts.map((post) => {
-              const date = new Date(post.publishedAt).toLocaleDateString()
+              const date = new Date(post.publishedAt).toLocaleDateString(
+                'en-US',
+                {
+                  dateStyle: 'long',
+                },
+              )
               return (
                 <li className='space-x-1' key={post._id}>
                   <Link
