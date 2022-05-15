@@ -40,8 +40,14 @@ export async function loader() {
   }
 }
 
-const getImageUrlForSize = (size: number, image: any) =>
-  imageUrlBuilder.image(image).width(size).fit('crop').format('webp').url()
+const getImageUrlForSize = (width: number, height: number, image: any) =>
+  imageUrlBuilder
+    .image(image)
+    .width(width)
+    .height(height)
+    .fit('crop')
+    .format('webp')
+    .url()
 
 export default function Index() {
   const { employee, imageAsset } = useLoaderData()
@@ -70,20 +76,18 @@ export default function Index() {
 
           <div className='full-width absolute h-full object-cover'>
             <BlurredHero
-              src={getImageUrlForSize(2160, imageAsset.img)}
+              src={getImageUrlForSize(1800, 720, imageAsset.img)}
               srcSet={`
-                ${getImageUrlForSize(320, imageAsset.img)} 320w,
-                ${getImageUrlForSize(640, imageAsset.img)} 640w,
-                ${getImageUrlForSize(1200, imageAsset.img)} 1200w,
-                ${getImageUrlForSize(1800, imageAsset.img)} 1800w,
-                ${getImageUrlForSize(2160, imageAsset.img)},
+                ${getImageUrlForSize(320, 400, imageAsset.img)} 320w,
+                ${getImageUrlForSize(640, 400, imageAsset.img)} 640w,
+                ${getImageUrlForSize(1200, 720, imageAsset.img)} 1200w,
+                ${getImageUrlForSize(1800, 720, imageAsset.img)}
               `}
               sizes={`
                 (max-width: 320px) 320px,
                 (max-width: 640px) 640px,
                 (max-width: 1200px) 1200px,
-                (max-width: 1800px) 1800px,
-                2160
+                1800px
               `}
               alt={imageAsset.alt}
               lqip={imageAsset.lqip}
