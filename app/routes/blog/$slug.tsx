@@ -45,6 +45,12 @@ export async function loader({ params }) {
     { slug: params.slug },
   )
 
+  if (!post) {
+    throw new Response('Not Found', {
+      status: 404,
+    })
+  }
+
   return { post }
 }
 
