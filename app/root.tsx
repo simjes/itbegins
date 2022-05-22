@@ -75,7 +75,9 @@ export function CatchBoundary() {
         <meta name='viewport' content='width=device-width,initial-scale=1' />
         <meta name='msapplication-TileColor' content='#da532c' />
         <meta name='theme-color' content='#ffffff' />
+        <Meta />
         <Links />
+        <MetronomeLinks />
       </head>
       <body className='transition-color h-full min-h-screen overflow-x-hidden bg-slate-100 text-slate-500 antialiased duration-300 ease-in-out dark:bg-slate-900 dark:text-slate-400'>
         <div className='flex min-h-screen flex-col items-center justify-center'>
