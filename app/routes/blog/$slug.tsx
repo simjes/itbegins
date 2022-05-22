@@ -9,6 +9,7 @@ import Main from '~/features/Layout/Main'
 import ITBPortableText from '~/features/sanity/ITBPortableText'
 import { getClient } from '~/lib/sanity/client'
 import { imageUrlBuilder } from '~/lib/sanity/image'
+import styles from '~/styles/prism-laserwave.css'
 
 export const meta: MetaFunction = ({ data }) => {
   if (!data) {
@@ -25,6 +26,10 @@ export const meta: MetaFunction = ({ data }) => {
     'og:type': 'article',
     'og:author': 'Simon Jespersen',
   }
+}
+
+export function links() {
+  return [{ rel: 'stylesheet', href: styles }]
 }
 
 export async function loader({ params }) {

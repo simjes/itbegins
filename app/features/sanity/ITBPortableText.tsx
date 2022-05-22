@@ -3,8 +3,12 @@ import { PortableText } from '@portabletext/react'
 import { H1, H2, H3, H4, H5, H6 } from '../Heading'
 import { Highlight } from './Highlight'
 import Paragraph from './Paragraph'
+import Code from './Code'
 
 const components = {
+  types: {
+    code: Code,
+  },
   block: {
     h1: H1,
     h2: H2,
@@ -16,6 +20,7 @@ const components = {
   },
   marks: {
     highlight: Highlight,
+    code: Code,
     link: ({ children, value }) => {
       const { href, blank } = value
       return blank ? (
