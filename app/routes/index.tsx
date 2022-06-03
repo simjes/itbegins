@@ -13,6 +13,14 @@ import conceptPage from '~/images/concept-page.svg'
 import finishedPage from '~/images/finished-page.svg'
 import { getClient } from '~/lib/sanity/client'
 import { imageUrlBuilder } from '~/lib/sanity/image'
+import type { HeadersFunction } from '@remix-run/cloudflare'
+
+export const headers: HeadersFunction = () => {
+  return {
+    'Cache-Control':
+      'max-age=600 s-maxage=86400, stale-while-revalidate=31560000',
+  }
+}
 
 export async function loader() {
   const sanityClient = getClient()

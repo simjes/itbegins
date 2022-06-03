@@ -1,4 +1,5 @@
-import type { MetaFunction } from '@remix-run/cloudflare'
+import type { HeadersFunction, MetaFunction } from '@remix-run/cloudflare'
+import { json } from '@remix-run/cloudflare'
 import { useLoaderData } from '@remix-run/react'
 import groq from 'groq'
 import { H1 } from '~/features/Heading'
@@ -7,9 +8,18 @@ import Footer from '~/features/Layout/Footer'
 import Header from '~/features/Layout/Header'
 import Main from '~/features/Layout/Main'
 import ITBPortableText from '~/features/sanity/ITBPortableText'
+import { getMaxAge } from '~/lib/getMaxAge'
 import { getClient } from '~/lib/sanity/client'
 import { imageUrlBuilder } from '~/lib/sanity/image'
 import styles from '~/styles/prism-laserwave.css'
+
+export const headers: HeadersFunction = ({ loaderHeaders }) => {
+  return {
+    'Cache-Control':
+      loaderHeaders.get('Cache-Control') ??
+      'max-age=300 s-maxage=1800, stale-while-revalidate=31560000',
+  }
+}
 
 export const meta: MetaFunction = ({ data }) => {
   if (!data) {
@@ -56,7 +66,16 @@ export async function loader({ params }) {
     })
   }
 
-  return { post }
+  return json(
+    { post },
+    {
+      headers: {
+        'Cache-Control': `max-age=300, s-maxage=${getMaxAge(
+          post.publishedAt,
+        )}, stale-while-revalidate=31560000`,
+      },
+    },
+  )
 }
 
 export default function BlogPost() {

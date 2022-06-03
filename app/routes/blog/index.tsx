@@ -1,4 +1,4 @@
-import type { MetaFunction } from '@remix-run/cloudflare'
+import type { HeadersFunction, MetaFunction } from '@remix-run/cloudflare'
 import { Link, useLoaderData } from '@remix-run/react'
 import groq from 'groq'
 import React from 'react'
@@ -9,6 +9,13 @@ import Main from '~/features/Layout/Main'
 import ITBPortableText from '~/features/sanity/ITBPortableText'
 import { getClient } from '~/lib/sanity/client'
 import { imageUrlBuilder } from '~/lib/sanity/image'
+
+export const headers: HeadersFunction = () => {
+  return {
+    'Cache-Control':
+      'max-age=600 s-maxage=86400, stale-while-revalidate=31560000',
+  }
+}
 
 export const meta: MetaFunction = () => ({
   title: 'Blog | IT Begins',
