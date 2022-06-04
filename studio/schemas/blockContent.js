@@ -1,4 +1,5 @@
 import React from 'react'
+import 'ace-builds/src-noconflict/mode-swift'
 
 const customRender = ({ children, color }) => (
   <span style={{ backgroundColor: color }}>{children}</span>
@@ -139,7 +140,7 @@ export default {
       options: {
         languageAlternatives: [
           { title: 'TSX', value: 'tsx' },
-          { title: 'Swift', value: 'swift' },
+          { title: 'Swift', value: 'swift', mode: 'swift' },
         ],
       },
     },
