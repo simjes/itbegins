@@ -9,6 +9,7 @@ import {
   useCatch,
 } from '@remix-run/react'
 import ogLogo from '~/images/og-logo.jpg'
+import twitterLogo from '~/images/logo-twitter.webp'
 import styles from './styles/app.css'
 import { MetronomeLinks } from '@metronome-sh/react'
 import { H1 } from './features/Heading'
@@ -35,7 +36,7 @@ export const meta: MetaFunction = () => {
     'twitter:creator': '@itsalwayskos',
     'twitter:title': title,
     'twitter:description': description,
-    'twitter:image': ogLogo,
+    'twitter:image': twitterLogo,
     'twitter:alt': imageAlt,
   }
 }
