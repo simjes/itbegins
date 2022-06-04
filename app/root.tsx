@@ -14,20 +14,31 @@ import { MetronomeLinks } from '@metronome-sh/react'
 import { H1 } from './features/Heading'
 import logoInflames from '~/images/logo-inflames.svg'
 
-export const meta: MetaFunction = () => ({
-  title: 'IT Begins',
-  description:
-    'Technology company that puts the user in focus. Together we create great solutions that make digital everyday life easier.',
-  'og:type': 'website',
-  'og:url': 'https://www.itbegins.no',
-  'og:title': 'IT Begins',
-  'og:description':
-    'Technology company that puts the user in focus. Together we create great solutions that make digital everyday life easier.',
-  'og:image': ogLogo,
-  'og:image:alt': 'IT Begins logo',
+export const meta: MetaFunction = () => {
+  const title = 'IT Begins'
+  const description =
+    'Technology company that puts the user in focus. Together we create great solutions that make digital everyday life easier.'
+  const imageAlt = 'IT Begins logo'
 
-  'twitter:card': 'summary_large_image',
-})
+  return {
+    title,
+    description,
+    'og:type': 'website',
+    'og:url': 'https://www.itbegins.no',
+    'og:title': title,
+    'og:description': description,
+    'og:image': ogLogo,
+    'og:image:alt': imageAlt,
+
+    'twitter:card': 'summary',
+    'twitter:site': '@itsalwayskos',
+    'twitter:creator': '@itsalwayskos',
+    'twitter:title': title,
+    'twitter:description': description,
+    'twitter:image': ogLogo,
+    'twitter:alt': imageAlt,
+  }
+}
 
 export function links() {
   return [

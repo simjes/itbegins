@@ -18,12 +18,20 @@ export const headers: HeadersFunction = () => {
   }
 }
 
-export const meta: MetaFunction = () => ({
-  title: 'Blog | IT Begins',
-  description: 'Blogging about learning stuff while i #LearnInPublic',
-  'og:title': 'Blog | IT Begins',
-  'og:description': 'Blogging about learning stuff while i #LearnInPublic',
-})
+export const meta: MetaFunction = () => {
+  const title = 'Blog | IT Begins'
+  const description = 'Blogging about learning stuff while i #LearnInPublic'
+
+  return {
+    title,
+    description,
+    'og:title': title,
+    'og:description': description,
+
+    'twitter:title': title,
+    'twitter:description': description,
+  }
+}
 
 export async function loader() {
   const client = getClient()
