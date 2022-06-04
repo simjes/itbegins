@@ -204,7 +204,7 @@ const imageClassName =
 
 const BlurredHero = ({ src, srcSet, sizes, alt, lqip }: BlurredHeroProps) => {
   const [loaded, setLoaded] = useState(false)
-  const imgRef = useRef()
+  const imgRef = useRef<HTMLImageElement>(null)
   useEffect(() => {
     if (imgRef.current && imgRef.current.complete) {
       setLoaded(true)

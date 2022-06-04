@@ -1,4 +1,4 @@
-import type { HeadersFunction, MetaFunction } from '@remix-run/cloudflare'
+import type { MetaFunction } from '@remix-run/cloudflare'
 import {
   Links,
   LiveReload,

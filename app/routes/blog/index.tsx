@@ -1,4 +1,5 @@
 import type { HeadersFunction, MetaFunction } from '@remix-run/cloudflare'
+import { json } from '@remix-run/cloudflare'
 import { Link, useLoaderData } from '@remix-run/react'
 import groq from 'groq'
 import React from 'react'
@@ -26,10 +27,10 @@ export const meta: MetaFunction = () => ({
 
 export async function loader() {
   const client = getClient()
-  const authorFetch = client.fetch(
+  const authorFetch = client.fetch<Author>(
     groq`*[_type == "author" && slug.current == "simjes"][0]{ name, bio[0], image }`,
   )
-  const postsFetch = await client.fetch(
+  const postsFetch = await client.fetch<Post[]>(
     groq`*[_type == "post" && publishedAt <= $now] | order(publishedAt desc) { _id, title, slug, publishedAt }`,
     { now: new Date().toISOString() },
   )
@@ -37,11 +38,11 @@ export async function loader() {
   // Do both fetches in one groq?
   const [author, posts] = await Promise.all([authorFetch, postsFetch])
 
-  return { author, posts }
+  return json({ author, posts })
 }
 
 export default function Blog() {
-  const { author, posts } = useLoaderData()
+  const { author, posts } = useLoaderData<LoaderData>()
   const authorImage = imageUrlBuilder.image(author.image).size(416, 416).url()
 
   return (
@@ -107,4 +108,22 @@ export default function Blog() {
       <Footer />
     </div>
   )
+}
+
+type Post = {
+  _id: string
+  title: string
+  slug: { current: string }
+  publishedAt: string
+}
+
+type Author = {
+  name: string
+  bio: any
+  image: any
+}
+
+type LoaderData = {
+  posts: Post[]
+  author: Author
 }

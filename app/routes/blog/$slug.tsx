@@ -1,4 +1,8 @@
-import type { HeadersFunction, MetaFunction } from '@remix-run/cloudflare'
+import type {
+  HeadersFunction,
+  LoaderFunction,
+  MetaFunction,
+} from '@remix-run/cloudflare'
 import { json } from '@remix-run/cloudflare'
 import { useLoaderData } from '@remix-run/react'
 import groq from 'groq'
@@ -42,11 +46,11 @@ export function links() {
   return [{ rel: 'stylesheet', href: styles }]
 }
 
-export async function loader({ params }) {
+export const loader: LoaderFunction = async ({ params }) => {
   const client = getClient()
 
   // Returns published and draft slug, so we destructure
-  const [post] = await client.fetch(
+  const [post] = await client.fetch<Post[]>(
     groq`*[_type == "post" && slug.current == $slug]{
       "authorName": author->name,
       "authorImage": author->image,
@@ -79,7 +83,7 @@ export async function loader({ params }) {
 }
 
 export default function BlogPost() {
-  const { post } = useLoaderData()
+  const { post } = useLoaderData<LoaderData>()
   const date = new Date(post.publishedAt).toLocaleDateString('en-US', {
     dateStyle: 'long',
   })
@@ -120,4 +124,19 @@ export default function BlogPost() {
       <Footer />
     </div>
   )
+}
+
+type Post = {
+  authorName: string
+  authorImage: any
+  mainImage: any
+  slug: { current: string }
+  title: string
+  publishedAt: string
+  excerpt: string
+  body: any
+}
+
+type LoaderData = {
+  post: Post
 }
