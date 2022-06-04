@@ -29,7 +29,15 @@ export const meta: MetaFunction = ({ data }) => {
   if (!data) {
     return {}
   }
-  const { post } = data
+
+  const { post }: { post: Post } = data
+  const image = imageUrlBuilder
+    .image(post.mainImage)
+    .crop('center')
+    .width(500)
+    .height(500)
+    .url()
+
   const title = `${post.title} | IT Begins`
   const excerpt = post.excerpt
   return {
@@ -39,6 +47,14 @@ export const meta: MetaFunction = ({ data }) => {
     'og:description': excerpt,
     'og:type': 'article',
     'og:author': 'Simon Jespersen',
+    'og:image': image,
+    'twitter:card': image ? 'summary_large_image' : 'summary',
+    'twitter:site': '@itsalwayskos',
+    'twitter:creator': '@itsalwayskos',
+    'twitter:title': title,
+    'twitter:description': excerpt,
+    'twitter:image': image,
+    'twitter:alt': title,
   }
 }
 
