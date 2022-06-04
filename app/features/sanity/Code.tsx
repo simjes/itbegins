@@ -18,7 +18,17 @@ const Code = (props: any) => {
   }
   const { language, code } = props.value
 
-  return <Refractor language={language} value={code} />
+  return (
+    <div className='mb-8'>
+      <Refractor language={language} value={code} />
+    </div>
+  )
 }
 
 export default Code
+
+export const MdCode: React.FC = ({ children }) => (
+  <span className='rounded-md bg-slate-700 py-0.5 px-1 text-white'>
+    {children}
+  </span>
+)

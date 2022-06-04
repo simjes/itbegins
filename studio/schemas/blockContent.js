@@ -1,8 +1,14 @@
 import React from 'react'
 
-const highlightRender = (props) => (
-  <span style={{ backgroundColor: 'yellow' }}>{props.children}</span>
+const customRender = ({ children, color }) => (
+  <span style={{ backgroundColor: color }}>{children}</span>
 )
+
+const highlightRender = (props) => customRender({ ...props, color: 'yellow' })
+
+const mdCodeRender = (props) => customRender({ ...props, color: 'hotpink' })
+
+const importantRender = (props) => customRender({ ...props, color: 'blue' })
 
 /**
  * This is the schema definition for the rich text fields used for
@@ -42,7 +48,22 @@ export default {
         decorators: [
           { title: 'Strong', value: 'strong' },
           { title: 'Emphasis', value: 'em' },
-          { title: 'Code', value: 'code' },
+          {
+            title: 'Code',
+            value: 'mdCode',
+            blockEditor: {
+              icon: () => 'MdCode',
+              render: mdCodeRender,
+            },
+          },
+          {
+            title: 'Important',
+            value: 'important',
+            blockEditor: {
+              icon: () => 'Important',
+              render: importantRender,
+            },
+          },
           { title: 'Underline', value: 'underline' },
           { title: 'Strike', value: 'strike-through' },
           {
@@ -82,7 +103,34 @@ export default {
     // as a block type.
     {
       type: 'image',
+      fields: [
+        {
+          name: 'caption',
+          type: 'string',
+          title: 'Caption',
+          options: {
+            isHighlighted: true,
+          },
+        },
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alternative text',
+          description: 'Important for SEO and accessiblity.',
+          validation: (Rule) =>
+            Rule.error('You have to fill out the alternative text.').required(),
+          options: {
+            isHighlighted: true,
+          },
+        },
+      ],
       options: { hotspot: true },
+      preview: {
+        select: {
+          imageUrl: 'asset.url',
+          title: 'caption',
+        },
+      },
     },
 
     // Code blocks
