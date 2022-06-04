@@ -25,7 +25,7 @@ const components = {
     highlight: Highlight,
     mdCode: MdCode,
     important: Important,
-    link: ({ children, value }) => {
+    link: ({ children, value }: any) => {
       const { href, blank } = value
       return blank ? (
         <a href={href} target='_blank' rel='noreferrer'>

@@ -138,11 +138,8 @@ export default {
       type: 'code',
       options: {
         languageAlternatives: [
-          { title: 'Swift', value: 'swift' },
-          { title: 'JSX', value: 'jsx' },
           { title: 'TSX', value: 'tsx' },
-          { title: 'TS', value: 'ts' },
-          { title: 'JS', value: 'js' },
+          { title: 'Swift', value: 'swift' },
         ],
       },
     },
