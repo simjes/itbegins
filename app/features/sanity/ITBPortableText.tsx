@@ -6,10 +6,12 @@ import Paragraph from './Paragraph'
 import Code, { MdCode } from './Code'
 import Important from './Important'
 import Image from './Image'
+import { CodeSandbox } from './CodeSandbox'
 
 const components = {
   types: {
     code: Code,
+    codeSandbox: CodeSandbox,
     image: Image,
   },
   block: {

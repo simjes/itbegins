@@ -144,5 +144,8 @@ export default {
         ],
       },
     },
+    {
+      type: 'codeSandbox',
+    },
   ],
 }
