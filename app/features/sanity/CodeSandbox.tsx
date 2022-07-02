@@ -19,18 +19,20 @@ export const CodeSandbox = (props: any) => {
     return null
   }
   return (
-    <iframe
-      src={`https://codesandbox.io/embed/${id}?fontsize=14&hidenavigation=1&theme=dark`}
-      style={{
-        width: '100%',
-        height: '500px',
-        border: 0,
-        borderRadius: '4px',
-        overflow: 'hidden',
-      }}
-      title={id}
-      allow='geolocation; microphone; camera; midi; accelerometer; gyroscope; payment; encrypted-media; usb'
-      sandbox='allow-modals allow-forms allow-popups allow-scripts allow-same-origin'
-    />
+    <div className='mb-8'>
+      <iframe
+        src={`https://codesandbox.io/embed/${id}?fontsize=14&hidenavigation=1&theme=dark`}
+        style={{
+          width: '100%',
+          height: '500px',
+          border: 0,
+          borderRadius: '4px',
+          overflow: 'hidden',
+        }}
+        title={id}
+        allow='geolocation; microphone; camera; midi; accelerometer; gyroscope; payment; encrypted-media; usb'
+        sandbox='allow-modals allow-forms allow-popups allow-scripts allow-same-origin'
+      />
+    </div>
   )
 }
