@@ -19,12 +19,12 @@ export const CodeSandbox = (props: any) => {
     return null
   }
   return (
-    <div className='mb-8'>
+    <div className='mb-8 rounded-md border-2 border-cyan-500'>
       <iframe
-        src={`https://codesandbox.io/embed/${id}?fontsize=14&hidenavigation=1&theme=dark`}
+        src={`https://codesandbox.io/embed/${id}?fontsize=14&hidenavigation=1&theme=dark&view=preview`}
         style={{
           width: '100%',
-          height: '500px',
+          height: '600px',
           border: 0,
           borderRadius: '4px',
           overflow: 'hidden',
