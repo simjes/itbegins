@@ -1,5 +1,4 @@
 import { MoonIcon, SunIcon } from '@heroicons/react/solid'
-import React from 'react'
 import { NavLink } from '@remix-run/react'
 import logoDark from '~/images/logo-dark.webp'
 import logoLight from '~/images/logo-light.webp'
@@ -12,7 +11,7 @@ const Header = () => {
 
   return (
     <header className='py-4'>
-      <div className='mx-auto flex max-w-4xl justify-between px-4 xl:px-0'>
+      <div className='mx-auto flex max-w-4xl flex-col justify-between space-y-2 px-4 sm:flex-row sm:space-y-0 xl:px-0'>
         <NavLink
           to='/'
           aria-label={`Naviger til Begins IT's hovedside`}
@@ -29,11 +28,14 @@ const Header = () => {
           </div>
         </NavLink>
 
-        <div className='flex items-center space-x-4'>
+        <div className='flex items-center space-x-4 self-end sm:self-auto'>
           <nav>
             <ul className='flex space-x-4'>
               <li>
                 <LoddeNavLink to='/blog' text='Blog' />
+              </li>
+              <li>
+                <LoddeNavLink to='/cv' text='CV' />
               </li>
             </ul>
           </nav>

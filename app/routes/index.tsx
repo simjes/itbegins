@@ -1,8 +1,9 @@
 import { ArrowDownIcon, ArrowRightIcon } from '@heroicons/react/solid'
+import type { HeadersFunction } from '@remix-run/cloudflare'
 import { useLoaderData } from '@remix-run/react'
+import cn from 'classnames'
 import groq from 'groq'
 import { useEffect, useRef, useState } from 'react'
-import cn from 'classnames'
 import Employee from '~/features/employee/Employee'
 import DecorationLine from '~/features/Layout/DecorationLine'
 import Footer from '~/features/Layout/Footer'
@@ -13,7 +14,6 @@ import conceptPage from '~/images/concept-page.svg'
 import finishedPage from '~/images/finished-page.svg'
 import { getClient } from '~/lib/sanity/client'
 import { imageUrlBuilder } from '~/lib/sanity/image'
-import type { HeadersFunction } from '@remix-run/cloudflare'
 
 export const headers: HeadersFunction = () => {
   return {
@@ -158,7 +158,6 @@ export default function Index() {
               image={employeeImage}
               name={employee.name}
               role={employee.role}
-              cvUrl={employee.tempUrl}
             />
           </div>
         </section>

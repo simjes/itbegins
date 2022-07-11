@@ -1,13 +1,12 @@
-import React from 'react'
+import { NavLink } from '@remix-run/react'
 
 export interface Props {
   image: string
   name: string
   role: string
-  cvUrl: string
 }
 
-const Employee = ({ image, name, role, cvUrl }: Props) => {
+const Employee = ({ image, name, role }: Props) => {
   return (
     <article className='relative rounded-xl p-1'>
       <div
@@ -16,13 +15,11 @@ const Employee = ({ image, name, role, cvUrl }: Props) => {
         to-fuchsia-500 blur-xl dark:block'
       />
 
-      <a
-        href={cvUrl}
+      <NavLink
+        to='/cv'
         className='flex transform flex-col rounded-lg bg-white p-6 shadow-md ring-1 ring-slate-800/5 duration-300 ease-in-out hover:scale-105 hover:shadow-lg 
         dark:bg-slate-800/70 dark:shadow-[inset_0_2px_3px_rgba(255,255,255,0.06)] dark:ring-white/[.15] dark:backdrop-blur-xl'
         aria-label={`View ${name}'s CV`}
-        target='_blank'
-        rel='noreferrer'
       >
         <img
           src={image}
@@ -34,7 +31,7 @@ const Employee = ({ image, name, role, cvUrl }: Props) => {
           {name}
         </div>
         <div>{role}</div>
-      </a>
+      </NavLink>
     </article>
   )
 }
