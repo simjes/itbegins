@@ -1,5 +1,5 @@
-import React from 'react'
 import 'ace-builds/src-noconflict/mode-swift'
+import React from 'react'
 
 const customRender = ({ children, color }) => (
   <span style={{ backgroundColor: color }}>{children}</span>
@@ -78,6 +78,7 @@ export default {
         ],
         // Annotations can be any object structure – e.g. a link or a footnote.
         annotations: [
+          // TODO: eeeh type: 'link'?
           {
             title: 'URL',
             name: 'link',

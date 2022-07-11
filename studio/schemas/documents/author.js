@@ -40,6 +40,21 @@ export default {
       title: 'Bio',
       type: 'blockContent',
     },
+    {
+      name: 'cvSummary',
+      title: 'CV Summary',
+      type: 'blockContent',
+    },
+    {
+      type: 'array',
+      name: 'links',
+      title: 'Links',
+      of: [
+        {
+          type: 'link',
+        },
+      ],
+    },
   ],
   preview: {
     select: {
