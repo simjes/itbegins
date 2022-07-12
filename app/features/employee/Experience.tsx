@@ -39,7 +39,7 @@ const Experience = ({
     : undefined
 
   return (
-    <article className='flex flex-col space-y-4'>
+    <article className='flex flex-col'>
       <header>
         <div className='flex flex-col items-baseline sm:flex-row sm:space-x-4'>
           <H3>{title}</H3>
@@ -47,15 +47,13 @@ const Experience = ({
             {start} - {end ?? 'Present'}
           </div>
         </div>
-
-        <p>
-          Associated with {jobTag.label}, as {roleTag.label}
-        </p>
       </header>
 
       <ITBPortableText blocks={body} />
 
-      <Chips tags={techTags} />
+      <div className='mt-2'>
+        <Chips tags={techTags} />
+      </div>
     </article>
   )
 }
