@@ -2,7 +2,7 @@ export interface Author {
   name: string
   role: string
   slug: string
-  image: any // TODO
+  image: any
   bio: any // blockContent
   cvSummary: any // blockContent
   links: {

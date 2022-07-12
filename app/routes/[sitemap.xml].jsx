@@ -12,6 +12,11 @@ export const loader = () => {
       <lastmod>2022-03-20</lastmod>
       <priority>1.0</priority>
     </url>
+    <url>
+    <loc>https://itbegins.no/cv</loc>
+    <lastmod>2022-03-20</lastmod>
+    <priority>1.0</priority>
+  </url>
 </urlset>`
 
   return new Response(content, {
