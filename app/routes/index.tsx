@@ -14,6 +14,8 @@ import conceptPage from '~/images/concept-page.svg'
 import finishedPage from '~/images/finished-page.svg'
 import { getClient } from '~/lib/sanity/client'
 import { imageUrlBuilder } from '~/lib/sanity/image'
+import { Author } from '~/models/author'
+import { ImageAsset } from '~/models/imageAsset'
 
 export const headers: HeadersFunction = () => {
   return {
@@ -25,7 +27,7 @@ export const headers: HeadersFunction = () => {
 export async function loader() {
   const sanityClient = getClient()
 
-  const heroImageRequest = sanityClient.fetch(
+  const heroImageRequest = sanityClient.fetch<ImageAsset>(
     groq`*[_type == "imageAsset" && slug.current == "hero-image"][0]{
       img,
       alt,
@@ -33,8 +35,10 @@ export async function loader() {
     }`,
   )
 
-  const employeeRequest = sanityClient.fetch(
-    groq`*[_type == "author" && slug.current == "simjes"][0]{ name, image, role, tempUrl }`,
+  const employeeRequest = sanityClient.fetch<
+    Pick<Author, 'name' | 'image' | 'role'>
+  >(
+    groq`*[_type == "author" && slug.current == "simjes"][0]{ name, image, role }`,
   )
 
   const [employeeResult, heroImageResult] = await Promise.all([

@@ -14,11 +14,6 @@ export default {
       type: 'string',
     },
     {
-      name: 'tempUrl',
-      title: 'Temp Url',
-      type: 'string',
-    },
-    {
       name: 'slug',
       title: 'Slug',
       type: 'slug',

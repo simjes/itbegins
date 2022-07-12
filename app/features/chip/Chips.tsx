@@ -1,9 +1,5 @@
+import type { Tag } from '~/models/experience'
 import Chip from './Chip'
-
-interface Tag {
-  label: string
-  value: string
-}
 
 interface Props {
   tags: Tag[]
