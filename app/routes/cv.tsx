@@ -5,12 +5,13 @@ import groq from 'groq'
 import { Fragment } from 'react'
 import Experience from '~/features/employee/Experience'
 import Project from '~/features/employee/Project'
-import { H1, H2 } from '~/features/Heading'
-import DecorationLine from '~/features/Layout/DecorationLine'
-import Footer from '~/features/Layout/Footer'
-import Header from '~/features/Layout/Header'
-import Main from '~/features/Layout/Main'
-import LoddeLink from '~/features/LoddeLink'
+import DecorationLine from '~/features/l-ayout/DecorationLine'
+import Footer from '~/features/l-ayout/Footer'
+import Header from '~/features/l-ayout/Header'
+import { H1 } from '~/features/l-ayout/heading/Heading'
+import { SectionHeader } from '~/features/l-ayout/heading/SectionHeader'
+import Main from '~/features/l-ayout/Main'
+import LoddeLink from '~/features/link/LoddeLink'
 import ITBPortableText from '~/features/sanity/ITBPortableText'
 import { getClient } from '~/lib/sanity/client'
 import { imageUrlBuilder } from '~/lib/sanity/image'
@@ -117,8 +118,7 @@ export default function CV() {
           </section>
 
           <section>
-            <H2>Experience</H2>
-            <DecorationLine className='w-64' type='purple' />
+            <SectionHeader title='Experience' />
 
             <div className='mt-4 space-y-12'>
               {experiences.map((experience) => (
@@ -128,8 +128,7 @@ export default function CV() {
           </section>
 
           <section>
-            <H2>Other Projects</H2>
-            <DecorationLine className='w-64' type='purple' />
+            <SectionHeader title='Projects' />
 
             <div className='mt-4 space-y-12'>
               {projects.map((project) => (
