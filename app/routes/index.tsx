@@ -1,9 +1,8 @@
 import { ArrowDownIcon, ArrowRightIcon } from '@heroicons/react/solid'
 import type { HeadersFunction } from '@remix-run/cloudflare'
 import { useLoaderData } from '@remix-run/react'
-import cn from 'classnames'
 import groq from 'groq'
-import { useEffect, useRef, useState } from 'react'
+import BlurredHero from '~/features/BlurredHero'
 import Employee from '~/features/employee/Employee'
 import DecorationLine from '~/features/Layout/DecorationLine'
 import Footer from '~/features/Layout/Footer'
@@ -14,8 +13,13 @@ import conceptPage from '~/images/concept-page.svg'
 import finishedPage from '~/images/finished-page.svg'
 import { getClient } from '~/lib/sanity/client'
 import { imageUrlBuilder } from '~/lib/sanity/image'
-import { Author } from '~/models/author'
-import { ImageAsset } from '~/models/imageAsset'
+import type { Author } from '~/models/author'
+import type { ImageAsset } from '~/models/imageAsset'
+
+type LoaderData = {
+  employee: Pick<Author, 'name' | 'image' | 'role'>
+  imageAsset: ImageAsset
+}
 
 export const headers: HeadersFunction = () => {
   return {
@@ -62,7 +66,7 @@ const getImageUrlForSize = (width: number, height: number, image: any) =>
     .url()
 
 export default function Index() {
-  const { employee, imageAsset } = useLoaderData()
+  const { employee, imageAsset } = useLoaderData<LoaderData>()
   const employeeImage = imageUrlBuilder
     .image(employee.image)
     .size(256, 256)
@@ -191,45 +195,5 @@ const ProcessImage = ({
       height={height}
       loading='lazy'
     />
-  )
-}
-
-interface BlurredHeroProps {
-  src: string
-  alt: string
-  srcSet: string
-  sizes: string
-  lqip: string
-}
-
-const imageClassName =
-  'absolute w-full h-full top-0 bottom-0 right-0 left-0 object-cover object-center'
-
-const BlurredHero = ({ src, srcSet, sizes, alt, lqip }: BlurredHeroProps) => {
-  const [loaded, setLoaded] = useState(false)
-  const imgRef = useRef<HTMLImageElement>(null)
-  useEffect(() => {
-    if (imgRef.current && imgRef.current.complete) {
-      setLoaded(true)
-    }
-  }, [])
-  return (
-    <>
-      <img className={cn(imageClassName)} src={lqip} aria-hidden alt={alt} />
-      <img
-        src={src}
-        srcSet={srcSet}
-        sizes={sizes}
-        alt={alt}
-        aria-hidden
-        ref={imgRef}
-        onLoad={() => setLoaded(true)}
-        className={cn(
-          imageClassName,
-          'transition-opacity',
-          loaded ? 'opacity-1' : 'opacity-0',
-        )}
-      />
-    </>
   )
 }

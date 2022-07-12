@@ -15,18 +15,27 @@ import ITBPortableText from '~/features/sanity/ITBPortableText'
 import { getClient } from '~/lib/sanity/client'
 import { imageUrlBuilder } from '~/lib/sanity/image'
 import type { Author } from '~/models/author'
-import type { Experience as IExperience } from '~/models/experience'
+import type {
+  Experience as IExperience,
+  Project as IProject,
+} from '~/models/experience'
+
+type LoaderData = {
+  author: Pick<Author, 'name' | 'image' | 'role' | 'cvSummary' | 'links'>
+  experiences: IExperience[]
+  projects: IProject[]
+}
 
 export const headers: HeadersFunction = () => {
   return {
     'Cache-Control':
-      'max-age=600 s-maxage=86400, stale-while-revalidate=31560000', // TODO
+      'max-age=600 s-maxage=86400, stale-while-revalidate=31560000',
   }
 }
 
 export const meta: MetaFunction = () => {
   const title = 'Simon Jespersen CV | IT Begins'
-  const description = '' // TODO
+  const description = `Simon is a skilled frontend developer passionate about creating fantastic solutions for the end-user. He is a team player and thrives in environments where developers and designers collaborate to create products that make the user's life simpler.`
 
   return {
     title,
@@ -56,15 +65,16 @@ export async function loader() {
     cvExperiencesRequest,
   ])
 
-  // TODO: Typings for sanity query
-  const experiences = cvExperiences.filter((x) => !!x.startDate)
-  const projects = cvExperiences.filter((x) => !x.startDate)
+  const experiences = cvExperiences.filter(
+    (x) => !!x.startDate,
+  ) as IExperience[]
+  const projects = cvExperiences.filter((x) => !x.startDate) as IProject[]
 
   return json({ author, experiences, projects })
 }
 
 export default function CV() {
-  const { author, experiences, projects } = useLoaderData()
+  const { author, experiences, projects } = useLoaderData<LoaderData>()
   const authorImage = imageUrlBuilder.image(author.image).size(416, 416).url()
 
   return (
