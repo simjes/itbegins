@@ -1,3 +1,4 @@
+import { MetronomeLinks } from '@metronome-sh/react'
 import type { MetaFunction } from '@remix-run/cloudflare'
 import {
   Links,
@@ -8,12 +9,11 @@ import {
   ScrollRestoration,
   useCatch,
 } from '@remix-run/react'
-import ogLogo from '~/images/og-logo.jpg'
-import twitterLogo from '~/images/logo-twitter.webp'
-import styles from './styles/app.css'
-import { MetronomeLinks } from '@metronome-sh/react'
-import { H1 } from './features/Heading'
 import logoInflames from '~/images/logo-inflames.svg'
+import twitterLogo from '~/images/logo-twitter.webp'
+import ogLogo from '~/images/og-logo.jpg'
+import { H1 } from './features/l-ayout/heading/Heading'
+import styles from './styles/app.css'
 
 export const meta: MetaFunction = () => {
   const title = 'IT Begins'

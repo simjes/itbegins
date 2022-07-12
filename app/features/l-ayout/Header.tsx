@@ -3,7 +3,7 @@ import { NavLink } from '@remix-run/react'
 import logoDark from '~/images/logo-dark.webp'
 import logoLight from '~/images/logo-light.webp'
 import { useThemeSwitcher } from '../hooks/useThemeSwitcher'
-import LoddeNavLink from '../LoddeNavLink'
+import LoddeNavLink from '../link/LoddeNavLink'
 
 const Header = () => {
   const { currentTheme, toggleTheme } = useThemeSwitcher()

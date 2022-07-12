@@ -1,4 +1,18 @@
-import type { ReactNode } from 'react'
+import type { HTMLAttributes, ReactNode, Ref } from 'react'
+
+export type HeadingLevel = 1 | 2 | 3 | 4 | 5
+type HeadTag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5'
+
+export interface Props extends HTMLAttributes<HTMLHeadingElement> {
+  level: HeadingLevel
+  elementRef?: Ref<HTMLHeadingElement>
+  children: ReactNode
+}
+
+export const H = ({ level, elementRef, ...props }: Props) => {
+  const Tag = `h${level}` as HeadTag
+  return <Tag ref={elementRef} {...props} />
+}
 
 export const H1 = ({ children }: { children: ReactNode }) => (
   <h1 className='mb-2 text-3xl font-bold text-slate-900 dark:text-slate-200 md:text-4xl'>
