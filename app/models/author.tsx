@@ -10,5 +10,5 @@ export interface Author {
     linkContent: string
     linkAriaLabel?: string
     blank?: boolean
-  }
+  }[]
 }
