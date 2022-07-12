@@ -1,17 +1,9 @@
+import type { Experience } from '~/models/experience'
 import Chips from '../chip/Chips'
 import { H3 } from '../Heading'
 import ITBPortableText from '../sanity/ITBPortableText'
 
-interface Tag {
-  label: string
-  value: string
-}
-
-interface Props {
-  title: string
-  techTags: Tag[]
-  body: any
-}
+interface Props extends Pick<Experience, 'title' | 'techTags' | 'body'> {}
 
 const Project = ({ title, techTags, body }: Props) => {
   return (

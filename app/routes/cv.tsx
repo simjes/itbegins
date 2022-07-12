@@ -14,6 +14,8 @@ import LoddeLink from '~/features/LoddeLink'
 import ITBPortableText from '~/features/sanity/ITBPortableText'
 import { getClient } from '~/lib/sanity/client'
 import { imageUrlBuilder } from '~/lib/sanity/image'
+import type { Author } from '~/models/author'
+import type { Experience as IExperience } from '~/models/experience'
 
 export const headers: HeadersFunction = () => {
   return {
@@ -39,11 +41,13 @@ export const meta: MetaFunction = () => {
 
 export async function loader() {
   const client = getClient()
-  const authorRequest = client.fetch(
+  const authorRequest = client.fetch<
+    Pick<Author, 'name' | 'image' | 'role' | 'cvSummary' | 'links'>
+  >(
     groq`*[_type == "author" && slug.current == "simjes"][0]{ name, image, role, cvSummary, links }`,
   )
 
-  const cvExperiencesRequest = client.fetch(
+  const cvExperiencesRequest = client.fetch<IExperience[]>(
     groq`*[_type == "experience"] | order(sortDate desc)`,
   )
 
@@ -136,12 +140,4 @@ export default function CV() {
       <Footer />
     </div>
   )
-}
-
-type Author = {
-  name: string
-  role: string
-  image: any
-  cvSummary: any
-  links: any
 }

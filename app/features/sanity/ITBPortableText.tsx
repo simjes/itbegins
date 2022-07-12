@@ -1,12 +1,11 @@
-import React from 'react'
 import { PortableText } from '@portabletext/react'
 import { H1, H2, H3, H4, H5, H6 } from '../Heading'
-import { Highlight } from './Highlight'
-import Paragraph from './Paragraph'
 import Code, { MdCode } from './Code'
-import Important from './Important'
-import Image from './Image'
 import { CodeSandbox } from './CodeSandbox'
+import { Highlight } from './Highlight'
+import Image from './Image'
+import Important from './Important'
+import Paragraph from './Paragraph'
 
 const components = {
   types: {

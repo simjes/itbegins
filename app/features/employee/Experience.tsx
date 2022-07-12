@@ -1,31 +1,13 @@
+import type { Experience as IExperience } from '~/models/experience'
 import Chips from '../chip/Chips'
 import { H3 } from '../Heading'
 import ITBPortableText from '../sanity/ITBPortableText'
 
-interface Tag {
-  label: string
-  value: string
-}
-
-interface Props {
-  title: string
+interface Props extends IExperience {
   startDate: string
-  endDate?: string
-  jobTag: Tag
-  roleTag: Tag
-  techTags: Tag[]
-  body: any
 }
 
-const Experience = ({
-  title,
-  startDate,
-  endDate,
-  jobTag,
-  roleTag,
-  techTags,
-  body,
-}: Props) => {
+const Experience = ({ title, startDate, endDate, techTags, body }: Props) => {
   const start = new Date(startDate).toLocaleDateString('en-US', {
     month: 'short',
     year: 'numeric',
