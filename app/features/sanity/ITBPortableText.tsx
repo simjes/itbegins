@@ -1,5 +1,5 @@
 import { PortableText } from '@portabletext/react'
-import { H1, H2, H3, H4, H5, H6 } from '../l-ayout/heading/Heading'
+import { H1, H2, H3, H4, H5, H6 } from '../layout/heading/Heading'
 import Code, { MdCode } from './Code'
 import { CodeSandbox } from './CodeSandbox'
 import { Highlight } from './Highlight'

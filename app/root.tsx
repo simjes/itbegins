@@ -12,7 +12,7 @@ import {
 import logoInflames from '~/images/logo-inflames.svg'
 import twitterLogo from '~/images/logo-twitter.webp'
 import ogLogo from '~/images/og-logo.jpg'
-import { H1 } from './features/l-ayout/heading/Heading'
+import { H1 } from './features/layout/heading/Heading'
 import styles from './styles/app.css'
 
 export const meta: MetaFunction = () => {

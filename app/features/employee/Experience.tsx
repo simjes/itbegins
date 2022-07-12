@@ -1,6 +1,6 @@
 import type { Experience as IExperience } from '~/models/experience'
 import Chips from '../chip/Chips'
-import { H3 } from '../l-ayout/heading/Heading'
+import { H3 } from '../layout/heading/Heading'
 import ITBPortableText from '../sanity/ITBPortableText'
 
 interface Props extends IExperience {

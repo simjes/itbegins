@@ -1,6 +1,6 @@
 import type { Experience } from '~/models/experience'
 import Chips from '../chip/Chips'
-import { H3 } from '../l-ayout/heading/Heading'
+import { H3 } from '../layout/heading/Heading'
 import ITBPortableText from '../sanity/ITBPortableText'
 
 interface Props extends Pick<Experience, 'title' | 'techTags' | 'body'> {}
@@ -8,9 +8,7 @@ interface Props extends Pick<Experience, 'title' | 'techTags' | 'body'> {}
 const Project = ({ title, techTags, body }: Props) => {
   return (
     <article className='flex flex-col'>
-      <header>
-        <H3>{title}</H3>
-      </header>
+      <H3>{title}</H3>
 
       <ITBPortableText blocks={body} />
 
