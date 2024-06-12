@@ -1,27 +1,24 @@
-import typescriptParser from '@typescript-eslint/parser';
-import astroParser from 'astro-eslint-parser';
+import js from '@eslint/js';
 import eslintPluginAstro from 'eslint-plugin-astro';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
+import eslintPluginReact from 'eslint-plugin-react';
 import eslintPluginReactHooks from 'eslint-plugin-react-hooks';
-import eslintPluginTailwind from 'eslint-plugin-tailwindcss';
 
 export default [
+  js.configs.recommended,
   ...eslintPluginAstro.configs.recommended,
-  ...eslintPluginTailwind.configs['flat/recommended'],
   {
+    files: ['*.js?(x)', '*.ts?(x)'],
+    languageOptions: {
+      parser: '@typescript-eslint/parser',
+    },
     plugins: {
+      react: eslintPluginReact,
       'react-hooks': eslintPluginReactHooks,
     },
-    rules: eslintPluginReactHooks.configs.recommended.rules,
-  },
-  {
-    files: ['*.astro'],
-    languageOptions: {
-      parser: astroParser,
-      parserOptions: {
-        parser: typescriptParser,
-        extraFileExtensions: ['.astro'],
-      },
+    rules: {
+      ...eslintPluginReactHooks.configs.recommended.rules,
+      'react/prop-types': 'off',
     },
   },
   eslintPluginPrettierRecommended,
