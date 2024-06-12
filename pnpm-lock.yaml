@@ -63,6 +63,9 @@ importers:
         specifier: ^5.4.5
         version: 5.4.5
     devDependencies:
+      '@eslint/compat':
+        specifier: ^1.1.0
+        version: 1.1.0
       '@eslint/js':
         specifier: ^9.4.0
         version: 9.4.0
@@ -94,11 +97,14 @@ importers:
         specifier: ^7.34.2
         version: 7.34.2(eslint@9.4.0)
       eslint-plugin-react-hooks:
-        specifier: ^4.6.2
-        version: 4.6.2(eslint@9.4.0)
+        specifier: 5.1.0-rc-f3e09d6328-20240612
+        version: 5.1.0-rc-f3e09d6328-20240612(eslint@9.4.0)
       eslint-plugin-tailwindcss:
         specifier: ^3.17.3
         version: 3.17.3(tailwindcss@3.4.4)
+      globals:
+        specifier: ^15.4.0
+        version: 15.4.0
       prettier:
         specifier: ^3.3.2
         version: 3.3.2
@@ -1420,6 +1426,10 @@ packages:
   '@eslint-community/regexpp@4.10.1':
     resolution: {integrity: sha512-Zm2NGpWELsQAD1xsJzGQpYfvICSsFkEpU0jxBjfdC6uNEWXcHnfs9hScFWtXVDVl+rBQJGrl4g1vcKIejpH9dA==}
     engines: {node: ^12.0.0 || ^14.0.0 || >=16.0.0}
+
+  '@eslint/compat@1.1.0':
+    resolution: {integrity: sha512-s9Wi/p25+KbzxKlDm3VshQdImhWk+cbdblhwGNnyCU5lpSwtWa4v7VQCxSki0FAUrGA3s8nCWgYzAH41mwQVKQ==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   '@eslint/config-array@0.15.1':
     resolution: {integrity: sha512-K4gzNq+yymn/EVsXYmf+SBcBro8MTf+aXJZUphM96CdzUEr+ClGDvAbpmaEK+cGVigVXIgs9gNmvHAlrzzY5JQ==}
@@ -3057,11 +3067,11 @@ packages:
       eslint-config-prettier:
         optional: true
 
-  eslint-plugin-react-hooks@4.6.2:
-    resolution: {integrity: sha512-QzliNJq4GinDBcD8gPB5v0wh6g8q3SUi6EFF0x8N/BL9PoVs0atuGc47ozMRyOWAKdwaZ5OnbOEa3WR+dSGKuQ==}
+  eslint-plugin-react-hooks@5.1.0-rc-f3e09d6328-20240612:
+    resolution: {integrity: sha512-XBGKfdU+rUDOgBFiYgPBrxJOSjh5tz0i62eO4QhKpoo4KmEF7ZU5C/D0UZ+Y8/B64iNNlAV1hooyN5G1xOrT7Q==}
     engines: {node: '>=10'}
     peerDependencies:
-      eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0
+      eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0 || ^9.0.0
 
   eslint-plugin-react@7.34.2:
     resolution: {integrity: sha512-2HCmrU+/JNigDN6tg55cRDKCQWicYAPB38JGSFDQt95jDm8rrvSUo7YPkOIm5l6ts1j1zCvysNcasvfTMQzUOw==}
@@ -7580,6 +7590,8 @@ snapshots:
 
   '@eslint-community/regexpp@4.10.1': {}
 
+  '@eslint/compat@1.1.0': {}
+
   '@eslint/config-array@0.15.1':
     dependencies:
       '@eslint/object-schema': 2.1.3
@@ -9751,7 +9763,7 @@ snapshots:
     optionalDependencies:
       eslint-config-prettier: 9.1.0(eslint@9.4.0)
 
-  eslint-plugin-react-hooks@4.6.2(eslint@9.4.0):
+  eslint-plugin-react-hooks@5.1.0-rc-f3e09d6328-20240612(eslint@9.4.0):
     dependencies:
       eslint: 9.4.0
 

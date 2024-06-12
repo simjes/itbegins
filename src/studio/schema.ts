@@ -1,4 +1,4 @@
-import {blockContent} from './blockContent';
+import { blockContent } from './blockContent';
 import { author } from './documents/author';
 import { category } from './documents/category';
 import { experience } from './documents/experience';

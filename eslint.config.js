@@ -1,22 +1,29 @@
+import { fixupPluginRules } from '@eslint/compat';
 import js from '@eslint/js';
+import eslintParserTypescriot from '@typescript-eslint/parser';
 import eslintPluginAstro from 'eslint-plugin-astro';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import eslintPluginReact from 'eslint-plugin-react';
 import eslintPluginReactHooks from 'eslint-plugin-react-hooks';
+import globals from 'globals';
 
 export default [
   js.configs.recommended,
   ...eslintPluginAstro.configs.recommended,
   {
-    files: ['*.js?(x)', '*.ts?(x)'],
+    files: ['**/*.{js,jsx,mjs,cjs,ts,tsx}'],
     languageOptions: {
-      parser: '@typescript-eslint/parser',
+      parser: eslintParserTypescriot,
+      globals: {
+        ...globals.browser,
+      },
     },
     plugins: {
       react: eslintPluginReact,
-      'react-hooks': eslintPluginReactHooks,
+      'react-hooks': fixupPluginRules(eslintPluginReactHooks),
     },
     rules: {
+      ...eslintPluginReact.configs['jsx-runtime'].rules,
       ...eslintPluginReactHooks.configs.recommended.rules,
       'react/prop-types': 'off',
     },
