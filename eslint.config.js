@@ -31,3 +31,6 @@ export default [
   },
   eslintPluginPrettierRecommended,
 ];
+
+// TODO: disallow any — unused imports
+// TODO: finne ut av proper component typing fra sanity

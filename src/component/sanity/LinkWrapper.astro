@@ -1,0 +1,19 @@
+---
+import type { Link } from 'sanity.types';
+
+type Props = { node: { markDef: Link } };
+const { node } = Astro.props;
+const { markDef } = node;
+---
+
+{
+  markDef.blank ? (
+    <a href={markDef.href} target='_blank' rel='noreferrer'>
+      <slot />
+    </a>
+  ) : (
+    <a href={markDef.href}>
+      <slot />
+    </a>
+  )
+}
