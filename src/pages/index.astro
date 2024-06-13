@@ -1,13 +1,15 @@
 ---
 import { sanityClient } from 'sanity:client';
+
+import type { Author, Post } from 'sanity.types';
 import Layout from '../component/Layout.astro';
 import PortableText from '../component/PortableText.astro';
 
-const authorFetch = sanityClient.fetch(
+const authorFetch = sanityClient.fetch<Author>(
   `*[_type == "author" && slug.current == "simjes"][0]{ name, bio[0], image }`,
 );
 
-const postsFetch = sanityClient.fetch(
+const postsFetch = sanityClient.fetch<Post[]>(
   `*[_type == "post" && publishedAt <= $now] | order(publishedAt desc) { _id, title, slug, publishedAt }`,
   { now: new Date().toISOString() },
 );
@@ -22,6 +24,11 @@ const [author, posts] = await Promise.all([authorFetch, postsFetch]);
     <ol class='mt-2 space-y-2'>
       {
         posts.map((post) => {
+          // TODO: must be a better way to filter this
+          if (!post.publishedAt || !post.slug) {
+            return '';
+          }
+
           const date = new Date(post.publishedAt).toLocaleDateString('en-US', {
             dateStyle: 'long',
           });
