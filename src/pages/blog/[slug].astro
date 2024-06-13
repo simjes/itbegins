@@ -1,0 +1,23 @@
+---
+import Layout from '../../component/Layout.astro';
+
+// import { sanityClient } from 'sanity:client';
+
+// export async function getStaticPaths() {
+//   const posts = await sanityClient.fetch(`*[_type == "post"]`);
+
+//   return posts.map(({ slug, title }) => {
+//     return {
+//       params: { slug: slug.current },
+//       props: { title },
+//     };
+//   });
+// }
+
+// const { slug } = Astro.params;
+// const { title } = Astro.props;
+---
+
+<Layout title='blog post'>
+  <h1 class='m-2 text-xl text-purple-600'>blog post</h1>
+</Layout>

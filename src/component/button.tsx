@@ -10,5 +10,5 @@ export const Button = ({ children, id }: Props) => {
     console.log(id);
   }, [id]);
 
-  return <button>{children}</button>;
+  return <button className='mx-0'>{children}</button>;
 };

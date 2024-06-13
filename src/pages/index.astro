@@ -1,16 +1,43 @@
 ---
+import { sanityClient } from 'sanity:client';
+import Layout from '../component/Layout.astro';
+import PortableText from '../component/PortableText.astro';
 
+const authorFetch = sanityClient.fetch(
+  `*[_type == "author" && slug.current == "simjes"][0]{ name, bio[0], image }`,
+);
+
+const postsFetch = sanityClient.fetch(
+  `*[_type == "post" && publishedAt <= $now] | order(publishedAt desc) { _id, title, slug, publishedAt }`,
+  { now: new Date().toISOString() },
+);
+
+const [author, posts] = await Promise.all([authorFetch, postsFetch]);
 ---
 
-<html lang='en'>
-  <head>
-    <meta charset='utf-8' />
-    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
-    <meta name='viewport' content='width=device-width' />
-    <meta name='generator' content={Astro.generator} />
-    <title>Astro</title>
-  </head>
-  <body>
-    <h1 class='m-2 text-xl text-purple-600'>Astro</h1>
-  </body>
-</html>
+<Layout title='main page'>
+  <section>
+    <h1>{author.name}</h1>
+    <PortableText portableText={author.bio} />
+    <ol class='mt-2 space-y-2'>
+      {
+        posts.map((post) => {
+          const date = new Date(post.publishedAt).toLocaleDateString('en-US', {
+            dateStyle: 'long',
+          });
+          return (
+            <li class='space-x-1'>
+              <a
+                class='underline decoration-cyan-500 decoration-2 transition duration-300 ease-in-out hover:text-fuchsia-500 dark:text-white dark:hover:text-fuchsia-500'
+                href={`blog/${post.slug.current}`}
+              >
+                {post.title}
+              </a>{' '}
+              <span class='text-sm'>{date}</span>
+            </li>
+          );
+        })
+      }
+    </ol>
+  </section>
+</Layout>
