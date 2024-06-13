@@ -1,9 +1,11 @@
 ---
 import { sanityClient } from 'sanity:client';
 
+import Layout from '@/component/Layout.astro';
+import PortableText from '@/component/sanity/PortableText.astro';
+
+import H1 from '@/component/sanity/H1.astro';
 import type { Author, Post } from 'sanity.types';
-import Layout from '../component/Layout.astro';
-import PortableText from '../component/PortableText.astro';
 
 const authorFetch = sanityClient.fetch<Author>(
   `*[_type == "author" && slug.current == "simjes"][0]{ name, bio[0], image }`,
@@ -19,12 +21,12 @@ const [author, posts] = await Promise.all([authorFetch, postsFetch]);
 
 <Layout title='main page'>
   <section>
-    <h1>{author.name}</h1>
+    <H1>{author.name}</H1>
     <PortableText portableText={author.bio} />
     <ol class='mt-2 space-y-2'>
       {
         posts.map((post) => {
-          // TODO: must be a better way to filter this
+          // TODO: must be a better way to filter this or fix types in schema?
           if (!post.publishedAt || !post.slug) {
             return '';
           }

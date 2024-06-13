@@ -1,23 +1,70 @@
 ---
-import type { Post } from '../../../sanity.types';
-import Layout from '../../component/Layout.astro';
-
+import Layout from '@/component/Layout.astro';
+import { DecorationLine } from '@/component/decoration-line';
+import H1 from '@/component/sanity/H1.astro';
+import PortableText from '@/component/sanity/PortableText.astro';
+import imageUrlBuilder from '@sanity/image-url';
+import type { Post } from 'sanity.types';
 import { sanityClient } from 'sanity:client';
 
 export async function getStaticPaths() {
-  const posts = await sanityClient.fetch<Post[]>(`*[_type == "post"]`);
+  const posts = await sanityClient.fetch<Post[]>(
+    `*[_type == "post"]{
+      "authorName": author->name,
+      "authorImage": author->image,
+      mainImage,
+      slug,
+      title,
+      publishedAt,
+      excerpt,
+      body
+    }`,
+  );
 
-  return posts.map(({ slug, title }) => {
+  return posts.map((post) => {
     return {
-      params: { slug: slug?.current },
-      props: { title },
+      params: { slug: post.slug?.current },
+      props: { post },
     };
   });
 }
 
-const { title } = Astro.props;
+const { post } = Astro.props;
+
+const date = new Date(post.publishedAt || '').toLocaleDateString('en-US', {
+  dateStyle: 'long',
+});
+
+const mainImage = imageUrlBuilder(sanityClient)
+  .image(post.mainImage)
+  .width(900)
+  .url();
 ---
 
 <Layout title='blog post'>
-  <h1 class='m-2 text-xl text-purple-600'>{title}</h1>
+  <article>
+    <div class='mt-16 flex items-center space-x-4'>
+      <header>
+        <H1>{post.title}</H1>
+        <p>{date} — Simon Jespersen</p>
+      </header>
+    </div>
+
+    <DecorationLine className='mb-6 w-1/2 md:w-1/3' />
+
+    <section class='space-y-6'>
+      <div class='aspect-w-16 aspect-h-9'>
+        <img
+          class='aspect-video h-full w-full object-cover object-center'
+          src={mainImage}
+          alt=''
+          role='presentation'
+        />
+      </div>
+
+      <div>
+        <PortableText portableText={post.body} />
+      </div>
+    </section>
+  </article>
 </Layout>

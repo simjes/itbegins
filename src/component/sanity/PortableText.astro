@@ -1,0 +1,48 @@
+---
+import { PortableText as PortableTextInternal } from 'astro-portabletext';
+import SanityImage from '../sanity/SanityImage.astro';
+import CodeSandbox from './CodeSandbox.astro';
+import CodeWrapper from './CodeWrapper.astro';
+import H1 from './H1.astro';
+import H2 from './H2.astro';
+import H3 from './H3.astro';
+import H4 from './H4.astro';
+import H5 from './H5.astro';
+import H6 from './H6.astro';
+import Highlight from './Highlight.astro';
+import Important from './Important.astro';
+import LinkWrapper from './LinkWrapper.astro';
+import MdCode from './MdCode.astro';
+import Paragraph from './Paragraph.astro';
+
+const { portableText } = Astro.props;
+
+type PortableComponents = Parameters<
+  typeof PortableTextInternal
+>[0]['components'];
+
+const components = {
+  type: {
+    code: CodeWrapper,
+    codeSandbox: CodeSandbox,
+    image: SanityImage,
+  },
+  block: {
+    h1: H1,
+    h2: H2,
+    h3: H3,
+    h4: H4,
+    h5: H5,
+    h6: H6,
+    normal: Paragraph,
+  },
+  mark: {
+    highlight: Highlight,
+    mdCode: MdCode,
+    important: Important,
+    link: LinkWrapper,
+  },
+} satisfies PortableComponents;
+---
+
+<PortableTextInternal value={portableText} components={components} />

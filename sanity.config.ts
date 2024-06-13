@@ -9,8 +9,15 @@ import { structureTool } from 'sanity/structure';
 const config = defineConfig({
   name: 'itbegins',
   title: 'IT Begins',
-  projectId: process.env.PUBLIC_SANITY_PROJECT_ID || '',
-  dataset: process.env.PUBLIC_SANITY_DATASET || '',
+  // TODO: sjekk at dette støtter tpyes extractoren ooog admin
+  projectId:
+    import.meta.env.PUBLIC_SANITY_PROJECT_ID ||
+    process.env.PUBLIC_SANITY_PROJECT_ID ||
+    '',
+  dataset:
+    import.meta.env.PUBLIC_SANITY_DATASET ||
+    process.env.PUBLIC_SANITY_DATASET ||
+    '',
   plugins: [
     structureTool(),
     codeInput(),

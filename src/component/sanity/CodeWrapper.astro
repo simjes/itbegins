@@ -1,0 +1,11 @@
+---
+import { Code as CodeInternal } from 'astro:components';
+import type { Code } from 'sanity.types';
+
+type Props = { node: Required<Code> };
+const { node } = Astro.props;
+console.log(node);
+// TODO: må gjøre migrering på dataen  BuiltinLanguage | SpecialLanguage | LanguageRegistration;
+---
+
+<CodeInternal code={node.code} lang={node.language} />
