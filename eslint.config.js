@@ -16,6 +16,7 @@ export default [
       parser: eslintParserTypescriot,
       globals: {
         ...globals.browser,
+        ...globals.node,
       },
     },
     plugins: {
