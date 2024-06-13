@@ -5,6 +5,8 @@ import Layout from '@/component/Layout.astro';
 import PortableText from '@/component/sanity/PortableText.astro';
 
 import H1 from '@/component/sanity/H1.astro';
+import H2 from '@/component/sanity/H2.astro';
+import imageUrlBuilder from '@sanity/image-url';
 import type { Author, Post } from 'sanity.types';
 
 const authorFetch = sanityClient.fetch<Author>(
@@ -17,12 +19,46 @@ const postsFetch = sanityClient.fetch<Post[]>(
 );
 
 const [author, posts] = await Promise.all([authorFetch, postsFetch]);
+
+const authorImage = imageUrlBuilder(sanityClient)
+  .image(author.image)
+  .width(900)
+  .url();
 ---
 
 <Layout title='main page'>
+  <section
+    class='mb-6 mt-16 flex flex-col items-center space-y-4 md:flex-row md:space-x-4 md:space-y-0'
+  >
+    <header>
+      <H1>{author.name}</H1>
+      <div class='text-xl'>
+        <PortableText portableText={author.bio} />
+      </div>
+      <div>
+        <a
+          class='p-1 font-bold underline decoration-cyan-500 decoration-2 transition duration-300 ease-in-out hover:text-fuchsia-500 dark:text-white dark:hover:text-fuchsia-500'
+          href='https://twitter.com/itsalwayskos'
+          target='_blank'
+          aria-label='Go to my twitter'
+          rel='noreferrer'
+        >
+          @itsalwayskos
+        </a>
+      </div>
+    </header>
+
+    <img
+      src={authorImage}
+      class='h-52 w-52 rounded-full'
+      alt={`Author ${author.name}`}
+      height={208}
+      width={208}
+    />
+  </section>
+
   <section>
-    <H1>{author.name}</H1>
-    <PortableText portableText={author.bio} />
+    <H2>Posts</H2>
     <ol class='mt-2 space-y-2'>
       {
         posts.map((post) => {

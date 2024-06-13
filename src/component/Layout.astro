@@ -1,6 +1,6 @@
 ---
 import '@/globals.css';
-import Navigation from '../component/Navigation.astro';
+import { Header } from './header/header';
 const { title } = Astro.props;
 ---
 
@@ -18,7 +18,7 @@ const { title } = Astro.props;
   </head>
   <!-- TODO: bruk min-h-100dvh? -->
   <body class='flex min-h-screen flex-col'>
-    <Navigation />
+    <Header currentPathname={Astro.url.pathname} />
     <main class='grow'>
       <div class='mx-auto max-w-4xl px-4 xl:px-0'>
         <slot />
