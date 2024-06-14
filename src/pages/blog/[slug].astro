@@ -1,8 +1,8 @@
 ---
-import Layout from '@/component/Layout.astro';
-import { DecorationLine } from '@/component/decoration-line';
-import H1 from '@/component/sanity/H1.astro';
-import PortableText from '@/component/sanity/PortableText.astro';
+import Layout from '@/components/Layout.astro';
+import { DecorationLine } from '@/components/decoration-line';
+import H1 from '@/components/sanity/H1.astro';
+import PortableText from '@/components/sanity/PortableText.astro';
 import imageUrlBuilder from '@sanity/image-url';
 import type { Post } from 'sanity.types';
 import { sanityClient } from 'sanity:client';
@@ -35,10 +35,9 @@ const date = new Date(post.publishedAt || '').toLocaleDateString('en-US', {
   dateStyle: 'long',
 });
 
-const mainImage = imageUrlBuilder(sanityClient)
-  .image(post.mainImage)
-  .width(900)
-  .url();
+const mainImage =
+  post.mainImage &&
+  imageUrlBuilder(sanityClient).image(post.mainImage).width(900).url();
 ---
 
 <Layout title={post.title}>

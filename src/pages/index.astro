@@ -1,8 +1,8 @@
 ---
-import Layout from '@/component/Layout.astro';
-import H1 from '@/component/sanity/H1.astro';
-import H2 from '@/component/sanity/H2.astro';
-import PortableText from '@/component/sanity/PortableText.astro';
+import Layout from '@/components/Layout.astro';
+import H1 from '@/components/sanity/H1.astro';
+import H2 from '@/components/sanity/H2.astro';
+import PortableText from '@/components/sanity/PortableText.astro';
 import imageUrlBuilder from '@sanity/image-url';
 import type { Author, Post } from 'sanity.types';
 import { sanityClient } from 'sanity:client';
@@ -18,10 +18,9 @@ const postsFetch = sanityClient.fetch<Post[]>(
 
 const [author, posts] = await Promise.all([authorFetch, postsFetch]);
 
-const authorImage = imageUrlBuilder(sanityClient)
-  .image(author.image)
-  .width(900)
-  .url();
+const authorImage =
+  author.image &&
+  imageUrlBuilder(sanityClient).image(author.image).width(900).url();
 ---
 
 <Layout title='Blog'>
@@ -60,7 +59,6 @@ const authorImage = imageUrlBuilder(sanityClient)
     <ol class='mt-2 space-y-2'>
       {
         posts.map((post) => {
-          // TODO: must be a better way to filter this or fix types in schema?
           if (!post.publishedAt || !post.slug) {
             return '';
           }
