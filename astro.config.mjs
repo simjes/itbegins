@@ -1,4 +1,5 @@
 import react from '@astrojs/react';
+import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
 import sanity from '@sanity/astro';
 import { defineConfig } from 'astro/config';
@@ -12,15 +13,17 @@ const { PUBLIC_SANITY_PROJECT_ID, PUBLIC_SANITY_DATASET } = loadEnv(
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://itbegins.no',
   integrations: [
     react(),
     tailwind(),
     sanity({
       projectId: PUBLIC_SANITY_PROJECT_ID,
       dataset: PUBLIC_SANITY_DATASET,
-      useCdn: false, // See note on using the CDN
-      apiVersion: '2024-06-11', // insert the current date to access the latest version of the API
+      useCdn: false,
+      apiVersion: '2024-06-11',
       studioBasePath: '/admin',
     }),
+    sitemap(),
   ],
 });
