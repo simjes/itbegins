@@ -4,9 +4,7 @@ const startOfCareer = new Date(2017, 5, 1);
 const today = new Date();
 const yearsOfExperience = today.getFullYear() - startOfCareer.getFullYear();
 
-/**
- * @deprecated will be removed in the future and implemented in CMS
- */
+// Consider migrating this to CMS
 export const RESUME_DATA = {
   name: 'Simon Jespersen',
   initials: 'SJ',

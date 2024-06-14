@@ -19,9 +19,10 @@ const config = defineConfig({
     process.env.PUBLIC_SANITY_DATASET ||
     '',
   plugins: [
-    structureTool(),
+    ...(import.meta.env.PROD
+      ? [structureTool()]
+      : [structureTool(), visionTool()]),
     codeInput(),
-    visionTool(),
     unsplashImageAsset(),
     tags(),
   ],
