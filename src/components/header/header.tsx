@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils';
 
 export const Header = ({ currentPathname }: { currentPathname: string }) => (
-  <header className='py-4'>
+  <header className='py-4 print:hidden'>
     <div className='mx-auto flex max-w-4xl flex-col justify-between space-y-2 px-4 sm:flex-row sm:space-y-0 xl:px-0'>
       <a
         href='/'
