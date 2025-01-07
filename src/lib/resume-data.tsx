@@ -1,19 +1,79 @@
-import { GitHubIcon, LinkedInIcon, XIcon } from '@/components/icons';
+import { BlueskyIcon, GitHubIcon, LinkedInIcon } from '@/components/icons';
+import type { ComponentType } from 'react';
+
+type SocialLink = {
+  name: string;
+  url: string;
+  icon: ComponentType;
+};
+
+type Education = {
+  school: string;
+  degree: string;
+  start: string;
+  end: string;
+};
+
+type WorkExperience = {
+  company: string;
+  link: string;
+  badges: string[];
+  title: string;
+  start: string;
+  end: string;
+  points: string[];
+};
+
+type Project = {
+  title: string;
+  techStack: string[];
+  description: string;
+  link: {
+    href: string;
+  };
+};
+
+type Certification = {
+  name: string;
+  providerName: string;
+  issueDate: string;
+  expirationDate?: string;
+};
+
+type Resume = {
+  name: string;
+  initials: string;
+  location: string;
+  locationLink: string;
+  about: string;
+  summary: string;
+  avatarUrl: string;
+  personalWebsiteUrl: string;
+  contact: {
+    email: string;
+    tel: string;
+    social: SocialLink[];
+  };
+  education: Education[];
+  work: WorkExperience[];
+  skills: string[];
+  projects: Project[];
+  certificationAndCourse: Certification[];
+};
 
 const startOfCareer = new Date(2017, 5, 1);
 const today = new Date();
 const yearsOfExperience = today.getFullYear() - startOfCareer.getFullYear();
 
-// Consider migrating this to CMS
 export const RESUME_DATA = {
   name: 'Simon Jespersen',
   initials: 'SJ',
   location: 'Stavanger, Norway',
   locationLink: 'https://www.google.com/maps/place/Stavanger',
-  about: 'Senior Frontend Developer | Building user-focused solutions',
-  summary: `As a frontend developer, I'm passionate about creating user-focused solutions. I enjoy creating products together with a dedicated team that can give excellent user experiences, adhere to universal design, and enhance the daily lives of users. I have ${yearsOfExperience} years of web development experience, working with local and remote teams.`,
+  about: 'Senior Frontend Developer',
+  summary: `As a front-end developer, I'm passionate about creating user-focused solutions. I thrive when working with experienced peers who also want to provide the best solution for the end user.  I have ${yearsOfExperience} years of web development experience, working with local and remote teams.`,
   avatarUrl: 'https://avatars.githubusercontent.com/u/6494049?v=4',
-  personalWebsiteUrl: '/',
+  personalWebsiteUrl: 'https://github.com/simjes',
   contact: {
     email: 'simjes91@me.com',
     tel: '+4798620963',
@@ -29,9 +89,9 @@ export const RESUME_DATA = {
         icon: LinkedInIcon,
       },
       {
-        name: 'X',
-        url: 'https://twitter.com/itsalwayskos',
-        icon: XIcon,
+        name: 'Bluesky',
+        url: 'https://bsky.app/profile/simjes.bsky.social',
+        icon: BlueskyIcon,
       },
     ],
   },
@@ -59,190 +119,122 @@ export const RESUME_DATA = {
     {
       company: 'Webstep',
       link: 'https://www.webstep.no/',
-      badges: ['Consultant'],
-      title: 'Senior Frontend Developer',
+      badges: ['Astro', 'React', 'TypeScript', 'React Native', '.NET'],
+      title: 'Senior Frontend Developer, Consultant',
       start: '2022',
-      end: today.getFullYear(),
-      description:
-        "Led the frontend development for Zaptec's payment solution for EV charging, and created components for the design system. Improved performance and maintainability of UXRisk, and suggested further improvements for the team to work on. Technologies: React, TypeScript, React Native, WebSockets, .NET.",
+      end: 'Present',
+      points: [
+        'Building version 2 of Form Design System at Lyse AS.',
+        'Instigator for modernizing the way the developers work on the Norwegian newspapers Stavanger Aftenblad and Bergens Tidende.',
+        "Led the frontend development for Zaptec's payment solution for EV charging, and created components for the design system.",
+        'Improved performance and maintainability of UXRisk, and suggested further improvements for the team to work on.',
+        'Led the migration of Risa Winter Operations from Vaadin to Remix.',
+      ],
     },
     {
       company: 'Dfind Consulting',
       link: 'https://www.dfindconsulting.no/',
-      badges: ['Consultant'],
-      title: 'Frontend Developer → Senior Frontend Developer',
+      badges: ['React', 'TypeScript', 'Angular', '.NET'],
+      title: 'Frontend Developer → Senior Frontend Developer, Consultant',
       start: '2019',
       end: '2022',
-      description:
-        'Created web applications for companies like ix3 (Aker Solutions), Instech (Norwegian Hull Club) and Norsk Tipping, and was the frontend lead in some projects. Technologies: React, TypeScript, Angular.',
+      points: [
+        'Implemented self-help educational content for gambling-addicted players for Norsk Tipping.',
+        'Improved and developed new features for the document management system in Norwegian Hull Club.',
+        'Helped digitize the complete documentation process of the construction of oil platforms for Aker Solutions.',
+      ],
     },
     {
       company: 'Storebrand',
       link: 'https://www.storebrand.no/',
-      badges: ['Inhouse'],
-      title: 'Senior Frontend Developer',
+      badges: ['React', 'TypeScript', 'AngularJS'],
+      title: 'Senior Frontend Developer, In-house',
       start: '2021',
       end: '2021',
-      description:
-        'Upgrading the Customer Investment Portal away from EOL technology. Technologies: React, TypeScript, AngularJS.',
+      points: [
+        'Upgrading the Customer Investment Portal away from EOL technology.',
+      ],
     },
     {
       company: 'Olavstoppen',
       link: 'https://www.olavstoppen.no/en',
-      badges: ['Consultant'],
-      title: 'Frontend Developer',
+      badges: ['React', 'JavaScript'],
+      title: 'Frontend Developer, Consultant',
       start: '2019',
       end: '2019',
-      description:
-        "R&D for Equinor's Integrated Operation Center. Technologies: React, JavaScript.",
+      points: [
+        'Built a dashboard for evidence-based decision-making for Equinors Integrated Operation Center.',
+      ],
     },
     {
       company: 'Capgemini Norge',
       link: 'https://www.capgemini.com/no-no/',
-      badges: ['Consultant'],
-      title: 'Full Stack Developer',
+      badges: ['Angular', 'TypeScript', '.NET'],
+      title: 'Full Stack Developer, Consultant',
       start: '2017',
       end: '2019',
-      description:
-        'Created a proof of concept for Sevensix in Summer of Code 2017. Developed web applications for the Norwegian Maritime Authority. Mentor for Summer of Code 2018. Created frontend related presentations to increase engagement among the developers. Technologies: Angular, TypeScript, .NET.',
+      points: [
+        'Developed My Vessel application for the Norwegian Maritime Authority.',
+        'Mentor for Summer of Code 2018.',
+        'Created a proof of concept for Sevensix in Summer of Code 2017.',
+      ],
     },
   ],
-  skills: ['TypeScript', 'JavaScript', 'React/Next.js/Remix', '.NET'],
+  skills: [
+    'TypeScript',
+    'JavaScript',
+    'Astro',
+    'React/Next.js/Remix',
+    'Tailwind CSS',
+    '.NET',
+  ],
   projects: [
     {
-      title: 'Schibsted Media',
-      techStack: ['TypeScript', 'React', 'Astro', 'Svelte', 'Go'],
+      title: 'Jenovas SEO',
+      techStack: ['TypeScript', 'Astro', 'Tailwind CSS', 'Cloudflare'],
       description:
-        'Norwegian news websites Stavanger Aftenblad and Bergens Tidende',
-    },
-    {
-      title: 'Zaptec',
-      techStack: ['TypeScript', 'React', 'React Native', 'OCPP', 'WebSockets'],
-      description: 'Payment solution for EV charging with Charge365',
+        'A Norwegian podcast about Final Fantasy and Kingdom Hearts. Built a page to improve the SEO.',
+      link: {
+        href: 'https://github.com/simjes/jenovas-seo',
+      },
     },
     {
       title: 'UX Norge',
       techStack: ['Open Source', 'TypeScript', 'Gatsby', 'Sanity'],
-      description: 'Norwegian community for UX design',
-
+      description:
+        'Norwegian community for UX design. Open Source project that I contribute to.',
       link: {
-        label: 'uxnorge.no',
         href: 'https://uxnorge.no/',
       },
     },
     {
-      title: 'UXRisk',
-      techStack: ['React', 'TypeScript', 'Cypress', 'WebSockets'],
-      description:
-        'Build all your GRC and management system workflows on one platform. Rebranded to Dmaze',
-      link: {
-        label: 'dmaze.com',
-        href: 'https://www.dmaze.com/',
-      },
-    },
-    {
-      title: 'Winter Operation',
-      techStack: ['Remix', 'TypeScript'],
-      description:
-        'Documentation of discrepancies in operational data related to the maintenance of roads during the winter months',
-    },
-    {
       title: 'Tadata',
-      techStack: ['Side Project', 'Remix', 'TypeScript', 'GraphQL'],
+      techStack: ['Remix', 'TypeScript', 'GraphQL'],
       description:
-        'Tadata provides an overview of available APIs and data sources in Norway',
-
+        'Tadata provides an overview of the available APIs and data sources in Norway. Helped the team structure components and styling. Migrated to Remix and suggested UX improvements.',
       link: {
-        label: 'tadata.no',
         href: 'https://tadata.no/',
       },
     },
     {
-      title: 'Spillepuls',
-      techStack: ['TypeScript', 'React', 'Cypress', 'Next.js'],
-      description:
-        'Spillepuls aims to assist players who already have gambling problems by encouraging them to take measures to play less',
-
-      link: {
-        label: 'norsk-tipping.no',
-        href: 'https://www.norsk-tipping.no/artikler/nytt-verktoy-senker-spillepulsen',
-      },
-    },
-    {
       title: 'IT Begins',
-      techStack: [
-        'Side Project',
-        'TypeScript',
-        'Remix',
-        'Sanity',
-        'Cloudflare',
-      ],
-      description: 'Marketing and blog page for my own consultancy company',
-
+      techStack: ['TypeScript', 'Remix', 'Sanity', 'Cloudflare'],
+      description: 'Marketing and blog page for my own consultancy company.',
       link: {
-        label: 'github.com',
         href: 'https://github.com/simjes/itbegins',
       },
-    },
-    {
-      title: 'Insify Document',
-      techStack: ['JavaScript', 'React', 'Azure Cognitive Search', '.NET'],
-      description:
-        'Document management system consisting of a web search portal and an Outlook add-in. Rebranded to ETUITY',
-
-      link: {
-        label: 'instech.no',
-        href: 'https://www.instech.no/etuity',
-      },
-    },
-    {
-      title: 'Actively',
-      techStack: ['Next.js', 'TypeScript', 'Flutter', 'Dart'],
-      description: 'Rewarding physical activity through challenges',
-    },
-    {
-      title: 'CIP',
-      techStack: ['React', 'TypeScript', 'AngularJS'],
-      description:
-        'Customer Investment Portal is a self service portal for buying and selling funds',
-      link: {
-        label: 'skagenfunds.com',
-        href: 'https://www.skagenfunds.com/',
-      },
-    },
-    {
-      title: 'Completion',
-      techStack: ['TypeScript', 'Angular', 'Cypress'],
-      description:
-        'Digitizing the complete documentation process during the construction of oil platforms',
-    },
-    {
-      title: 'Almond',
-      techStack: ['React', 'JavaScript'],
-      description: 'Analyzing sensor data from the oil field',
-    },
-    {
-      title: 'My Vessels',
-      techStack: ['Angular', 'TypeScript', '.NET'],
-      description:
-        'Communication platform for the Norwegian Maritime Authority (NMA) and the shipping industry',
-
-      link: {
-        label: 'sdir.no/en',
-        href: 'https://www.sdir.no/en/shipping/vessels/my-vessels/',
-      },
-    },
-    {
-      title: 'Sevensix',
-      techStack: ['Angular', 'TypeScript'],
-      description:
-        'Proof of concept for a collaborative platform for tennis players and trainers',
     },
   ],
   certificationAndCourse: [
     {
       name: 'Learn PUB/SUB Architecture',
-      providerName: 'boot.dev — Lane Wagner',
+      providerName: 'Lane Wagner — boot.dev',
+      issueDate: '2024',
+      expirationDate: undefined,
+    },
+    {
+      name: 'Designing For Complex UIs + Design KPIs',
+      providerName: 'Vitaly Friedmann',
       issueDate: '2024',
       expirationDate: undefined,
     },
@@ -313,4 +305,4 @@ export const RESUME_DATA = {
       expirationDate: '2018',
     },
   ],
-} as const;
+} satisfies Resume;
