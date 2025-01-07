@@ -2,9 +2,9 @@
 import '@/globals.css';
 import { Header } from './header/header';
 
-type Props = { title?: string };
+type Props = { title?: string; description?: string };
 
-const { title } = Astro.props;
+const { title, description } = Astro.props;
 
 const metaTitle = title ? `${title} — IT Begins` : 'IT Begins';
 ---
@@ -12,6 +12,7 @@ const metaTitle = title ? `${title} — IT Begins` : 'IT Begins';
 <html lang='en'>
   <head>
     <meta charset='utf-8' />
+    <meta name='description' content={description} />
     <link rel='apple-touch-icon' sizes='76x76' href='/apple-touch-icon.png' />
     <link rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png' />
     <link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png' />

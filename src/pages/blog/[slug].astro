@@ -40,7 +40,7 @@ const mainImage =
   imageUrlBuilder(sanityClient).image(post.mainImage).width(900).url();
 ---
 
-<Layout title={post.title}>
+<Layout title={post.title} description={post.excerpt}>
   <article>
     <div class='mt-16 flex items-center space-x-4'>
       <header>

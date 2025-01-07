@@ -1,18 +1,24 @@
 ---
-import Layout from '@/components/Layout.astro';
-import { CommandMenu } from '@/components/command-menu';
 import { ProjectCard } from '@/components/project-card';
 import { AvatarComponent } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { buttonVariants } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Section } from '@/components/ui/section';
-import { RESUME_DATA } from '@/lib/resume-data';
+
 import { GlobeIcon, MailIcon, PhoneIcon } from 'lucide-react';
+
+import Layout from '@/components/Layout.astro';
+import { WorkDescription } from '@/components/work-description';
+import '@/globals.css';
+import { RESUME_DATA } from '@/lib/resume-data';
 ---
 
-<Layout title='CV'>
-  <div
+<Layout
+  title={`${RESUME_DATA.name} | ${RESUME_DATA.about}`}
+  description={RESUME_DATA.summary}
+>
+  <main
     class='container relative mx-auto scroll-my-12 overflow-auto p-4 md:p-16 print:p-12'
   >
     <section
@@ -69,6 +75,7 @@ import { GlobeIcon, MailIcon, PhoneIcon } from 'lucide-react';
                   class={buttonVariants({ variant: 'outline', size: 'icon' })}
                   href={social.url}
                   aria-label={`Visit social ${social}`}
+                  target='_blank'
                 >
                   <social.icon className='size-4' />
                 </a>
@@ -121,17 +128,6 @@ import { GlobeIcon, MailIcon, PhoneIcon } from 'lucide-react';
                       <a class='hover:underline' href={work.link}>
                         {work.company}
                       </a>
-
-                      <span class='inline-flex gap-x-1'>
-                        {work.badges.map((badge) => (
-                          <Badge
-                            variant='secondary'
-                            className='align-middle text-xs'
-                          >
-                            {badge}
-                          </Badge>
-                        ))}
-                      </span>
                     </h3>
                     <div class='text-sm tabular-nums text-gray-500'>
                       {work.start} - {work.end}
@@ -141,14 +137,22 @@ import { GlobeIcon, MailIcon, PhoneIcon } from 'lucide-react';
                   <h4 class='font-mono text-sm leading-none'>{work.title}</h4>
                 </CardHeader>
                 <CardContent className='mt-2 text-xs'>
-                  {work.description}
+                  <WorkDescription points={work.points} />
                 </CardContent>
+
+                <span class='inline-flex flex-wrap gap-1'>
+                  {work.badges.map((badge) => (
+                    <Badge variant='secondary' className='align-middle text-xs'>
+                      {badge}
+                    </Badge>
+                  ))}
+                </span>
               </Card>
             );
           })
         }
       </Section>
-      <Section className='print-force-new-page scroll-mb-16'>
+      <Section className='scroll-mb-16'>
         <h2 class='text-xl font-bold'>Education</h2>
         {
           RESUME_DATA.education.map((education) => {
@@ -175,14 +179,14 @@ import { GlobeIcon, MailIcon, PhoneIcon } from 'lucide-react';
         <div class='flex flex-wrap gap-1'>
           {
             RESUME_DATA.skills.map((skill) => {
-              return <Badge>{skill}</Badge>;
+              return <Badge variant='secondary'>{skill}</Badge>;
             })
           }
         </div>
       </Section>
 
-      <Section className='print-force-new-page scroll-mb-16'>
-        <h2 class='text-xl font-bold'>Projects</h2>
+      <Section className='scroll-mb-16'>
+        <h2 class='text-xl font-bold'>Side Projects</h2>
         <div
           class='-mx-3 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3 print:grid-cols-3 print:gap-2'
         >
@@ -204,7 +208,7 @@ import { GlobeIcon, MailIcon, PhoneIcon } from 'lucide-react';
       {
         RESUME_DATA.certificationAndCourse &&
           RESUME_DATA.certificationAndCourse.length > 0 && (
-            <Section className='print-force-new-page scroll-mb-16'>
+            <Section className='scroll-mb-16'>
               <h2 class='text-xl font-bold'>Certifications and Courses</h2>
               {RESUME_DATA.certificationAndCourse.map((certification) => {
                 return (
@@ -232,19 +236,5 @@ import { GlobeIcon, MailIcon, PhoneIcon } from 'lucide-react';
           )
       }
     </section>
-
-    <CommandMenu
-      client:visible
-      links={[
-        {
-          url: RESUME_DATA.personalWebsiteUrl,
-          title: 'Personal Website',
-        },
-        ...RESUME_DATA.contact.social.map((socialMediaLink) => ({
-          url: socialMediaLink.url,
-          title: socialMediaLink.name,
-        })),
-      ]}
-    />
-  </div>
+  </main>
 </Layout>
