@@ -16,7 +16,9 @@ export default defineConfig({
   site: 'https://itbegins.no',
   integrations: [
     react(),
-    tailwind(),
+    tailwind({
+      applyBaseStyles: false,
+    }),
     sanity({
       projectId: PUBLIC_SANITY_PROJECT_ID,
       dataset: PUBLIC_SANITY_DATASET,

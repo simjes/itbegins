@@ -9,7 +9,6 @@ import { structureTool } from 'sanity/structure';
 const config = defineConfig({
   name: 'itbegins',
   title: 'IT Begins',
-  // TODO: sjekk at dette støtter tpyes extractoren ooog admin
   projectId:
     import.meta.env.PUBLIC_SANITY_PROJECT_ID ||
     process.env.PUBLIC_SANITY_PROJECT_ID ||
