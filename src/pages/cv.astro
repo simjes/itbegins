@@ -18,223 +18,213 @@ import { RESUME_DATA } from '@/lib/resume-data';
   title={`${RESUME_DATA.name} | ${RESUME_DATA.about}`}
   description={RESUME_DATA.summary}
 >
-  <main
-    class='container relative mx-auto scroll-my-12 overflow-auto p-4 md:p-16 print:p-12'
-  >
-    <section
-      class='mx-auto w-full max-w-2xl space-y-8 bg-white print:space-y-6'
-    >
-      <div class='flex items-center justify-between'>
-        <div class='flex-1 space-y-1.5'>
-          <h1 class='text-2xl font-bold'>{RESUME_DATA.name}</h1>
-          <p
-            class='max-w-md text-pretty font-mono text-sm text-muted-foreground'
-          >
-            {RESUME_DATA.about}
-          </p>
-          <p
-            class='max-w-md items-center text-pretty font-mono text-xs text-muted-foreground'
-          >
-            <a
-              class='inline-flex gap-x-1.5 align-baseline leading-none hover:underline'
-              href={RESUME_DATA.locationLink}
-              target='_blank'
-            >
-              <GlobeIcon className='size-3' />
-              {RESUME_DATA.location}
-            </a>
-          </p>
-          <div
-            class='flex gap-x-1 pt-1 font-mono text-sm text-muted-foreground print:hidden'
-          >
-            {
-              RESUME_DATA.contact.email ? (
-                <a
-                  class={buttonVariants({ variant: 'outline', size: 'icon' })}
-                  href={`mailto:${RESUME_DATA.contact.email}`}
-                  aria-label='Send email'
-                >
-                  <MailIcon className='size-4' />
-                </a>
-              ) : null
-            }
-            {
-              RESUME_DATA.contact.tel ? (
-                <a
-                  class={buttonVariants({ variant: 'outline', size: 'icon' })}
-                  href={`tel:${RESUME_DATA.contact.tel}`}
-                  aria-label='Call'
-                >
-                  <PhoneIcon className='size-4' />
-                </a>
-              ) : null
-            }
-            {
-              RESUME_DATA.contact.social.map((social) => (
-                <a
-                  class={buttonVariants({ variant: 'outline', size: 'icon' })}
-                  href={social.url}
-                  aria-label={`Visit social ${social}`}
-                  target='_blank'
-                >
-                  <social.icon className='size-4' />
-                </a>
-              ))
-            }
-          </div>
-          <div
-            class='hidden flex-col gap-x-1 font-mono text-sm text-muted-foreground print:flex'
-          >
-            {
-              RESUME_DATA.contact.email ? (
-                <a href={`mailto:${RESUME_DATA.contact.email}`}>
-                  <span class='underline'>{RESUME_DATA.contact.email}</span>
-                </a>
-              ) : null
-            }
-            {
-              RESUME_DATA.contact.tel ? (
-                <a href={`tel:${RESUME_DATA.contact.tel}`}>
-                  <span class='underline'>{RESUME_DATA.contact.tel}</span>
-                </a>
-              ) : null
-            }
-          </div>
-        </div>
-
-        <AvatarComponent
-          client:load
-          className='size-28'
-          alt={RESUME_DATA.name}
-          src={RESUME_DATA.avatarUrl}
-          fallbackText={RESUME_DATA.initials}
-        />
-      </div>
-      <Section>
-        <h2 class='text-xl font-bold'>About</h2>
-        <p class='text-pretty font-mono text-sm text-muted-foreground'>
-          {RESUME_DATA.summary}
+  <section class='my-16 space-y-8 print:space-y-6'>
+    <div class='flex items-center justify-between'>
+      <div class='flex-1 space-y-1.5'>
+        <h1 class='text-2xl font-bold'>{RESUME_DATA.name}</h1>
+        <p class='max-w-md text-pretty font-mono text-sm text-muted-foreground'>
+          {RESUME_DATA.about}
         </p>
-      </Section>
-      <Section>
-        <h2 class='text-xl font-bold'>Work Experience</h2>
-        {
-          RESUME_DATA.work.map((work) => {
-            return (
-              <Card key={work.company}>
-                <CardHeader>
-                  <div class='flex items-center justify-between gap-x-2 text-base'>
-                    <h3 class='inline-flex items-center justify-center gap-x-1 font-semibold leading-none'>
-                      <a class='hover:underline' href={work.link}>
-                        {work.company}
-                      </a>
-                    </h3>
-                    <div class='text-sm tabular-nums text-gray-500'>
-                      {work.start} - {work.end}
-                    </div>
-                  </div>
-
-                  <h4 class='font-mono text-sm leading-none'>{work.title}</h4>
-                </CardHeader>
-                <CardContent className='mt-2 text-xs'>
-                  <WorkDescription points={work.points} />
-                </CardContent>
-
-                <span class='inline-flex flex-wrap gap-1'>
-                  {work.badges.map((badge) => (
-                    <Badge variant='secondary' className='align-middle text-xs'>
-                      {badge}
-                    </Badge>
-                  ))}
-                </span>
-              </Card>
-            );
-          })
-        }
-      </Section>
-      <Section className='scroll-mb-16'>
-        <h2 class='text-xl font-bold'>Education</h2>
-        {
-          RESUME_DATA.education.map((education) => {
-            return (
-              <Card key={education.school}>
-                <CardHeader>
-                  <div class='flex items-center justify-between gap-x-2 text-base'>
-                    <h3 class='font-semibold leading-none'>
-                      {education.school}
-                    </h3>
-                    <div class='text-sm tabular-nums text-gray-500'>
-                      {education.start} - {education.end}
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent className='mt-2'>{education.degree}</CardContent>
-              </Card>
-            );
-          })
-        }
-      </Section>
-      <Section>
-        <h2 class='text-xl font-bold'>Skills</h2>
-        <div class='flex flex-wrap gap-1'>
-          {
-            RESUME_DATA.skills.map((skill) => {
-              return <Badge variant='secondary'>{skill}</Badge>;
-            })
-          }
-        </div>
-      </Section>
-
-      <Section className='scroll-mb-16'>
-        <h2 class='text-xl font-bold'>Side Projects</h2>
+        <p
+          class='max-w-md items-center text-pretty font-mono text-xs text-muted-foreground'
+        >
+          <a
+            class='inline-flex gap-x-1.5 align-baseline leading-none hover:underline'
+            href={RESUME_DATA.locationLink}
+            target='_blank'
+          >
+            <GlobeIcon className='size-3' />
+            {RESUME_DATA.location}
+          </a>
+        </p>
         <div
-          class='-mx-3 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3 print:grid-cols-3 print:gap-2'
+          class='flex gap-x-1 pt-1 font-mono text-sm text-muted-foreground print:hidden'
         >
           {
-            RESUME_DATA.projects.map((project) => {
-              return (
-                <ProjectCard
-                  title={project.title}
-                  description={project.description}
-                  tags={project.techStack}
-                  link={'link' in project ? project.link.href : undefined}
-                />
-              );
-            })
+            RESUME_DATA.contact.email ? (
+              <a
+                class={buttonVariants({ variant: 'outline', size: 'icon' })}
+                href={`mailto:${RESUME_DATA.contact.email}`}
+                aria-label='Send email'
+              >
+                <MailIcon className='size-4' />
+              </a>
+            ) : null
+          }
+          {
+            RESUME_DATA.contact.tel ? (
+              <a
+                class={buttonVariants({ variant: 'outline', size: 'icon' })}
+                href={`tel:${RESUME_DATA.contact.tel}`}
+                aria-label='Call'
+              >
+                <PhoneIcon className='size-4' />
+              </a>
+            ) : null
+          }
+          {
+            RESUME_DATA.contact.social.map((social) => (
+              <a
+                class={buttonVariants({ variant: 'outline', size: 'icon' })}
+                href={social.url}
+                aria-label={`Visit social ${social}`}
+                target='_blank'
+              >
+                <social.icon className='size-4' />
+              </a>
+            ))
           }
         </div>
-      </Section>
+        <div
+          class='hidden flex-col gap-x-1 font-mono text-sm text-muted-foreground print:flex'
+        >
+          {
+            RESUME_DATA.contact.email ? (
+              <a href={`mailto:${RESUME_DATA.contact.email}`}>
+                <span class='underline'>{RESUME_DATA.contact.email}</span>
+              </a>
+            ) : null
+          }
+          {
+            RESUME_DATA.contact.tel ? (
+              <a href={`tel:${RESUME_DATA.contact.tel}`}>
+                <span class='underline'>{RESUME_DATA.contact.tel}</span>
+              </a>
+            ) : null
+          }
+        </div>
+      </div>
 
+      <AvatarComponent
+        client:load
+        className='size-28'
+        alt={RESUME_DATA.name}
+        src={RESUME_DATA.avatarUrl}
+        fallbackText={RESUME_DATA.initials}
+      />
+    </div>
+    <Section>
+      <h2 class='text-xl font-bold'>About</h2>
+      <p class='text-pretty font-mono text-sm text-muted-foreground'>
+        {RESUME_DATA.summary}
+      </p>
+    </Section>
+    <Section>
+      <h2 class='text-xl font-bold'>Work Experience</h2>
       {
-        RESUME_DATA.certificationAndCourse &&
-          RESUME_DATA.certificationAndCourse.length > 0 && (
-            <Section className='scroll-mb-16'>
-              <h2 class='text-xl font-bold'>Certifications and Courses</h2>
-              {RESUME_DATA.certificationAndCourse.map((certification) => {
-                return (
-                  <Card key={certification.name}>
-                    <CardHeader>
-                      <div class='flex items-center justify-between gap-x-2 text-base'>
-                        <h3 class='font-semibold leading-none'>
-                          {certification.name}
-                        </h3>
-                        <div class='text-sm tabular-nums text-gray-500'>
-                          {certification.issueDate}
-                          {!!certification.expirationDate && (
-                            <> - {certification.expirationDate}</>
-                          )}
-                        </div>
-                      </div>
-                      <h4 class='font-mono text-sm leading-none'>
-                        {certification.providerName}
-                      </h4>
-                    </CardHeader>
-                  </Card>
-                );
-              })}
-            </Section>
-          )
+        RESUME_DATA.work.map((work) => {
+          return (
+            <Card key={work.company}>
+              <CardHeader>
+                <div class='flex items-center justify-between gap-x-2 text-base'>
+                  <h3 class='inline-flex items-center justify-center gap-x-1 font-semibold leading-none'>
+                    <a class='hover:underline' href={work.link}>
+                      {work.company}
+                    </a>
+                  </h3>
+                  <div class='text-sm tabular-nums text-gray-500'>
+                    {work.start} - {work.end}
+                  </div>
+                </div>
+
+                <h4 class='font-mono text-sm leading-none'>{work.title}</h4>
+              </CardHeader>
+              <CardContent className='mt-2 text-xs'>
+                <WorkDescription points={work.points} />
+              </CardContent>
+
+              <span class='inline-flex flex-wrap gap-1'>
+                {work.badges.map((badge) => (
+                  <Badge variant='secondary' className='align-middle text-xs'>
+                    {badge}
+                  </Badge>
+                ))}
+              </span>
+            </Card>
+          );
+        })
       }
-    </section>
-  </main>
+    </Section>
+    <Section className='scroll-mb-16'>
+      <h2 class='text-xl font-bold'>Education</h2>
+      {
+        RESUME_DATA.education.map((education) => {
+          return (
+            <Card key={education.school}>
+              <CardHeader>
+                <div class='flex items-center justify-between gap-x-2 text-base'>
+                  <h3 class='font-semibold leading-none'>{education.school}</h3>
+                  <div class='text-sm tabular-nums text-gray-500'>
+                    {education.start} - {education.end}
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent className='mt-2'>{education.degree}</CardContent>
+            </Card>
+          );
+        })
+      }
+    </Section>
+    <Section>
+      <h2 class='text-xl font-bold'>Skills</h2>
+      <div class='flex flex-wrap gap-1'>
+        {
+          RESUME_DATA.skills.map((skill) => {
+            return <Badge variant='secondary'>{skill}</Badge>;
+          })
+        }
+      </div>
+    </Section>
+
+    <Section className='scroll-mb-16'>
+      <h2 class='text-xl font-bold'>Side Projects</h2>
+      <div
+        class='-mx-3 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3 print:grid-cols-3 print:gap-2'
+      >
+        {
+          RESUME_DATA.projects.map((project) => {
+            return (
+              <ProjectCard
+                title={project.title}
+                description={project.description}
+                tags={project.techStack}
+                link={'link' in project ? project.link.href : undefined}
+              />
+            );
+          })
+        }
+      </div>
+    </Section>
+
+    {
+      RESUME_DATA.certificationAndCourse &&
+        RESUME_DATA.certificationAndCourse.length > 0 && (
+          <Section className='scroll-mb-16'>
+            <h2 class='text-xl font-bold'>Certifications and Courses</h2>
+            {RESUME_DATA.certificationAndCourse.map((certification) => {
+              return (
+                <Card key={certification.name}>
+                  <CardHeader>
+                    <div class='flex items-center justify-between gap-x-2 text-base'>
+                      <h3 class='font-semibold leading-none'>
+                        {certification.name}
+                      </h3>
+                      <div class='text-sm tabular-nums text-gray-500'>
+                        {certification.issueDate}
+                        {!!certification.expirationDate && (
+                          <> - {certification.expirationDate}</>
+                        )}
+                      </div>
+                    </div>
+                    <h4 class='font-mono text-sm leading-none'>
+                      {certification.providerName}
+                    </h4>
+                  </CardHeader>
+                </Card>
+              );
+            })}
+          </Section>
+        )
+    }
+  </section>
 </Layout>

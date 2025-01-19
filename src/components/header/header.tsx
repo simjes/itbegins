@@ -11,7 +11,7 @@ export const Header = ({ currentPathname }: { currentPathname: string }) => (
         <div className='aspect-w-3 aspect-h-1'>
           <img
             className='h-full w-full'
-            src={'/logo-dark.webp'}
+            src={'/logo-light.webp'}
             alt='IT Begins logo'
             width={342}
             height={114}

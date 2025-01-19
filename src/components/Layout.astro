@@ -9,7 +9,7 @@ const { title, description } = Astro.props;
 const metaTitle = title ? `${title} — IT Begins` : 'IT Begins';
 ---
 
-<html lang='en'>
+<html lang='en' class='dark'>
   <head>
     <meta charset='utf-8' />
     <meta name='description' content={description} />
@@ -23,11 +23,11 @@ const metaTitle = title ? `${title} — IT Begins` : 'IT Begins';
     <link rel='sitemap' href='/sitemap-index.xml' />
     <title>{metaTitle}</title>
   </head>
-  <!-- TODO: bruk min-h-100dvh? -->
-  <body class='flex min-h-screen flex-col'>
+
+  <body class='flex min-h-dvh flex-col'>
     <Header currentPathname={Astro.url.pathname} />
     <main class='grow'>
-      <div class='mx-auto max-w-4xl px-4 xl:px-0'>
+      <div class='mx-auto max-w-2xl px-4 xl:px-0'>
         <slot />
       </div>
     </main>
